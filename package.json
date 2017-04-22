@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "description": "Workout Assistant project",
   "repository": "https://github.com/GrybosKamil/Workout-Assistant",
+  "dependencies": {
+    "bower": "^1.7.7"
+  },
   "devDependencies": {
     "bower": "^1.7.7",
     "http-server": "^0.9.0",
