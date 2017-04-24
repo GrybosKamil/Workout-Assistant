@@ -1,17 +1,19 @@
-var express = require('express');
-var app = express();
+(function () {
 
-var port = process.env.PORT || 8080;
+    var express = require('express');
+    var path = require('path');
+    var app = express();
 
-app.set('view engine', 'ejs');
+    var port = process.env.PORT || 8080;
 
-app.use(express.static(__dirname + '/public'));
+    app.use(express.static(path.join(__dirname, 'public', 'app')));
 
-app.get('/', function(req, res) {
+    app.get('*', function (req, res) {
+        res.sendFile('index.html');
+    });
 
-    res.render('index');
-});
+    app.listen(port, function () {
+        console.log('Our app is running on port :' + port);
+    });
 
-app.listen(port, function() {
-    console.log('Our app is running on http://localhost:' + port);
-});
+})();
