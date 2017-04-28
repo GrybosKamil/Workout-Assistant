@@ -8,7 +8,7 @@
                 $locationProvider.hashPrefix('!');
 
                 $routeProvider.when('/', {
-                    template: 'Workout Assistant : Main page'
+                    template: 'Workout Assistant : PAU TU BYŁA!!!'
                 }).when('/about', {
                     template: '<about></about>'
                 }).when('/contact', {
