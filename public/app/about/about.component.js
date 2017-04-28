@@ -5,7 +5,22 @@
         .component('about', {
             templateUrl: 'about/about.template.html',
             controller: function About() {
-                this.message = "Some information about project"
+                this.message = "Frequent Answers and Questions";
+
+                this.faq = [
+                    {
+                        "title": "What is this project?",
+                        "description": "This project our final project"
+                    },
+                    {
+                        "title": "Why is this project?",
+                        "description": "Because we need graduate"
+                    },
+                    {
+                        "title": "Who takes care of it?",
+                        "description": "Two third year students : Paulina Kozioł & Kamil Gryboś"
+                    }
+                ]
             }
 
         });

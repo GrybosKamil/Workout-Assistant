@@ -3,7 +3,6 @@
 
 # User-specific stuff:
 .idea/*
-parent.iml
 
 # Node
 node_modules/
@@ -13,20 +12,3 @@ bower_components/
 
 # IntelliJ
 */out/
-
-# Maven
-target/
-
-# File-based project format:
-*/*.iws
-
-# JIRA plugin
-*/atlassian-ide-plugin.xml
-
-# Crashlytics plugin (for Android Studio and IntelliJ)
-*/com_crashlytics_export_strings.xml
-*/crashlytics.properties
-*/crashlytics-build.properties
-*/fabric.properties
-
-
