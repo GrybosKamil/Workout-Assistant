@@ -10,7 +10,7 @@
                 $routeProvider.when('/', {
                     template: 'Workout Assistant : Main page'
                 }).when('/about', {
-                    template: '<about></about>',
+                    template: '<about>Jestem Pau!</about>',
                     controller: ''
                     // templateUrl: 'public/app/about/about.template.html'
                 }).when('/contact', {
