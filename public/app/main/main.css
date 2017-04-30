@@ -1,10 +1,22 @@
 .parallax-window {
-    min-height: 400px;
+    min-height: 500px;
     background: transparent;
+
+}
+.main-container, .main-middle-container {
+    width: 100%;
+    text-align: center;
+    display: table;
+}
+.main-container {
+    height: 120px;
+}
+.main-middle-container {
+    height: 200px;
 }
 
-.test {
-    width: 40px;
-    height: 40px;
-    background-color: aqua;
+.main-container h3, .main-middle-container h3 {
+    display: table-cell;
+    vertical-align: middle;
 }
+
