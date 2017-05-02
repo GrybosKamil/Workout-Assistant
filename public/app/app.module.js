@@ -4,7 +4,8 @@
 
     angular.module('workoutAssistantApp', [
         'ngRoute',
-        'about'
+        'about',
+        'main'
     ]);
 
 })();
