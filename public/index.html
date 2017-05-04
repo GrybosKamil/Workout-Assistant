@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <title>Workout Assistant</title>
-    <link rel="shortcut icon" type="image/png" href="favicon.ico"/>
+    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.ico"/>
     <!--<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>-->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css"/>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"/>
-    <link rel="stylesheet" href="app.css"/>
+    <link rel="stylesheet" href="app/app.css"/>
 
     <!--<script src="../bower_components/angular/angular.js"></script>-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.js"></script>
@@ -35,15 +35,15 @@
 <body>
 
 <div class="view-container">
-    <div ng-view class="view-frame">
+    <div data-ng-view class="view-frame">
     </div>
 </div>
 
 
-<script src="app.module.js"></script>
-<script src="app.config.js"></script>
-<script src="about/about.module.js"></script>
-<script src="about/about.component.js"></script>
-<script src="about/script.js"></script>
+<script src="app/app.module.js"></script>
+<script src="app/app.config.js"></script>
+<script src="app/components/about/about.module.js"></script>
+<script src="app/components/about/about.component.js"></script>
+<script src="app/components/about/about.script.js"></script>
 </body>
 </html>

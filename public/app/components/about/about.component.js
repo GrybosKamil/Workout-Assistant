@@ -3,7 +3,7 @@
 (function () {
     angular.module('about')
         .component('about', {
-            templateUrl: 'about/about.template.html',
+            templateUrl: 'app/components/about/about.template.html',
             controller: function About() {
                 this.message = "Frequent Answers and Questions";
 
