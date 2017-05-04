@@ -1,0 +1,21 @@
+.parallax-window {
+    min-height: 500px;
+    background: transparent;
+
+}
+.main-container, .main-middle-container {
+    width: 100%;
+    text-align: center;
+    display: table;
+}
+.main-container {
+    height: 120px;
+}
+.main-middle-container {
+    height: 240px;
+}
+
+.main-container h3, .main-middle-container h3 {
+    display: table-cell;
+    vertical-align: middle;
+}
