@@ -16,15 +16,17 @@
 
         router.route('/exercises')
             .post(function (req, res) {
-                var exercise = new Exercise();
-                exercise.name = req.body.name;
-                exercise.description = req.body.description;
+                var exercise = new Exercise(req.body);
+
 
                 exercise.save(function (err) {
                     if (err) {
                         res.send(err);
                     }
-                    res.json({message: 'Exercise created!'});
+                    res.json({
+                        message: 'Exercise created!',
+                        exercise: exercise
+                    });
                 });
             })
             .get(function (req, res) {
