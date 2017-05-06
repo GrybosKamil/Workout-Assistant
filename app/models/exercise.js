@@ -1,8 +1,8 @@
 (function () {
 
-    var mongoose = require('mongoose');
-
+    var mongoose = require('../../config/db.connection');
     var Schema = mongoose.Schema;
+    var ObjectId = Schema.ObjectId;
 
     var Exercise = new Schema({
             name: String,
