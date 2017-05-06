@@ -10,7 +10,7 @@
                     this.exercises = response.data;
                 });
 
-                console.log(this.exercises);
+
             }
 
         });
