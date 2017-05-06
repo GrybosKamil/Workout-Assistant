@@ -1,24 +1,17 @@
-
 (function () {
 
-    var express = require('express');
-    var mongoose = require('mongoose');
+    const express = require('express');
 
-    var path = require('path');
-    var bodyParser = require('body-parser');
-    var methodOverride = require('method-override');
+    const path = require('path');
+    const bodyParser = require('body-parser');
+    const methodOverride = require('method-override');
 
-    var app = express();
-    var db = require('./config/db');
+    const app = express();
+    const port = process.env.PORT || 8080;
 
-    var port = process.env.PORT || 8080;
-
-    mongoose.connect(db.url);
-
-    app.use(bodyParser.json());
     app.use(methodOverride('X-HTTP-Method-Override'));
-    app.use(bodyParser.json({type: 'application/vnd.api+json'}));
-    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.urlencoded({extended: false}));
+    app.use(bodyParser.json());
 
     app.use(express.static(path.join(__dirname, 'public')));
 

@@ -1,13 +1,12 @@
 (function () {
 
-    var router = require('express').Router();
-    // var Exercise = require('./models/exercise')(mongoose);
+    const router = require('express').Router();
+
+    const Exercise = require('./models/exercise');
+    const Training = require('./models/training');
+    // const Workout = require('./models/workout');
 
     function routing(app) {
-
-        var Exercise = require('./models/exercise');
-        // var Workout = require('./models/workout');
-
 
         router.use(function (req, res, next) {
             console.log("Something is happening.");
@@ -16,48 +15,56 @@
 
         router.route('/exercises')
             .post(function (req, res) {
-                var exercise = new Exercise();
-                exercise.name = req.body.name;
-                exercise.description = req.body.description;
+                let exercise = new Exercise(req.body);
 
-                exercise.save(function (err) {
-                    if (err) {
-                        res.send(err);
-                    }
-                    res.json({message: 'Exercise created!'});
-                });
+                let promise = exercise.save();
+
+                promise
+                    .catch((error) => {
+                        res.send(error);
+                    })
+                    .then((response) => {
+                        res.json(response);
+                    });
+
             })
             .get(function (req, res) {
-                Exercise.find(function (err, exercises) {
-                    if (err) {
-                        res.send(err);
-                    }
-                    res.json(exercises);
-                });
+                let promise = Exercise.find().exec();
+
+                promise
+                    .catch((error) => {
+                        res.send(error);
+                    })
+                    .then((response) => {
+                        res.json(response);
+                    });
             });
 
-        // router.route('/workouts')
-        //     .post(function (req, res) {
-        //         var workout = new Workout;
-        //         workout.name = req.body.name;
-        //         workout.description = req.body.description;
-        //         console.log(req.body);
-        //
-        //         workout.save(function (err) {
-        //             if (err) {
-        //                 res.send(err);
-        //             }
-        //             res.json({message: 'Workout created!'});
-        //         });
-        //     })
-        //     .get(function (req, res) {
-        //         Workout.find(function (err, exercises) {
-        //             if (err) {
-        //                 res.send(err);
-        //             }
-        //             res.json(exercises);
-        //         });
-        //     });
+        router.route('/trainings')
+            .post(function (req, res) {
+                let training = new Training(req.body);
+
+                let promise = training.save();
+
+                promise
+                    .catch((error) => {
+                        res.send(error);
+                    })
+                    .then((response) => {
+                        res.json(response);
+                    });
+            })
+            .get(function (req, res) {
+                let promise = Training.find().populate('exercises.exercise').exec();
+
+                promise
+                    .catch((error) => {
+                        res.send(error);
+                    })
+                    .then((response) => {
+                        res.json(response);
+                    });
+            });
 
 
         router.get('/', function (req, res) {

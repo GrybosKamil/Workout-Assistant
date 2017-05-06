@@ -1,19 +1,18 @@
 (function () {
 
-    var mongoose = require('mongoose');
+    const mongoose = require('../../config/db.connection');
+    const Schema = mongoose.Schema;
+    const ObjectId = Schema.ObjectId;
 
-    // function create(mongoose) {
-    var Schema = mongoose.Schema;
-
-    var Exercise = new Schema({
+    const Exercise = new Schema({
             name: String,
-            description: String
+            description: String,
+            place: String,
+            muscles: [String],
+            requirements: [String]
         }
     );
-    // return mongoose.model('exercise', Exercise);
-    // }
 
     module.exports = mongoose.model('Exercise', Exercise);
-    // module.exports = create;
 
 })();
