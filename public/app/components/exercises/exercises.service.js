@@ -1,11 +1,11 @@
 'use strict';
 
 (function () {
-    angular.module('exercisesService', []).factory('Exercises', ['$http', function($http) {
+    angular.module('exercisesService', []).factory('Exercises', ['$http', '$q', function($http, $q) {
 
         return {
             // call to get all exercises
-            get : function() {
+            getExercises : function() {
                 console.log("Get function");
                 return $http.get('/exercises');
             }

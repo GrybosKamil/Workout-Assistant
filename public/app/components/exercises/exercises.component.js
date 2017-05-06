@@ -5,7 +5,11 @@
         .component('exercises', {
             templateUrl: 'app/components/exercises/exercises.template.html',
             controller: function Exercises(Exercises) {
-                this.exercises = Exercises.get();
+
+                Exercises.getExercises().then((response) => {
+                    this.exercises = response.data;
+                });
+
                 console.log(this.exercises);
             }
 
