@@ -15,6 +15,8 @@
                     template: 'Contact'
                 }).when('/404', {
                     template: 'Looks like you got lost. <a href="/">Back to home.</a>'
+                }).when('/exercises', {
+                    template: '<exercises><exercises/>'
                 }).otherwise('/404');
             }
         ]);
