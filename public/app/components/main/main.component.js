@@ -5,7 +5,7 @@
         .component('main', {
             templateUrl: 'app/components/main/main.template.html',
             controller: function Main() {
-                var self = this;
+                let self = this;
 
                 this.parallaxBackgrounds = [{
                     parallax_number: "0",

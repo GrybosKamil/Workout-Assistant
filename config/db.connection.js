@@ -1,9 +1,9 @@
-var mongoose = require('mongoose');
-var db = require('./db');
+const mongoose = require('mongoose');
+const db = require('./db');
 
 mongoose.connect(db.url);
 
-var connection = mongoose.connection;
+const connection = mongoose.connection;
 
 connection.on('error', console.error.bind(console, 'Connection Error : '));
 connection.once('open', function () {

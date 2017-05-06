@@ -1,13 +1,13 @@
 (function () {
 
-    var express = require('express');
+    const express = require('express');
 
-    var path = require('path');
-    var bodyParser = require('body-parser');
-    var methodOverride = require('method-override');
+    const path = require('path');
+    const bodyParser = require('body-parser');
+    const methodOverride = require('method-override');
 
-    var app = express();
-    var port = process.env.PORT || 8080;
+    const app = express();
+    const port = process.env.PORT || 8080;
 
     app.use(methodOverride('X-HTTP-Method-Override'));
     app.use(bodyParser.urlencoded({extended: false}));

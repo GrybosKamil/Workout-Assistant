@@ -1,10 +1,10 @@
 (function () {
 
-    var router = require('express').Router();
+    const router = require('express').Router();
 
-    var Exercise = require('./models/exercise');
-    var Training = require('./models/training');
-    // var Workout = require('./models/workout');
+    const Exercise = require('./models/exercise');
+    const Training = require('./models/training');
+    // const Workout = require('./models/workout');
 
     function routing(app) {
 
@@ -15,47 +15,55 @@
 
         router.route('/exercises')
             .post(function (req, res) {
-                var exercise = new Exercise(req.body);
+                let exercise = new Exercise(req.body);
 
-                var promise = exercise.save();
+                let promise = exercise.save();
 
-                promise.catch(function(error){
-                    res.send(error);
-                }).then(function(data){
-                    res.json(data);
-                })
+                promise
+                    .catch((error) => {
+                        res.send(error);
+                    })
+                    .then((response) => {
+                        res.json(response);
+                    });
 
             })
             .get(function (req, res) {
-                var promise = Exercise.find().exec();
+                let promise = Exercise.find().exec();
 
-                promise.catch(function(error){
-                    res.send(error);
-                }).then(function(data){
-                    res.json(data);
-                })
+                promise
+                    .catch((error) => {
+                        res.send(error);
+                    })
+                    .then((response) => {
+                        res.json(response);
+                    });
             });
 
         router.route('/trainings')
             .post(function (req, res) {
-                var training = new Training(req.body);
+                let training = new Training(req.body);
 
-                var promise = training.save();
+                let promise = training.save();
 
-                promise.catch(function(error){
-                    res.send(error);
-                }).then(function(data){
-                    res.json(data);
-                })
+                promise
+                    .catch((error) => {
+                        res.send(error);
+                    })
+                    .then((response) => {
+                        res.json(response);
+                    });
             })
             .get(function (req, res) {
-                var promise = Training.find().populate('exercises.exercise').exec();
+                let promise = Training.find().populate('exercises.exercise').exec();
 
-                promise.catch(function(error){
-                    res.send(error);
-                }).then(function(data){
-                    res.json(data);
-                })
+                promise
+                    .catch((error) => {
+                        res.send(error);
+                    })
+                    .then((response) => {
+                        res.json(response);
+                    });
             });
 
 
