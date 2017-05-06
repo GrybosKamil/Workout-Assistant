@@ -2,7 +2,7 @@
 
     <div class="jumbotron">
         Filters:
-        
+
     </div>
 
     <table class="table table-bordered table-striped">
@@ -10,7 +10,10 @@
         <thead>
         <tr>
             <td>
+                <a data-ng-click="$ctrl.changeSorting('name')">
                 Name
+                    <span data-ng-show="$ctrl.sortType == 'name'" class="fa fa-caret-down"></span>
+                </a>
             </td>
             <td>
                 Description
@@ -25,7 +28,7 @@
         </thead>
 
         <tbody>
-        <tr data-ng-repeat="exercise in $ctrl.exercises">
+        <tr data-ng-repeat="exercise in $ctrl.exercises | orderBy:$ctrl.sortType">
             <td>{{ exercise.name }}</td>
             <td>{{ exercise.description }}</td>
             <td>{{ exercise.place }}</td>
