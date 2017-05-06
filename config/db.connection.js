@@ -3,7 +3,7 @@
     const mongoose = require('mongoose');
     const db = require('./db');
 
-    mongoose.Promise = require('q').Promise;
+    mongoose.Promise = Promise;
     mongoose.connect(db.url);
 
     const connection = mongoose.connection;

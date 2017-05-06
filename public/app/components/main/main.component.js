@@ -1,10 +1,11 @@
 'use strict';
 
 (function () {
+
     angular.module('main')
         .component('main', {
             templateUrl: 'app/components/main/main.template.html',
-            controller: function Main() {
+            controller: function Main($scope) {
                 let self = this;
 
                 this.parallaxBackgrounds = [{
@@ -16,10 +17,12 @@
                 }];
 
                 this.addParallaxBackground = function (parallaxBackground) {
-                    $(".parallax-" + parallaxBackground.parallax_number)
-                        .parallax({
-                            imageSrc: parallaxBackground.imageSrc
-                        });
+                    (function () {
+                        $(".parallax-" + parallaxBackground.parallax_number)
+                            .parallax({
+                                imageSrc: parallaxBackground.imageSrc
+                            });
+                    })(jQuery);
                 };
 
                 this.initParallax = function () {
@@ -32,6 +35,14 @@
                 };
 
                 this.initParallax();
+
+                $scope.$on("$destroy", function () {
+                    (function () {
+                        $("div.parallax-mirror")
+                            .remove();
+                    })(jQuery);
+                })
             }
         });
+
 })();
