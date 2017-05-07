@@ -7,7 +7,8 @@
         'about',
         'main',
         'exercises',
-        'exercisesService'
+        'exercisesService',
+        'menu'
     ]);
 
 })();

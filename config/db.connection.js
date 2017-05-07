@@ -1,13 +1,18 @@
-const mongoose = require('mongoose');
-const db = require('./db');
+(function () {
 
-mongoose.connect(db.url);
+    const mongoose = require('mongoose');
+    const db = require('./db');
 
-const connection = mongoose.connection;
+    mongoose.Promise = Promise;
+    mongoose.connect(db.url);
 
-connection.on('error', console.error.bind(console, 'Connection Error : '));
-connection.once('open', function () {
-    console.log('Database connection ok!');
-});
+    const connection = mongoose.connection;
 
-module.exports = mongoose;
+    connection.on('error', console.error.bind(console, 'Connection Error : '));
+    connection.once('open', function () {
+        console.log('Database connection ok!');
+    });
+
+    module.exports = mongoose;
+
+})();
