@@ -12,7 +12,7 @@
             <td>
                 <a data-ng-click="$ctrl.changeSorting('name')">
                 Name
-                    <span data-ng-show="$ctrl.sortType == 'name'" class="fa fa-caret-down"></span>
+                    <span class="glyphicon glyphicon-triangle-bottom"></span>
                 </a>
             </td>
             <td>
@@ -28,7 +28,7 @@
         </thead>
 
         <tbody>
-        <tr data-ng-repeat="exercise in $ctrl.exercises | orderBy:$ctrl.sortType">
+        <tr data-ng-repeat="exercise in $ctrl.exercises | orderBy:$ctrl.sorting.active">
             <td>{{ exercise.name }}</td>
             <td>{{ exercise.description }}</td>
             <td>{{ exercise.place }}</td>
