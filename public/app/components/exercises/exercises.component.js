@@ -17,7 +17,6 @@
                     this.sortType = newSorting;
                 }
 
-
             }
 
         });
