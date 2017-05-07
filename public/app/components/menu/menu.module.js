@@ -2,6 +2,6 @@
 
 (function () {
 
-    angular.module('main', []);
+    angular.module('menu', []);
 
 })();
