@@ -20,7 +20,7 @@
                         "title": "Who takes care of it?",
                         "description": "Two third year students : Paulina Kozioł & Kamil Gryboś"
                     }
-                ]
+                ];
 
                 $(function () {
                     $("#accordion").accordion({
