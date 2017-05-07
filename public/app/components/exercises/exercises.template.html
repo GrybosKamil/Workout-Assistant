@@ -9,6 +9,7 @@
                 <div data-ng-repeat="place in $ctrl.filterPlacesAv">
                     <input type="checkbox"
                            value="{{place}}"
+                           data-ng-click="$ctrl.togglePlace(place)"
                     > {{place}}
                 </div>
             </div>
@@ -17,16 +18,18 @@
                 <div data-ng-repeat="req in $ctrl.requirementsAv">
                     <input type="checkbox"
                            value="{{req}}"
+                           data-ng-click="$ctrl.toggleSelection($ctrl.filter.selectedReq, req)"
                     > {{req}}
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="col-md-4">
                     <h4>Muscles:</h4>
-                    <div data-ng-repeat="muscles in $ctrl.musclesAv">
+                    <div data-ng-repeat="muscle in $ctrl.musclesAv">
                         <input type="checkbox"
-                               value="{{muscles}}"
-                        > {{muscles}}
+                               value="{{muscle}}"
+                               data-ng-click="$ctrl.toggleSelection($ctrl.filter.selectedMuscles, muscle)"
+                        > {{muscle}}
                     </div>
                 </div>
             </div>
@@ -57,7 +60,7 @@
         </thead>
 
         <tbody>
-        <tr data-ng-repeat="exercise in $ctrl.exercises | orderBy:$ctrl.activeSorting:$ctrl.sorting.descending">
+        <tr data-ng-repeat="exercise in $ctrl.exercises | orderBy:$ctrl.activeSorting:$ctrl.sorting.descending | exFilter:$ctrl.filter">
             <td>{{ exercise.name }}</td>
             <td>{{ exercise.description }}</td>
             <td>{{ exercise.place }}</td>

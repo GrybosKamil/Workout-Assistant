@@ -15,6 +15,13 @@
                     "indoor"
                 ];
 
+                this.filter = {
+                    selectedPlace: '',
+                    selectedReq: [],
+                    selectedMuscles: []
+                };
+
+
                 Exercises.getExercises().then((response) => {
                     this.exercises = response.data;
                     this.initFilters(this.exercises);
@@ -61,6 +68,30 @@
 
                     return 'glyphicon-triangle-top';
                 };
+
+                this.toggleSelection = function (option, value) {
+                    console.log(option);
+                    console.log(value);
+
+                    let indx = option.indexOf(value);
+
+                    if(indx > -1){
+                        option.splice(indx, 1);
+                    } else {
+                        option.push(value);
+                    }
+                    console.log(this.filter);
+                };
+
+                this.togglePlace = function (value) {
+                    if(this.filter.selectedPlace === '' || this.filter.selectedPlace !== value) {
+                        this.filter.selectedPlace = value;
+                        console.log(value);
+                    } else {
+                        this.filter.selectedPlace = '';
+                    }
+                    console.log(this.filter);
+                }
 
             }
 
