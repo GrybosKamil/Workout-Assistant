@@ -1,8 +1,37 @@
 <div class="exercises">
 
     <div class="jumbotron">
-        Filters:
 
+        <div class="row">
+
+            <div class="col-md-4">
+                <h4>Places:</h4>
+                <div data-ng-repeat="place in $ctrl.filterPlacesAv">
+                    <input type="checkbox"
+                           value="{{place}}"
+                    > {{place}}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h4>Requirements:</h4>
+                <div data-ng-repeat="req in $ctrl.requirementsAv">
+                    <input type="checkbox"
+                           value="{{req}}"
+                    > {{req}}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-4">
+                    <h4>Muscles:</h4>
+                    <div data-ng-repeat="muscles in $ctrl.musclesAv">
+                        <input type="checkbox"
+                               value="{{muscles}}"
+                        > {{muscles}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <table class="table table-bordered table-striped">
