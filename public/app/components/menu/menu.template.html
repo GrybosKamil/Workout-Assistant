@@ -1,9 +1,89 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" data-ng-href="/#!/">Main</a>
-            <a class="navbar-brand" data-ng-href="/#!/about">About</a>
-            <a class="navbar-brand" data-ng-href="/#!/exercises">Exercises</a>
+
+            <a class="navbar-brand"
+               data-ng-href="/#!/">
+                <img id="menu_logo"
+                     alt="Brand"
+                     src="../../../assets/images/menu_logo.png">
+            </a>
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand"
+               data-ng-class="{ active: isActive('/') }"
+               data-ng-href="/#!/">
+                Workout Assistant
+            </a>
+
+        </div>
+
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown">
+
+                    <a class="dropdown-toggle"
+                       data-toggle="dropdown">
+                        Catalogue
+                        <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a class="navbar-brand"
+                               data-ng-class="{ active: isActive('/exercises') }"
+                               data-ng-href="/#!/exercises">
+                                Exercises
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="navbar-brand"
+                               data-ng-class="{ active: isActive('/trainings') }"
+                               data-ng-href="/#!/trainings">
+                                Trainings
+                            </a>
+                        </li>
+
+                        <!--<li>-->
+                        <!--<a class="navbar-brand"-->
+                        <!--data-ng-class="{ active: isActive('/workouts') }"-->
+                        <!--data-ng-href="/#!/workouts">-->
+                        <!--Workouts-->
+                        <!--</a>-->
+                        <!--</li>-->
+
+                    </ul>
+
+                </li>
+                <li>
+                    <a class="navbar-brand"
+                       data-ng-class="{ active: isActive('/about') }"
+                       data-ng-href="/#!/about">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a class="navbar-brand"
+                       data-ng-class="{ active: isActive('/contact') }"
+                       data-ng-href="/#!/contact">
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+            <!--<ul class="nav navbar-nav navbar-right">-->
+            <!--<li><a href="/#!/"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
+            <!--<li><a href="/#!/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+            <!--</ul>-->
         </div>
     </div>
 </nav>

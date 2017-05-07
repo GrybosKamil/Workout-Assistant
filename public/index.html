@@ -1,36 +1,47 @@
 <!doctype html>
 <html lang="en" data-ng-app="workoutAssistantApp">
 <head>
-    <meta charset="utf-8">
     <title>Workout Assistant</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="assets/images/favicon.ico"/>
-    <!--<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>-->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css"/>
+
+    <!-- Stylesheets-->
+    <!-- jQuery-->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"/>
+    <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>-->
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css"/>
+    <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>-->
+
     <link rel="stylesheet" href="app/app.css"/>
 
-    <!--<script src="../bower_components/angular/angular.js"></script>-->
+    <!--Scripts-->
+    <!--jQuery-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
+
+    <!--Bootstrap-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+    <!--Angular-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.js"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>-->
 
-    <!--<script src="../bower_components/angular-resource/angular-resource.js"></script>-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-resource.js"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-resource.min.js"></script>-->
 
-    <!--<script src="../bower_components/angular-route/angular-route.js"></script>-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.js"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js"></script>-->
 
-    <!--<script src="../bower_components/jquery/dist/jquery.js"></script>-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-
-    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
-    <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
-    <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
-    <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+    <!--Parallax-->
     <script src="lib/parallax.js-1.4.2/parallax.js"></script>
+
+
 </head>
 <body>
 
@@ -41,18 +52,30 @@
     </div>
 </div>
 
-
+<!--Scripts-->
+<!--App-->
 <script src="app/app.module.js"></script>
 <script src="app/app.config.js"></script>
+
+<!--Components-->
+<!--About-->
 <script src="app/components/about/about.module.js"></script>
 <script src="app/components/about/about.component.js"></script>
+
+<!--Main-->
 <script src="app/components/main/main.module.js"></script>
 <script src="app/components/main/main.component.js"></script>
+
+<!--Menu-->
 <script src="app/components/menu/menu.module.js"></script>
 <script src="app/components/menu/menu.component.js"></script>
+
+<!--Exercises-->
 <script src="app/components/exercises/exercises.module.js"></script>
 <script src="app/components/exercises/exercises.component.js"></script>
 <script src="app/components/exercises/exercises.service.js"></script>
+
+<!--Trainings-->
 <script src="app/components/trainings/trainings.module.js"></script>
 <script src="app/components/trainings/trainings.component.js"></script>
 <script src="app/components/trainings/trainings.service.js"></script>
