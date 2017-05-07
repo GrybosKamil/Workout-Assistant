@@ -1,0 +1,46 @@
+<div class="exercises">
+
+    <div class="jumbotron">
+        Filters:
+
+    </div>
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+        <tr>
+            <td>
+                <span data-ng-click="$ctrl.changeSorting('name')">
+                Name
+                    <i class="glyphicon" data-ng-class="$ctrl.getIcon('name')"></i>
+                </span>
+            </td>
+            <td>
+                Description
+            </td>
+            <td>
+                Place
+            </td>
+            <td>
+                Requirements
+            </td>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr data-ng-repeat="exercise in $ctrl.exercises | orderBy:$ctrl.activeSorting:$ctrl.sorting.descending">
+            <td>{{ exercise.name }}</td>
+            <td>{{ exercise.description }}</td>
+            <td>{{ exercise.place }}</td>
+            <td>
+            <span data-ng-repeat="req in exercise.requirements">
+                  {{req + ($last ? "" : ", ") }}
+            </span>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
