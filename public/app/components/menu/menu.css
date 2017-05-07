@@ -1,3 +1,23 @@
 body {
     padding-top: 70px;
+    min-width: 400px;
+}
+
+#menu_logo {
+    width: 20px;
+    height: 20px;
+}
+
+.dropdown-menu {
+    background-color: #222;
+    color: #fff;
+}
+
+/* White color of actual page */
+.navbar.navbar-inverse .navbar-nav > li > a.active {
+    color: #ffffff;
+}
+
+.navbar.navbar-inverse .active {
+    color: #ffffff;
 }

@@ -29,7 +29,9 @@
 
             })
             .get(function (req, res) {
-                let promise = Exercise.find().exec();
+                let promise = Exercise.find()
+                    .sort({name: 1, description: 1})
+                    .exec();
 
                 promise
                     .catch((error) => {
@@ -55,7 +57,8 @@
                     });
             })
             .get(function (req, res) {
-                let promise = Training.find().populate('exercises.exercise').exec();
+                let promise = Training.find()
+                    .populate('exercises.exercise').exec();
 
                 promise
                     .catch((error) => {
