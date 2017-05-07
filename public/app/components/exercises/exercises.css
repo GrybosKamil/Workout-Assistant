@@ -1,3 +1,7 @@
 .exercises {
     padding: 20px;
 }
+
+.exercises-sorting:hover{
+    cursor: pointer;
+}
