@@ -10,10 +10,10 @@
         <thead>
         <tr>
             <td>
-                <a data-ng-click="$ctrl.changeSorting('name')">
+                <span data-ng-click="$ctrl.changeSorting('name')">
                 Name
-                    <span class="glyphicon glyphicon-triangle-bottom"></span>
-                </a>
+                    <i class="glyphicon" data-ng-class="$ctrl.getIcon('name')"></i>
+                </span>
             </td>
             <td>
                 Description
@@ -28,7 +28,7 @@
         </thead>
 
         <tbody>
-        <tr data-ng-repeat="exercise in $ctrl.exercises | orderBy:$ctrl.sorting.active">
+        <tr data-ng-repeat="exercise in $ctrl.exercises | orderBy:$ctrl.activeSorting:$ctrl.sorting.descending">
             <td>{{ exercise.name }}</td>
             <td>{{ exercise.description }}</td>
             <td>{{ exercise.place }}</td>
