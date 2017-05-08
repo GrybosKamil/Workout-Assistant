@@ -84,7 +84,7 @@
                     promise = promise.where({_id: {"$gt": last}})
                 }
 
-                promise = promise.limit(3)
+                promise = promise.limit(6)
                 // .populate('exercises.exercise')
                 // .lean()
                     .exec();
