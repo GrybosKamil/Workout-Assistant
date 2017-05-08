@@ -4,6 +4,7 @@
 
     const Exercise = require('./models/exercise');
     const Training = require('./models/training');
+    const Opinion = require('./models/opinion');
     // const Workout = require('./models/workout');
 
     function routing(app) {
