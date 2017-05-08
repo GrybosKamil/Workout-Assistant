@@ -10,6 +10,7 @@
         this.busy = false;
         this.last = undefined;
         this.trainings = [];
+        this.training = {};
 
         this.getInitTrainings = () => {
             if (!this.initiated) {
@@ -43,6 +44,20 @@
             }
             return this.trainings;
         }
+
+        this.getTraining = (trainingID) => {
+            console.log("in getTraining method");
+            $http.get('/trainings', {
+                params: {training_id: trainingID}
+            }).then((response) => {
+                console.log("in getTraining response");
+                this.training =  response.data;
+                }
+            );
+
+            console.log(this.training);
+            return this.training;
+        };
     }]);
 
 })();

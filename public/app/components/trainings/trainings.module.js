@@ -2,7 +2,7 @@
 
 (function () {
 
-    angular.module('trainings', ['trainingsService']);
+    angular.module('trainings', ['trainingsService', 'trainingDetailsService']);
 
 })();
 

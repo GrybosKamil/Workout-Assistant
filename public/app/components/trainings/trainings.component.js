@@ -10,9 +10,21 @@
 
                 this.trainings = Trainings.getInitTrainings();
 
+                this.chosenTrainingId = '';
+                this.chosenTraining = {};
+
+                this.isTrainingChosen = function () {
+                    return this.chosenTrainingId !== '';
+                };
 
                 this.showTraining = (training) => {
                     console.log(training);
+                    this.chosenTrainingId = training._id;
+
+                    let newTraining = Trainings.getTraining(this.chosenTrainingId);
+                    console.log(newTraining);
+
+
                 };
 
                 (function () {
