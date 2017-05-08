@@ -23,7 +23,7 @@
             if (!this.busy) {
                 this.busy = true;
                 console.log("getTrainings");
-                $http.get('/trainings', {
+                $http.get('/continuous_scroll_trainings', {
                     params: {training_id: this.last}
                 }).then((response) => {
                         if (response.data.length) {
@@ -37,7 +37,7 @@
                                 });
                             }
                         }
-                    this.busy = false;
+                        this.busy = false;
                     }
                 );
             }

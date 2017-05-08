@@ -8,13 +8,13 @@
 
     function routing(app) {
 
-        router.use(function (req, res, next) {
+        router.use((req, res, next) => {
             console.log("Something is happening.");
             next();
         });
 
         router.route('/exercises')
-            .post(function (req, res) {
+            .post((req, res) => {
                 let exercise = new Exercise(req.body);
 
                 let promise = exercise.save();
@@ -28,7 +28,7 @@
                     });
 
             })
-            .get(function (req, res) {
+            .get((req, res) => {
                 let promise = Exercise.find()
                     .sort({name: 1, description: 1})
                     // .lean()
@@ -44,7 +44,7 @@
             });
 
         router.route('/trainings')
-            .post(function (req, res) {
+            .post((req, res) => {
                 let training = new Training(req.body);
 
                 let promise = training.save();
@@ -57,21 +57,11 @@
                         res.json(response);
                     });
             })
-            .get(function (req, res) {
-                    let last = req.query.training_id;
+            .get((req, res) => {
+                    let trainingID = req.query.training_id;
 
-                    let promise = Training.find()
-                        .sort({_id: 1});
-
-                    if (last) {
-                        promise = promise.where({"_id": {"$gt": last}})
-                    }
-
-                    promise = promise.limit(3)
-                        .populate('exercises.exercise')
-                        // .lean()
-                        .exec();
-
+                    let promise = Training.findOne({_id: trainingID})
+                        .populate('exercises.exercise').exec();
 
                     promise
                         .catch((error) => {
@@ -83,9 +73,37 @@
                 }
             );
 
+        router.route('/continuous_scroll_trainings')
+            .get((req, res) => {
+                let last = req.query.training_id;
 
-        router.get('/', function (req, res) {
+                let promise = Training.find()
+                    .sort({_id: 1});
+
+                if (last) {
+                    promise = promise.where({_id: {"$gt": last}})
+                }
+
+                promise = promise.limit(3)
+                    .populate('exercises.exercise')
+                    // .lean()
+                    .exec();
+
+                promise
+                    .catch((error) => {
+                        res.send(error);
+                    })
+                    .then((response) => {
+                        res.json(response);
+                    });
+            });
+
+        router.get('/', (req, res) => {
             res.sendFile('index.html');
+        });
+
+        router.get('*', (req, res) => {
+            res.redirect('/');
         });
 
         app.use('/', router);
