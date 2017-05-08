@@ -7,16 +7,22 @@
             controller: function Exercises(Exercises) {
                 this.sorting = {
                     active: '',
-                    descending: undefined
+                    ascending: undefined
                 };
 
                 this.filterPlacesAv = [
-                    "outdoor",
-                    "indoor"
+                    {
+                        place: "outdoor",
+                        selected: false
+                    },
+                    {
+                        place: "indoor",
+                        selected: false
+                    }
                 ];
 
                 this.filter = {
-                    selectedPlace: '',
+                    selectedPlace: null,
                     selectedReq: [],
                     selectedMuscles: []
                 };
@@ -49,10 +55,10 @@
                 this.changeSorting = function (newSorting) {
 
                     if (this.sorting.active === newSorting) {
-                        this.sorting.descending = !this.sorting.descending;
+                        this.sorting.ascending = !this.sorting.ascending;
                     } else {
                         this.sorting.active = newSorting;
-                        this.sorting.descending = false;
+                        this.sorting.ascending = false;
                     }
 
                     this.sorting.active = newSorting;
@@ -61,7 +67,7 @@
 
                 this.getIcon = function (column) {
                     if (this.sorting.active === column) {
-                        return this.sorting.descending ?
+                        return this.sorting.ascending ?
                             'glyphicon-triangle-top'
                             : 'glyphicon-triangle-bottom';
                     }
@@ -84,11 +90,18 @@
                 };
 
                 this.togglePlace = function (value) {
-                    if(this.filter.selectedPlace === '' || this.filter.selectedPlace !== value) {
+                    value.selected = true;
+                    if(this.filter.selectedPlace === null) {
                         this.filter.selectedPlace = value;
-                        console.log(value);
+                        console.log(value.place);
+
+                    } else if (this.filter.selectedPlace !== value){
+                        this.filter.selectedPlace.selected = false;
+                        this.filter.selectedPlace = value;
+
                     } else {
-                        this.filter.selectedPlace = '';
+                        this.filter.selectedPlace = null;
+                        value.selected = false;
                     }
                     console.log(this.filter);
                 }

@@ -13,15 +13,15 @@
 
 
         return function (items, filter) {
-            console.log(items);
-            console.log(filter);
+
+            if(items === undefined) return;
 
             let resultExercises = [];
 
             items.forEach(function (exercise) {
 
-                if(filter.selectedPlace !== ''){
-                    if(filter.selectedPlace !== exercise.place) return;
+                if(filter.selectedPlace !== null){
+                    if(filter.selectedPlace.place !== exercise.place) return;
                 }
 
                 if(!exercisePropertiesMatches(exercise.requirements, filter.selectedReq)) return;
