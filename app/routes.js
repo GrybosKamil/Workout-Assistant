@@ -77,7 +77,7 @@
             .get((req, res) => {
                 let last = req.query.training_id;
 
-                let promise = Training.find()
+                let promise = Training.find({}, "_id author")
                     .sort({_id: 1});
 
                 if (last) {
@@ -85,8 +85,8 @@
                 }
 
                 promise = promise.limit(3)
-                    .populate('exercises.exercise')
-                    // .lean()
+                // .populate('exercises.exercise')
+                // .lean()
                     .exec();
 
                 promise

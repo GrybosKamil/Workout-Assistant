@@ -2,27 +2,28 @@
 
     <div class="row">
 
-        <div class="col-md-4" id="trainings-panel">
+        <div class="col-xs-11 col-sm-3 col-md-3" id="trainings-panel">
             <div class="training"
                  data-ng-repeat="training in $ctrl.trainings"
                  data-ng-click="$ctrl.showTraining(training)">
 
-                <p>{{training.author}}</p>
+                <h3>{{training.author}}</h3>
+                <p>{{training._id}}</p>
 
-                <div class="exercise"
-                     data-ng-repeat="exercise in training.exercises">
-                    <ul>
-                        <li>name : {{exercise.exercise.name}}</li>
-                        <ul>
-                            <li data-ng-repeat="muscle in exercise.exercise.muscles">
-                                {{muscle}}
-                            </li>
-                        </ul>
-                        <li>time : {{exercise.time? "y" : "n"}}</li>
-                        <li>load : {{exercise.load? "y" : "n"}}</li>
-                        <li>quantity : {{exercise.quantity? "y" : "n"}}</li>
-                    </ul>
-                </div>
+                <!--<div class="exercise"-->
+                     <!--data-ng-repeat="exercise in training.exercises">-->
+                    <!--<ul>-->
+                        <!--<li>name : {{exercise.exercise.name}}</li>-->
+                        <!--<ul>-->
+                            <!--<li data-ng-repeat="muscle in exercise.exercise.muscles">-->
+                                <!--{{muscle}}-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                        <!--<li>time : {{exercise.time? "y" : "n"}}</li>-->
+                        <!--<li>load : {{exercise.load? "y" : "n"}}</li>-->
+                        <!--<li>quantity : {{exercise.quantity? "y" : "n"}}</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
 
             </div>
         </div>
