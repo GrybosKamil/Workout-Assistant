@@ -22,7 +22,7 @@
                     }
                 ];
 
-                $(function () {
+                (function () {
                     $("#accordion").accordion({
                         animate: 200,
                         collapsible: true,
@@ -31,7 +31,7 @@
                             console.log(ui);
                         }
                     });
-                })
+                })(jQuery);
 
             }
 

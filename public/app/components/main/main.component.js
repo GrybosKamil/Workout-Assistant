@@ -28,10 +28,8 @@
                 this.initParallax = function () {
                     console.log("InitParalax");
 
-                    $(function () {
-                        self.parallaxBackgrounds
-                            .forEach(self.addParallaxBackground);
-                    })
+                    self.parallaxBackgrounds
+                        .forEach(self.addParallaxBackground);
                 };
 
                 this.initParallax();
