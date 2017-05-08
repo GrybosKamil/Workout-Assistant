@@ -1,16 +1,14 @@
 'use strict';
 
 (function () {
-    angular.module('exercisesService', []).factory('Exercises', ['$http', '$q', function($http, $q) {
 
+    angular.module('exercisesService', []).factory('Exercises', ['$http', function ($http) {
         return {
-            // call to get all exercises
-            getExercises : function() {
-                console.log("Get function");
+            getExercises: function () {
+                console.log("Get exercises");
                 return $http.get('/exercises');
             }
-        }
-
+        };
     }]);
 
 })();
