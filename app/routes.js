@@ -5,6 +5,7 @@
     const Exercise = require('./models/exercise');
     const Training = require('./models/training');
     const Opinion = require('./models/opinion');
+    const Review = require('./models/review');
     // const Workout = require('./models/workout');
 
     function routing(app) {
@@ -89,6 +90,35 @@
                     .populate('exercises.exercise')
                     // .lean()
                     .exec();
+
+                promise
+                    .catch((error) => {
+                        res.send(error);
+                    })
+                    .then((response) => {
+                        res.json(response);
+                    });
+            });
+
+        router.route('/opinion')
+            .post((req, res) => {
+                let opinion = new Opinion(req.body);
+
+                let promise = opinion.save();
+
+                promise
+                    .catch((error) => {
+                        res.send(error);
+                    })
+                    .then((response) => {
+                        res.json(response);
+                    });
+            });
+        router.route('/review')
+            .post((req, res) => {
+                let review = new Review(req.body);
+
+                let promise = review.save();
 
                 promise
                     .catch((error) => {
