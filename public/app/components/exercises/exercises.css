@@ -1,3 +1,11 @@
 .exercises {
     padding: 20px;
 }
+
+.exercises-sorting:hover{
+    cursor: pointer;
+}
+
+.jumbotron {
+    padding: 20px;
+}

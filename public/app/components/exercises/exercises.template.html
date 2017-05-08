@@ -1,8 +1,39 @@
 <div class="exercises">
 
     <div class="jumbotron">
-        Filters:
 
+        <div class="row">
+
+            <div class="col-md-4">
+                <h4>Places:</h4>
+                <div data-ng-repeat="place in $ctrl.filterPlacesAv">
+                    <input type="checkbox"
+                           value="{{place.place}}"
+                           data-ng-click="$ctrl.togglePlace(place)"
+                           data-ng-model="place.selected"
+                    > {{place.place}}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h4>Requirements:</h4>
+                <div data-ng-repeat="req in $ctrl.requirementsAv">
+                    <input type="checkbox"
+                           value="{{req}}"
+                           data-ng-click="$ctrl.toggleSelection($ctrl.filter.selectedReq, req)"
+                    > {{req}}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h4>Muscles:</h4>
+                <div data-ng-repeat="muscle in $ctrl.musclesAv">
+                    <input type="checkbox"
+                           value="{{muscle}}"
+                           data-ng-click="$ctrl.toggleSelection($ctrl.filter.selectedMuscles, muscle)"
+                    > {{muscle}}
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <table class="table table-bordered table-striped">
@@ -10,7 +41,7 @@
         <thead>
         <tr>
             <td>
-                <span data-ng-click="$ctrl.changeSorting('name')">
+                <span class="exercises-sorting" data-ng-click="$ctrl.changeSorting('name')">
                 Name
                     <i class="glyphicon" data-ng-class="$ctrl.getIcon('name')"></i>
                 </span>
@@ -24,18 +55,30 @@
             <td>
                 Requirements
             </td>
+            <td>
+                Muscles
+            </td>
         </tr>
         </thead>
 
         <tbody>
-        <tr data-ng-repeat="exercise in $ctrl.exercises | orderBy:$ctrl.activeSorting:$ctrl.sorting.descending">
+        <tr data-ng-repeat="exercise in $ctrl.exercises | orderBy:$ctrl.activeSorting:$ctrl.sorting.ascending | exFilter:$ctrl.filter">
             <td>{{ exercise.name }}</td>
             <td>{{ exercise.description }}</td>
             <td>{{ exercise.place }}</td>
             <td>
-            <span data-ng-repeat="req in exercise.requirements">
-                  {{req + ($last ? "" : ", ") }}
-            </span>
+                <ul>
+                    <li data-ng-repeat="req in exercise.requirements">
+                  {{ req }}
+                    </li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li data-ng-repeat="muscle in exercise.muscles">
+                        {{ muscle }}
+                    </li>
+                </ul>
             </td>
         </tr>
         </tbody>
