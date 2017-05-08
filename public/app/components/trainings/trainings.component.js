@@ -15,13 +15,11 @@
                     console.log(training);
                 };
 
-
                 (function () {
 
                     $('#trainings-panel')
                         .bind('scroll', function () {
-                            if ($(this).scrollTop() + $(this).innerHeight() >= 0.7 * $(this)[0].scrollHeight) {
-                                console.log("bottom");
+                            if ($(this).scrollTop() + $(this).innerHeight() >= 0.9 * $(this)[0].scrollHeight) {
                                 self.trainings = Trainings.getTrainings();
                             }
                         });
