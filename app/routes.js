@@ -31,6 +31,7 @@
             .get(function (req, res) {
                 let promise = Exercise.find()
                     .sort({name: 1, description: 1})
+                    // .lean()
                     .exec();
 
                 promise
@@ -57,17 +58,30 @@
                     });
             })
             .get(function (req, res) {
-                let promise = Training.find()
-                    .populate('exercises.exercise').exec();
+                    let last = req.query.training_id;
 
-                promise
-                    .catch((error) => {
-                        res.send(error);
-                    })
-                    .then((response) => {
-                        res.json(response);
-                    });
-            });
+                    let promise = Training.find()
+                        .sort({_id: 1});
+
+                    if (last) {
+                        promise = promise.where({"_id": {"$gt": last}})
+                    }
+
+                    promise = promise.limit(3)
+                        .populate('exercises.exercise')
+                        // .lean()
+                        .exec();
+
+
+                    promise
+                        .catch((error) => {
+                            res.send(error);
+                        })
+                        .then((response) => {
+                            res.json(response);
+                        });
+                }
+            );
 
 
         router.get('/', function (req, res) {
@@ -79,4 +93,5 @@
 
     module.exports = routing;
 
-})();
+})
+();

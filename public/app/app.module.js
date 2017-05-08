@@ -8,7 +8,6 @@
         'main',
         'about',
         'exercises',
-        'exercisesService',
         'trainings'
     ]);
 
