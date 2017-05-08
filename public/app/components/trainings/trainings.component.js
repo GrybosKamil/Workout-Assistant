@@ -5,24 +5,28 @@
     angular.module('trainings')
         .component('trainings', {
             templateUrl: 'app/components/trainings/trainings.template.html',
-            controller: function Trainings(Trainings) {
-                // let self = this;
+            controller: function Trainings($scope, $interval, Trainings) {
+                let self = this;
 
-                this.trainings = [];
+                this.trainings = Trainings.getInitTrainings();
 
-                Trainings.getTrainings().then((response) => {
-                        console.log(response);
-                        response.data.forEach((data) => {
-                            let training = {
-                                author: data.author,
-                                exercises: data.exercises
-                            };
-                            this.trainings.push(training);
+
+                this.showTraining = (training) => {
+                    console.log(training);
+                };
+
+
+                (function () {
+
+                    $('#trainings-panel')
+                        .bind('scroll', function () {
+                            if ($(this).scrollTop() + $(this).innerHeight() >= 0.7 * $(this)[0].scrollHeight) {
+                                console.log("bottom");
+                                self.trainings = Trainings.getTrainings();
+                            }
                         });
-                        console.log(this.trainings.length);
-                    }
-                );
 
+                })(jQuery);
 
             }
 

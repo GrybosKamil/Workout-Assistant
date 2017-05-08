@@ -1,21 +1,31 @@
 <div class="trainings">
 
-    <div data-ng-repeat="training in $ctrl.trainings">
-        <p>{{training.author}}</p>
-        <div data-ng-repeat="exercise in training.exercises" style="border: 3px solid black;">
-            <ul>
-                <li>name : {{exercise.exercise.name}}</li>
-                <ul>
-                    <li data-ng-repeat="muscle in exercise.exercise.muscles">
-                        {{muscle}}
-                    </li>
-                </ul>
-                <li>time : {{exercise.time? "y" : "n"}}</li>
-                <li>load : {{exercise.load? "y" : "n"}}</li>
-                <li>quantity : {{exercise.quantity? "y" : "n"}}</li>
-            </ul>
+    <div class="row">
+
+        <div class="col-md-4" id="trainings-panel">
+            <div class="training"
+                 data-ng-repeat="training in $ctrl.trainings"
+                 data-ng-click="$ctrl.showTraining(training)">
+
+                <p>{{training.author}}</p>
+
+                <div class="exercise"
+                     data-ng-repeat="exercise in training.exercises">
+                    <ul>
+                        <li>name : {{exercise.exercise.name}}</li>
+                        <ul>
+                            <li data-ng-repeat="muscle in exercise.exercise.muscles">
+                                {{muscle}}
+                            </li>
+                        </ul>
+                        <li>time : {{exercise.time? "y" : "n"}}</li>
+                        <li>load : {{exercise.load? "y" : "n"}}</li>
+                        <li>quantity : {{exercise.quantity? "y" : "n"}}</li>
+                    </ul>
+                </div>
+
+            </div>
         </div>
+
     </div>
-
 </div>
-

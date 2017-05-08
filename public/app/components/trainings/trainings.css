@@ -1,3 +1,38 @@
 .trainings {
     padding: 20px;
 }
+
+#trainings-panel {
+    max-height: 700px;
+    border: 3px solid #54f353;
+    padding: 4px;
+    border-radius: 2px;
+
+    overflow: auto;
+}
+
+.training {
+    border: 3px solid #54a3f3;
+    border-radius: 20px;
+}
+
+.training:nth-child(odd) {
+    background-color: #a7a7a7;
+}
+
+.training:nth-child(even) {
+    background-color: #aafaaa;
+}
+
+.exercise {
+    border: 3px solid black;
+    border-radius: 25px;
+}
+
+.training:nth-child(odd) > .exercise {
+    background-color: lightseagreen;
+}
+
+.training:nth-child(even) > .exercise {
+    background-color: palevioletred;
+}
