@@ -24,14 +24,12 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="col-md-4">
-                    <h4>Muscles:</h4>
-                    <div data-ng-repeat="muscle in $ctrl.musclesAv">
-                        <input type="checkbox"
-                               value="{{muscle}}"
-                               data-ng-click="$ctrl.toggleSelection($ctrl.filter.selectedMuscles, muscle)"
-                        > {{muscle}}
-                    </div>
+                <h4>Muscles:</h4>
+                <div data-ng-repeat="muscle in $ctrl.musclesAv">
+                    <input type="checkbox"
+                           value="{{muscle}}"
+                           data-ng-click="$ctrl.toggleSelection($ctrl.filter.selectedMuscles, muscle)"
+                    > {{muscle}}
                 </div>
             </div>
 
@@ -57,6 +55,9 @@
             <td>
                 Requirements
             </td>
+            <td>
+                Muscles
+            </td>
         </tr>
         </thead>
 
@@ -66,9 +67,18 @@
             <td>{{ exercise.description }}</td>
             <td>{{ exercise.place }}</td>
             <td>
-            <span data-ng-repeat="req in exercise.requirements">
-                  {{req + ($last ? "" : ", ") }}
-            </span>
+                <ul>
+                    <li data-ng-repeat="req in exercise.requirements">
+                  {{ req }}
+                    </li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li data-ng-repeat="muscle in exercise.muscles">
+                        {{ muscle }}
+                    </li>
+                </ul>
             </td>
         </tr>
         </tbody>
