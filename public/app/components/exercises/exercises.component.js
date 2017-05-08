@@ -6,8 +6,8 @@
             templateUrl: 'app/components/exercises/exercises.template.html',
             controller: function Exercises(Exercises) {
                 this.sorting = {
-                    active: '',
-                    ascending: undefined
+                    active: 'name',
+                    descending: false
                 };
 
                 this.filterPlacesAv = [
@@ -55,10 +55,10 @@
                 this.changeSorting = function (newSorting) {
 
                     if (this.sorting.active === newSorting) {
-                        this.sorting.ascending = !this.sorting.ascending;
+                        this.sorting.descending = !this.sorting.descending;
                     } else {
                         this.sorting.active = newSorting;
-                        this.sorting.ascending = false;
+                        this.sorting.descending = true;
                     }
 
                     this.sorting.active = newSorting;
@@ -67,7 +67,7 @@
 
                 this.getIcon = function (column) {
                     if (this.sorting.active === column) {
-                        return this.sorting.ascending ?
+                        return this.sorting.descending ?
                             'glyphicon-triangle-top'
                             : 'glyphicon-triangle-bottom';
                     }
