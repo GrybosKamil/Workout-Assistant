@@ -39,7 +39,7 @@
                         $("div.parallax-mirror")
                             .remove();
                     })(jQuery);
-                })
+                });
             }
         });
 

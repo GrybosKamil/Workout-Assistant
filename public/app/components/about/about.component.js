@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+
     angular.module('about')
         .component('about', {
             templateUrl: 'app/components/about/about.template.html',
@@ -34,6 +35,6 @@
                 })(jQuery);
 
             }
-
         });
+
 })();
