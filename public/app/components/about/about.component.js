@@ -21,7 +21,7 @@
                     {
                         "title": "Po co powstał ten projekt?",
                         "description": "<span> Aplikacja powstała w ramach projektu zaliczeniowego na kursie Programowanie dla WWW</span>" +
-                        "<span> na Wydziale Matematyki i Informatyki Uniwersytetu Jagiellońskiego. </span>"
+                        "<span> na Wydziale Matematyki i Informatyki Uniwersytetu Jagiellońskiego w semestrze letnim 2016/2017. </span>"
                     },
                     {
                         "title": "Autorzy?",
