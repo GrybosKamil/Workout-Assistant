@@ -100,7 +100,7 @@
                         .then((response) => {
                             res.json(response);
                         });
-                }else{
+                } else {
                     let newest = req.query.newest;
 
                     let promise = Training.find({}, "_id author name updated")
