@@ -4,30 +4,25 @@
 
         <div class="col-xs-11 col-sm-3 col-md-3" id="trainings-panel">
             <div class="training"
-                 data-ng-repeat="training in $ctrl.trainings"
+                 data-ng-repeat="training in $ctrl.trainingHeaders"
                  data-ng-click="$ctrl.showTraining(training)">
 
                 <h3>{{training.name}}</h3>
                 <h5>{{training.author}}</h5>
                 <p>{{training.updated}}</p>
-                <!--<p>{{training._id}}</p>-->
-
-                <!--<div class="exercise"-->
-                <!--data-ng-repeat="exercise in training.exercises">-->
-                <!--<ul>-->
-                <!--<li>name : {{exercise.exercise.name}}</li>-->
-                <!--<ul>-->
-                <!--<li data-ng-repeat="muscle in exercise.exercise.muscles">-->
-                <!--{{muscle}}-->
-                <!--</li>-->
-                <!--</ul>-->
-                <!--<li>time : {{exercise.time? "y" : "n"}}</li>-->
-                <!--<li>load : {{exercise.load? "y" : "n"}}</li>-->
-                <!--<li>quantity : {{exercise.quantity? "y" : "n"}}</li>-->
-                <!--</ul>-->
-                <!--</div>-->
 
             </div>
+        </div>
+        <div class="col-xs-11 col-sm-9 col-md-9 training-details">
+
+            <training-details training=$ctrl.chosenTraining()
+                              data-ng-show="$ctrl.isTrainingChosen()">
+            </training-details>
+
+            <div data-ng-show="!$ctrl.isTrainingChosen()">
+                Wybierz coś!
+            </div>
+
         </div>
 
     </div>

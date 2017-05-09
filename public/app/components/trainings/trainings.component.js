@@ -8,10 +8,20 @@
             controller: function Trainings($scope, $interval, Trainings) {
                 let self = this;
 
-                this.trainings = Trainings.getInitTrainings();
+                this.trainingHeaders = Trainings.getInitTrainings();
+
+
+                this.chosenTraining = () => {
+                    return Trainings.chosenTraining;
+                };
+
+                this.isTrainingChosen = function () {
+                    return Trainings.chosenTraining != undefined;
+                };
 
                 this.showTraining = (training) => {
-                    console.log(training);
+                    Trainings.getTraining(training._id);
+                    console.log(self.chosenTraining());
                 };
 
                 (function () {
@@ -19,11 +29,11 @@
                     $('#trainings-panel')
                         .bind('scroll', function () {
                             if ($(this).scrollTop() + $(this).innerHeight() >= 0.9 * $(this)[0].scrollHeight) {
-                                self.trainings = Trainings.getOldestTrainings();
+                                self.trainingHeaders = Trainings.getOldestTrainings();
                             }
 
                             if ($(this).scrollTop() === 0) {
-                                self.trainings = Trainings.getNewestTrainings();
+                                self.trainingHeaders = Trainings.getNewestTrainings();
                             }
                         });
 

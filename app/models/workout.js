@@ -6,7 +6,7 @@
 
     const Workout = new Schema({
         author: String,
-        trainings: [{
+        trainingHeaders: [{
             training: {
                 type: ObjectId,
                 ref: 'Training'
