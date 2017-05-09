@@ -22,9 +22,10 @@
                     this.chosenTrainingId = training._id;
 
                     let newTraining = Trainings.getTraining(this.chosenTrainingId);
-                    console.log(newTraining);
 
-
+                    newTraining.then((response) => {
+                        this.chosenTraining = response.data;
+                    });
                 };
 
                 (function () {
