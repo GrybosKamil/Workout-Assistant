@@ -18,6 +18,12 @@
                 this.isTrainingChosen = function () {
                     return Trainings.chosenTraining != undefined;
                 };
+                
+                this.isChosen = function (training) {
+                    if(!this.isTrainingChosen()) return false;
+
+                    return training._id === this.chosenTraining()._id;
+                }
 
                 this.showTraining = (training) => {
                     Trainings.getTraining(training._id);

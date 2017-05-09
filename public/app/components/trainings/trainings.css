@@ -4,7 +4,6 @@
 
 #trainings-panel {
     max-height: 700px;
-    border: 3px solid #54f353;
     padding: 4px;
     border-radius: 2px;
 
@@ -12,18 +11,18 @@
 }
 
 .training {
-    border: 3px solid #54a3f3;
     border-radius: 20px;
-    padding: 10px;
+    padding: 20px;
     margin: 5px;
+    background-color: rgba(60, 118, 61, 0.2);
+
+}
+.training:hover{
+    cursor: pointer;
 }
 
-.training:nth-child(odd) {
-    background-color: #a7a7a7;
-}
-
-.training:nth-child(even) {
-    background-color: #aafaaa;
+.chosen {
+    background-color: rgba(60, 118, 61, 0.75);
 }
 
 .exercise {

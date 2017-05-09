@@ -5,7 +5,8 @@
         <div class="col-xs-11 col-sm-3 col-md-3" id="trainings-panel">
             <div class="training"
                  data-ng-repeat="training in $ctrl.trainingHeaders"
-                 data-ng-click="$ctrl.showTraining(training)">
+                 data-ng-click="$ctrl.showTraining(training)"
+                 data-ng-class="{chosen: $ctrl.isChosen(training)}">
 
                 <h3>{{training.name}}</h3>
                 <h5>{{training.author}}</h5>
