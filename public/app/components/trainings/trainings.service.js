@@ -13,7 +13,7 @@
         this.oldest = undefined;
 
         this.trainings = [];
-        this.training = undefined;
+        this.currentTraining = undefined;
 
         this.getInitTrainings = () => {
             if (!this.initiated) {
@@ -76,8 +76,6 @@
             return this.trainings;
         };
 
-
-        };
 
         this.getTraining = (trainingID) => {
             return $http.get('/trainings', {

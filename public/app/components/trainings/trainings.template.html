@@ -30,7 +30,9 @@
             </div>
         </div>
         <div class="col-xs-11 col-sm-9 col-md-9 training-details">
-            <training-details training="$ctrl.chosenTraining" data-ng-show="$ctrl.isTrainingChosen()"></training-details>
+            {{$ctrl.isTrainingChosen()}}
+            {{$ctrl.chosenTraining}}
+            <training-details training="training" data-ng-show="isTrainingChosen()"></training-details>
         </div>
 
     </div>

@@ -61,7 +61,7 @@
                     });
             })
             .get((req, res) => {
-                    let trainingID = req.params.training_id;
+                    let trainingID = req.query.training_id;
 
                     let promise = Training.findOne({_id: trainingID})
                         .populate('exercises.exercise').exec();
