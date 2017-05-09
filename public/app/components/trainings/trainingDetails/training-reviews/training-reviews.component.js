@@ -5,13 +5,14 @@
     angular.module('trainings')
         .component('trainingReviews', {
             bindings: {
-                training: '<'
+                training: '<',
+                reviews: '<'
             },
             templateUrl: 'app/components/trainings/trainingDetails/training-reviews/training-reviews.template.html',
             controller: function TrainingReviews($scope, $http, Trainings) {
                 let self = this;
 
-                this.reviews = [];
+                // this.reviews = [];
 
                 this.newOpinion = {
                     rate: 4,
@@ -42,17 +43,18 @@
 
 
                 this.pullReviews = () => {
-                    $http.get('/reviews',
-                        {
-                            params: {
-                                training_id: self.training._id
-                            }
-                        }
-                    ).then((response) => {
-                            console.log(response);
-                            self.reviews = response.data;
-                        }
-                    )
+                    Trainings.pullReviews();
+                    // $http.get('/reviews',
+                    //     {
+                    //         params: {
+                    //             training_id: self.training._id
+                    //         }
+                    //     }
+                    // ).then((response) => {
+                    //         console.log(response);
+                    //         self.reviews = response.data;
+                    //     }
+                    // )
                 }
 
             }

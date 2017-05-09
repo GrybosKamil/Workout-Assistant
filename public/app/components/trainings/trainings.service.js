@@ -14,6 +14,8 @@
         this.trainings = [];
         this.chosenTraining = undefined;
 
+        this.reviews = [];
+
         this.trainingHeaders = [];
 
         this.getInitTrainings = () => {
@@ -102,10 +104,37 @@
                 }).then((response) => {
                     self.chosenTraining = response.data;
                     self.trainings.push(self.chosenTraining);
+
+                    self.pullReviews();
                     return self.chosenTraining;
                 });
             }
         };
+
+
+        this.pullReviews = () => {
+            if (self.chosenTraining) {
+                $http.get('/reviews',
+                    {
+                        params: {
+                            training_id: self.chosenTraining._id
+                        }
+                    }
+                ).then((response) => {
+                        console.log(response);
+                        self.reviews = response.data;
+                        console.log(self.reviews);
+                    }
+                )
+            } else {
+                return self.reviews;
+            }
+        };
+
+        this.getReviews = () => {
+            return self.reviews;
+        }
+
     }]);
 
 })();
