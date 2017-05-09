@@ -11,12 +11,6 @@
                 this.trainingHeaders = Trainings.getInitTrainings();
 
 
-                // this.isTrainingChosen = function () {
-                //     return this.chosenTraining != undefined;
-                // };
-
-                // this.chosenTraining = {siema: "siema"};
-
                 this.chosenTraining = () => {
                     return Trainings.chosenTraining;
                 };
@@ -26,20 +20,13 @@
                 };
 
                 this.showTraining = (training) => {
-                    console.log(training);
-
-                    // let newTraining = Trainings.getTraining(training._id);
                     Trainings.getTraining(training._id);
-
-                    // newTraining.then((response) => {
-                    //     Trainings.chosenTraining = response.data;
-                    //     $scope.training = this.chosenTraining;
-                    // });
+                    console.log(self.chosenTraining());
                 };
 
                 (function () {
 
-                    $('#trainingHeaders-panel')
+                    $('#trainings-panel')
                         .bind('scroll', function () {
                             if ($(this).scrollTop() + $(this).innerHeight() >= 0.9 * $(this)[0].scrollHeight) {
                                 self.trainingHeaders = Trainings.getOldestTrainings();

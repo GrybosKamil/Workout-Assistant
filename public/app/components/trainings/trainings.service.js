@@ -5,7 +5,6 @@
     angular.module('trainingsService', []).service('Trainings', ['$http', function ($http) {
         let self = this;
 
-        // this.all = false;
         this.initiated = false;
         this.busy = false;
 
@@ -79,7 +78,7 @@
         };
 
         this.checkArray = (array, attr, value) => {
-            for (let i = 0; i < array.length; i += 1) {
+            for (let i = 0; i < array.length; ++i) {
                 if (array[i][attr] === value) {
                     return i;
                 }
@@ -87,8 +86,13 @@
             return -1;
         };
 
+        this.getChosenTraining = () => {
+            return self.chosenTraining;
+        };
+
         this.getTraining = (trainingID) => {
             let index = self.checkArray(self.trainings, '_id', trainingID);
+
             if (index > -1) {
                 self.chosenTraining = self.trainings[index];
                 return self.chosenTraining;
@@ -97,13 +101,10 @@
                     params: {training_id: trainingID}
                 }).then((response) => {
                     self.chosenTraining = response.data;
+                    self.trainings.push(self.chosenTraining);
                     return self.chosenTraining;
                 });
             }
-
-
-            // return self.chosenTraining;
-
         };
     }]);
 
