@@ -1,7 +1,8 @@
-.review{
+.review {
     position: relative;
     vertical-align: middle;
 }
+
 .review-form {
 
 }
@@ -14,9 +15,14 @@
     margin: 5px;
 }
 
+.date {
+    font-style: italic;;
+}
+
 .rate {
     font-size: larger;
 }
+
 .review-data {
     margin: 5px;
     background: rgba(60, 118, 61, 0.15);

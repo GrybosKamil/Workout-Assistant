@@ -9,11 +9,12 @@
                 type: ObjectId,
                 ref: "Training"
             },
+            updated: {type: Date, default: Date.now()},
             comment: String,
             rate: {
                 type: Number,
                 min: 0,
-                max:5
+                max: 5
             }
         }
     );

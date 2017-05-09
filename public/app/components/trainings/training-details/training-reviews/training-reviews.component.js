@@ -8,17 +8,39 @@
                 training: '<',
                 reviews: '<'
             },
-            templateUrl: 'app/components/trainings/trainingDetails/training-reviews/training-reviews.template.html',
+            templateUrl: 'app/components/trainings/training-details/training-reviews/training-reviews.template.html',
             controller: function TrainingReviews($scope, $http, Trainings) {
                 let self = this;
 
+                this.maxRate = 5;
 
                 this.newOpinion = {
                     rate: 4,
                     comment: "Good training"
                 };
 
+                this.avarageRate = () => {
+                    if (!self.training) {
+                        return 0;
+                    }
+                    let reviews = self.training.reviews;
+                    if (!reviews) {
+                        return 0;
+                    }
+
+                    if (reviews.length < 1) {
+                        return 0;
+                    } else {
+                        return reviews.map((review) => {
+                                return review.rate;
+                            }).reduce((total, rate) => {
+                                return total + rate;
+                            }, 0) / reviews.length;
+                    }
+                };
+
                 this.addReview = () => {
+                    this.training.reviews.unshift(self.newOpinion);
                     $http.post('/reviews',
                         {
                             training: self.training._id,
