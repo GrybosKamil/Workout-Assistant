@@ -4,7 +4,7 @@
 
     const Exercise = require('./models/exercise');
     const Training = require('./models/training');
-    const Opinion = require('./models/opinion');
+    // const Opinion = require('./models/opinion');
     const Review = require('./models/review');
     // const Workout = require('./models/workout');
 
@@ -65,8 +65,15 @@
             .get((req, res) => {
                     let trainingID = req.query.training_id;
 
-                    let promise = Training.findOne({_id: trainingID})
-                        .populate('exercises.exercise').exec();
+                    let promise;
+                    if (trainingID) {
+                        promise = Training.findOne({_id: trainingID});
+                    } else {
+                        promise = Training.find();
+                    }
+
+                    promise.populate('exercises.exercise')
+                        .exec();
 
                     promise
                         .catch((error) => {
@@ -127,54 +134,73 @@
                 }
             });
 
-        router.route('/opinions')
-            .post((req, res) => {
-                let opinion = new Opinion(req.body);
-
-                let promise = opinion.save();
-
-                promise
-                    .catch((error) => {
-                        res.send(error);
-                    })
-                    .then((response) => {
-                        res.json(response);
-                    });
-            });
+        // router.route('/opinions')
+        //     .post((req, res) => {
+        //         let opinion = new Opinion(req.body);
+        //
+        //         let promise = opinion.save();
+        //         promise
+        //             .catch((error) => {
+        //                 res.send(error);
+        //             })
+        //             .then((response) => {
+        //                 res.json(response);
+        //             });
+        //
+        //     })
+        //     .get((req, res) => {
+        //         let promise = Opinion.find()
+        //         // .lean()
+        //             .exec();
+        //
+        //         promise
+        //             .catch((error) => {
+        //                 res.send(error);
+        //             })
+        //             .then((response) => {
+        //                 res.json(response);
+        //             });
+        //     });
 
         router.route('/reviews')
-            .put((req, res) => {
-                let opinion = new Opinion(req.body);
-                let temporary = opinion.save();
-                let trainingID = req.query.training_id;
-
-                temporary
-                    .catch((error) => {
-                        res.send(error);
-                    })
-                    .then((response) => {
-                        let promise = Review.update(
-                            {training: trainingID},
-                            {$push: {'opinions': opinion}},
-                            {upsert: true})
-                            .exec();
-
-                        promise
-                            .catch((error) => {
-                                res.send(error);
-                            })
-                            .then((response) => {
-                                res.json(response);
-                            });
-                    });
-
-
-            })
+        // .put((req, res) => {
+        //
+        //     let trainingID = req.query.training_id;
+        //     let opinionID = req.query.opinion_id;
+        //
+        //     let opinion = Opinion.findOne({_id: opinionID}).exec();
+        //
+        //     // console.log(opinion);
+        //     // let opinion
+        //
+        //     // console.log(trainingID);
+        //     // console.log(opinionID);
+        //
+        //     opinion.then((data) => {
+        //             console.log(data);
+        //             let promise = Review.update(
+        //                 {training: trainingID},
+        //                 {$push: {opinions: data}},
+        //                 {upsert: true}
+        //             );
+        //
+        //
+        //             promise.exec();
+        //
+        //             promise.catch((error) => {
+        //                 console.log(error);
+        //             }).then((response) => {
+        //                 console.log(response);
+        //             });
+        //         }
+        //     );
+        //
+        //
+        // })
             .post((req, res) => {
                 let review = new Review(req.body);
 
                 let promise = review.save();
-
                 promise
                     .catch((error) => {
                         res.send(error);
@@ -186,9 +212,17 @@
             .get((req, res) => {
                 let trainingID = req.query.training_id;
 
-                let promise = Review.find({training: trainingID})
-                // .populate('training')
-                    .populate('opinions.opinion')
+                console.log(trainingID);
+
+                let promise;
+                if (trainingID) {
+                    promise = Review.find({training: trainingID});
+                } else {
+                    promise = Review.find();
+                }
+
+                promise
+                // .populate('opinions.opinion')
                     .exec();
 
                 promise

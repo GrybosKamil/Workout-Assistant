@@ -1,5 +1,7 @@
 WSZYSTKO :D
 
+<button data-ng-click="$ctrl.pullReviews()">Pobierz recenzje</button>
+
 <form>
     <div>
         <input title="Rate" type="range" min="0" max="5" data-ng-model="$ctrl.newOpinion.rate"/>
@@ -10,7 +12,7 @@ WSZYSTKO :D
 
 </form>
 
-<div data-ng-repeat="opinion in $ctrl.opinions" style="border:3px black solid">
-    <span>{{opinion.rate}}</span>
-    <span>{{opinion.comment}}</span>
+<div data-ng-repeat="review in $ctrl.reviews" style="border:3px black solid">
+    <span>{{review.rate}}</span>
+    <span>{{review.comment}}</span>
 </div>

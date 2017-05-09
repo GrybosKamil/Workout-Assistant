@@ -9,32 +9,52 @@
             },
             templateUrl: 'app/components/trainings/trainingDetails/training-reviews/training-reviews.template.html',
             controller: function TrainingReviews($scope, $http, Trainings) {
-                console.log("ZACZYNAM");
-                console.log(this.training);
-                console.log("KONCZE");
                 let self = this;
+
+                this.reviews = [];
+
                 this.newOpinion = {
                     rate: 4,
                     comment: "Good training"
                 };
 
                 this.addOpinion = () => {
-                    $http.put('/reviews',
-                        self.newOpinion,
+                    $http.post('/reviews',
+                        {
+                            training: self.training._id,
+                            rate: self.newOpinion.rate,
+                            comment: self.newOpinion.comment
+                        })
+                        .then((response) => {
+                            console.log(response);
+                            console.log("->");
+                            console.log(response.data);
+                            console.log("<-");
+                            self.pullReviews();
+                        });
+
+
+                    self.newOpinion = {
+                        rate: 1,
+                        comment: ""
+                    }
+                };
+
+
+                this.pullReviews = () => {
+                    $http.get('/reviews',
                         {
                             params: {
                                 training_id: self.training._id
                             }
-                        })
-                        .then((response) => {
+                        }
+                    ).then((response) => {
                             console.log(response);
-                        });
+                            self.reviews = response.data;
+                        }
+                    )
+                }
 
-                    self.newOpinion = {
-                        rate: 4,
-                        comment: ""
-                    }
-                };
             }
 
         })

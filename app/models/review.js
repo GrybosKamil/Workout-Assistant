@@ -7,14 +7,14 @@
     const Review = new Schema({
             training: {
                 type: ObjectId,
-                ref: 'Training'
+                ref: "Training"
             },
-            opinions: [{
-                opinion: {
-                    type: ObjectId,
-                    ref: 'Opinion'
-                }
-            }]
+            comment: String,
+            rate: {
+                type: Number,
+                min: 0,
+                max:5
+            }
         }
     );
 
