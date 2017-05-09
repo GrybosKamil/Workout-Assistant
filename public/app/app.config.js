@@ -12,13 +12,13 @@
                 }).when('/about', {
                     template: '<about></about>'
                 }).when('/contact', {
-                    template: 'Contact'
+                    template: '<div class="info">Strona w budowie ... </div>'
                 }).when('/exercises', {
-                    template: '<exercises><exercises/>'
+                    template: '<exercises></exercises>'
                 }).when('/trainings', {
                     template: '<trainings><trainings/>'
                 }).when('/404', {
-                    template: 'Looks like you got lost. <a href="/">Back to home.</a>'
+                    template: '<div class="info"> Looks like you got lost. <a href="/">Back to home.</a> </div>'
                 }).otherwise('/404');
             }
         ]);
