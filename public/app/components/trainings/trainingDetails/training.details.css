@@ -1,5 +1,6 @@
 .training-details {
     text-align: center;
+
 }
 .details-container{
 
@@ -10,14 +11,16 @@
     margin: 5px;
     background-color: rgba(60, 118, 61, 0.15);
 }
-
+.details-list {
+    width: 100%;
+}
 .details-list, .exercise-params, .exercise-series{
     list-style-type:none;
 }
 
 
 .exercise-detail{
-    background-color: rgba(60, 118, 61, 0.3);;
+    background-color: rgba(60, 118, 61, 0.3);
     border-radius: 20px;
     margin: 5px;
     padding: 10px;
