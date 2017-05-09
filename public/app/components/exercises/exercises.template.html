@@ -5,7 +5,7 @@
         <div class="row">
 
             <div class="col-md-4">
-                <h4>Places:</h4>
+                <h4>Miejsce:</h4>
                 <div data-ng-repeat="place in $ctrl.filterPlacesAv">
                     <input type="checkbox"
                            value="{{place.place}}"
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <h4>Requirements:</h4>
+                <h4>Wymagania:</h4>
                 <div data-ng-repeat="req in $ctrl.requirementsAv">
                     <input type="checkbox"
                            value="{{req}}"
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <h4>Muscles:</h4>
+                <h4>Mięśnie:</h4>
                 <div data-ng-repeat="muscle in $ctrl.musclesAv">
                     <input type="checkbox"
                            value="{{muscle}}"
@@ -36,7 +36,7 @@
         </div>
 
         <div class="row search-query">
-            <input type="text" data-ng-model="$ctrl.search.name" placeholder="Find by name..." class="form-control"/>
+            <input type="text" data-ng-model="$ctrl.search.name" placeholder="Szukaj po nazwie..." class="form-control"/>
         </div>
     </div>
 
@@ -46,21 +46,21 @@
         <tr>
             <td>
                 <span class="exercises-sorting" data-ng-click="$ctrl.changeSorting('name')">
-                Name
+                Nazwa
                     <i class="glyphicon" data-ng-class="$ctrl.getIcon('name')"></i>
                 </span>
             </td>
             <td>
-                Description
+                Opis
             </td>
             <td>
-                Place
+                Miejsce
             </td>
             <td>
-                Requirements
+                Wymagania
             </td>
             <td>
-                Muscles
+                Mięśnie
             </td>
         </tr>
         </thead>
