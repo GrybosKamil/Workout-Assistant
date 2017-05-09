@@ -12,7 +12,7 @@
                    min="0" max="5"
                    data-ng-model="$ctrl.newOpinion.rate"/>
 
-            <textarea class="form-control" type="text"
+            <textarea class="form-control" data-type="text"
                       data-ng-model="$ctrl.newOpinion.comment"
                       placeholder="Twój komentarz..."><</textarea>
         </div>
@@ -28,7 +28,7 @@
     <div class="review-tile" data-ng-repeat="review in $ctrl.training.reviews">
         <div class="row review-data">
             <div class="col-xs-6 col-sm-3 col-md-2 rate">{{review.rate}} / {{$ctrl.maxRate}}</div>
-            <div class="col-xs-6 col-sm-3 col-md-3 updated">{{review.updated | limitTo : 10}}</div>
+            <div class="col-xs-6 col-sm-3 col-md-3 updated">{{review.updated | date:'dd-MM-yyyy hh:mm'}}</div>
             <div class="col-xs-12 col-sm-4 col-md-7 comment"> {{review.comment}}</div>
         </div>
     </div>
