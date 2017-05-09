@@ -14,6 +14,8 @@
 .training {
     border: 3px solid #54a3f3;
     border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
 }
 
 .training:nth-child(odd) {
