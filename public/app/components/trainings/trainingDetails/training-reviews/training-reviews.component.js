@@ -35,7 +35,8 @@
                             console.log("->");
                             console.log(response.data);
                             console.log("<-");
-                            self.pullReviews();
+                            // self.pullReviews();
+                            Trainings.pullReviews();
                         });
 
 
