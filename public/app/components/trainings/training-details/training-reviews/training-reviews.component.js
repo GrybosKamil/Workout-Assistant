@@ -14,9 +14,14 @@
 
                 this.maxRate = 5;
 
-                this.newOpinion = {
+                this.defaultOpinion = {
                     rate: 4,
-                    comment: "Good training"
+                    comment: ""
+                };
+
+                this.newOpinion = {
+                    rate: self.defaultOpinion.rate,
+                    comment: self.defaultOpinion.comment
                 };
 
                 this.avarageRate = () => {
@@ -39,29 +44,32 @@
                     }
                 };
 
+                this.pullReviews = () => {
+                    Trainings.pullReviews();
+                };
+
                 this.addReview = () => {
-                    this.training.reviews.unshift(self.newOpinion);
                     $http.post('/reviews',
                         {
                             training: self.training._id,
                             rate: self.newOpinion.rate,
-                            comment: self.newOpinion.comment
+                            comment: self.newOpinion.comment,
+                            updated: self.newOpinion.updated
+                        })
+                        .catch((error) => {
+                            alert("Nie mozna dodać komentarza!");
                         })
                         .then((response) => {
+                            self.training.reviews.unshift(response.data);
                             Trainings.pullReviews();
                         });
 
 
                     self.newOpinion = {
-                        rate: 3,
-                        comment: ""
+                        rate: self.defaultOpinion.rate,
+                        comment: self.defaultOpinion.comment
                     }
                 };
-
-                this.pullReviews = () => {
-                    Trainings.pullReviews();
-                };
-
             }
         });
 
