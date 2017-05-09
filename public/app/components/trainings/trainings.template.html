@@ -2,7 +2,7 @@
 
     <div class="row">
 
-        <div class="col-xs-11 col-sm-3 col-md-3" id="trainings-panel" class="trenings-side-panel">
+        <div class="col-xs-11 col-sm-6 col-md-4" id="trainings-panel" class="trenings-side-panel">
             <div class="training"
                  data-ng-repeat="training in $ctrl.trainingHeaders"
                  data-ng-click="$ctrl.showTraining(training)"
@@ -14,7 +14,7 @@
 
             </div>
         </div>
-        <div class="col-xs-11 col-sm-9 col-md-9 training-details">
+        <div class="col-xs-11 col-sm-6 col-md-8 training-details">
 
             <training-details training=$ctrl.chosenTraining()
                               reviews=$ctrl.reviews()

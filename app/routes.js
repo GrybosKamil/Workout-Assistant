@@ -20,7 +20,6 @@
                 let exercise = new Exercise(req.body);
 
                 let promise = exercise.save();
-
                 promise
                     .catch((error) => {
                         res.send(error);
@@ -31,9 +30,18 @@
 
             })
             .get((req, res) => {
-                let promise = Exercise.find()
-                    .sort({name: 1, description: 1})
-                    // .lean()
+                let exerciseID = req.query.exercise_id;
+
+                let promise;
+                if (exerciseID) {
+                    promise = Exercise.find({_id: exerciseID});
+                } else {
+                    promise = Exercise.find()
+                        .sort({name: 1, description: 1});
+                }
+
+                promise
+                // .lean()
                     .exec();
 
                 promise
@@ -50,10 +58,7 @@
                 let training = new Training(req.body);
                 training.updated = Date.now();
 
-                console.log(training);
-
                 let promise = training.save();
-
                 promise
                     .catch((error) => {
                         res.send(error);
@@ -199,6 +204,7 @@
         // })
             .post((req, res) => {
                 let review = new Review(req.body);
+                review.updated = Date.now();
 
                 let promise = review.save();
                 promise
@@ -212,8 +218,6 @@
             .get((req, res) => {
                 let trainingID = req.query.training_id;
 
-                console.log(trainingID);
-
                 let promise;
                 if (trainingID) {
                     promise = Review.find({training: trainingID});
@@ -222,7 +226,7 @@
                 }
 
                 promise
-                // .populate('opinions.opinion')
+                    .sort({updated: -1})
                     .exec();
 
                 promise
