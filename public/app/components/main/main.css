@@ -7,6 +7,7 @@
     width: 100%;
     text-align: center;
     display: table;
+    background-color: white;
 }
 .main-container {
     height: 120px;
