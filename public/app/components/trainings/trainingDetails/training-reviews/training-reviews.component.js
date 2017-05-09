@@ -12,18 +12,13 @@
             controller: function TrainingReviews($scope, $http, Trainings) {
                 let self = this;
 
-                // this.reviews = [];
 
                 this.newOpinion = {
                     rate: 4,
                     comment: "Good training"
                 };
 
-                this.addOpinion = () => {
-
-                    console.log("TUTUT");
-                    console.log(self.training);
-                    console.log(self.reviews);
+                this.addReview = () => {
                     $http.post('/reviews',
                         {
                             training: self.training._id,
@@ -31,41 +26,21 @@
                             comment: self.newOpinion.comment
                         })
                         .then((response) => {
-                            console.log(response);
-                            console.log("->");
-                            console.log(response.data);
-                            console.log("<-");
-                            // self.pullReviews();
                             Trainings.pullReviews();
                         });
 
 
                     self.newOpinion = {
-                        rate: 1,
+                        rate: 3,
                         comment: ""
                     }
                 };
 
-
-                // this.pullReviews = () => {
-                //     Trainings.pullReviews();
-                // $http.get('/reviews',
-                //     {
-                //         params: {
-                //             training_id: self.training._id
-                //         }
-                //     }
-                // ).then((response) => {
-                //         console.log(response);
-                //         self.reviews = response.data;
-                //     }
-                // )
-                // }
+                this.pullReviews = () => {
+                    Trainings.pullReviews();
+                };
 
             }
+        });
 
-        })
-    ;
-
-})
-();
+})();
