@@ -127,7 +127,7 @@
                 }
             });
 
-        router.route('/opinion')
+        router.route('/opinions')
             .post((req, res) => {
                 let opinion = new Opinion(req.body);
 
@@ -141,7 +141,35 @@
                         res.json(response);
                     });
             });
-        router.route('/review')
+
+        router.route('/reviews')
+            .put((req, res) => {
+                let opinion = new Opinion(req.body);
+                let temporary = opinion.save();
+                let trainingID = req.query.training_id;
+
+                temporary
+                    .catch((error) => {
+                        res.send(error);
+                    })
+                    .then((response) => {
+                        let promise = Review.update(
+                            {training: trainingID},
+                            {$push: {'opinions': opinion}},
+                            {upsert: true})
+                            .exec();
+
+                        promise
+                            .catch((error) => {
+                                res.send(error);
+                            })
+                            .then((response) => {
+                                res.json(response);
+                            });
+                    });
+
+
+            })
             .post((req, res) => {
                 let review = new Review(req.body);
 
@@ -154,6 +182,23 @@
                     .then((response) => {
                         res.json(response);
                     });
+            })
+            .get((req, res) => {
+                let trainingID = req.query.training_id;
+
+                let promise = Review.find({training: trainingID})
+                // .populate('training')
+                    .populate('opinions.opinion')
+                    .exec();
+
+                promise
+                    .catch((error) => {
+                        res.send(error);
+                    })
+                    .then((response) => {
+                        res.json(response);
+                    });
+
             });
 
         router.get('/', (req, res) => {
