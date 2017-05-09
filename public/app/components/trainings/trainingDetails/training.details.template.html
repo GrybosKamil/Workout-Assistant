@@ -1,0 +1,25 @@
+<div style="text-align: center">
+    <h2>{{ $ctrl.training.name }}</h2>
+    <h4>{{ $ctrl.training.author }}</h4>
+
+    <div>
+        <ul>
+            <ol data-ng-repeat="exercise in $ctrl.training.exercises">
+                <li>{{exercise.exercise.name}}
+                    <ol>
+                        <li>Load {{ exercise.load ? "y" : "n"}}</li>
+                        <li>Time {{ exercise.time ? "y" : "n"}}</li>
+                        <li>Quantity {{ exercise.quantity ? "y" : "n"}}</li>
+                    </ol>
+                    <ul data-ng-repeat="serie in exercise.series" style="border: 3px black solid">
+                        <li data-ng-show="serie.load">{{"Obciązenie " + serie.load}}</li>
+                        <li data-ng-show="serie.time">{{"Czas " + serie.time}}</li>
+                        <li data-ng-show="serie.quantity">{{"Powtórzenia " + serie.quantity}}</li>
+
+                    </ul>
+                </li>
+            </ol>
+        </ul>
+    </div>
+
+</div>
