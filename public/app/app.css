@@ -1,3 +1,4 @@
+@import "general_styles.css";
 @import "components/menu/menu.css";
 @import "components/main/main.css";
 @import "components/exercises/exercises.css";
