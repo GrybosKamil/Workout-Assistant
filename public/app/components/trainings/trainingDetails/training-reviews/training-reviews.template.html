@@ -3,10 +3,10 @@
 <form>
     <div>
         <input title="Rate" type="range" min="0" max="5" data-ng-model="$ctrl.newOpinion.rate"/>
-        <input type="text" data-ng-model="$ctrl.newOpinion.comment" placeholder="Write comment here..."/>
+        <textarea class="form-control" type="text" data-ng-model="$ctrl.newOpinion.comment" placeholder="Write comment here..."><</textarea>
     </div>
 
-    <button type="submit" data-ng-click="$ctrl.addOpinion()">Dodaj opinię</button>
+    <button type="submit" class="btn btn-success" data-ng-click="$ctrl.addOpinion()">Dodaj opinię</button>
 
 </form>
 
