@@ -1,11 +1,10 @@
 .review{
-    max-width: 70%;
+    position: relative;
     vertical-align: middle;
 }
 .review-form {
 
 }
-
 
 .review-tile {
     text-align: left;
