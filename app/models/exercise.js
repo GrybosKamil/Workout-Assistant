@@ -2,7 +2,7 @@
 
     const mongoose = require('../../config/db.connection');
     const Schema = mongoose.Schema;
-    const ObjectId = Schema.ObjectId;
+    // const ObjectId = Schema.ObjectId;
 
     const Exercise = new Schema({
             name: String,

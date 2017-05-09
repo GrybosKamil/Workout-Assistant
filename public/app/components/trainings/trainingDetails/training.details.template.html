@@ -3,36 +3,38 @@
     <h4>Autor: {{ $ctrl.training.author }}</h4>
     <hr>
     <div class="details-container">
-            <ul class="details-list" data-ng-repeat="exercise in $ctrl.training.exercises">
-                <li>
-                    <div class="exercise-tile">
-                       <h3> {{exercise.exercise.name}} </h3>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-4 col-md-offset-1">
-                                <h4>Parametry: </h4>
-                                <ul class="exercise-params exercise-detail">
-                                    <li>Load {{ exercise.load ? "y" : "n"}}</li>
-                                    <li>Time {{ exercise.time ? "y" : "n"}}</li>
-                                    <li>Quantity {{ exercise.quantity ? "y" : "n"}}</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-5 col-md-offset-1">
-                                <h4>Serie:</h4>
-                                <ul class="exercise-series" data-ng-repeat="serie in exercise.series">
-                                    <div>
-                                        <li class="exercise-detail">
-                                            <div data-ng-show="serie.load">{{"Obciązenie " + serie.load}}</div>
-                                            <div data-ng-show="serie.time">{{"Czas " + serie.time}}</div>
-                                            <div data-ng-show="serie.quantity">{{"Powtórzenia " + serie.quantity}}</div>
-                                        </li>
-                                    </div>
-                                </ul>
-                            </div>
+        <ul class="details-list" data-ng-repeat="exercise in $ctrl.training.exercises">
+            <li>
+                <div class="exercise-tile">
+                    <h3> {{exercise.exercise.name}} </h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-1">
+                            <h4>Parametry: </h4>
+                            <ul class="exercise-params exercise-detail">
+                                <li>Load {{ exercise.load ? "y" : "n"}}</li>
+                                <li>Time {{ exercise.time ? "y" : "n"}}</li>
+                                <li>Quantity {{ exercise.quantity ? "y" : "n"}}</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                            <h4>Serie:</h4>
+                            <ul class="exercise-series" data-ng-repeat="serie in exercise.series">
+                                <div>
+                                    <li class="exercise-detail">
+                                        <div data-ng-show="serie.load">{{"Obciązenie " + serie.load}}</div>
+                                        <div data-ng-show="serie.time">{{"Czas " + serie.time}}</div>
+                                        <div data-ng-show="serie.quantity">{{"Powtórzenia " + serie.quantity}}</div>
+                                    </li>
+                                </div>
+                            </ul>
                         </div>
                     </div>
-                </li>
-            </ul>
+                </div>
+            </li>
+        </ul>
     </div>
+
+    <training-reviews training="$ctrl.training" reviews="$ctrl.reviews"></training-reviews>
 
 </div>
