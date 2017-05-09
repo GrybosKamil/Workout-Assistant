@@ -39,7 +39,10 @@
                         active: false,
                         header: '.header',
                         content: '.content',
-                        heightStyle: 'content'
+                        heightStyle: 'content',
+                        beforeActivate: (event, ui) => {
+                            console.log(ui);
+                        }
                     });
 
                 })(jQuery);

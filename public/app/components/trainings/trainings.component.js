@@ -10,7 +10,6 @@
 
                 this.trainings = Trainings.getInitTrainings();
 
-
                 this.showTraining = (training) => {
                     console.log(training);
                 };
