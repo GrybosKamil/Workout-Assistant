@@ -1,17 +1,20 @@
 <!--<button data-ng-click="$ctrl.pullReviews()">Pobierz recenzje</button>-->
+<div class="review">
+    <form class="review-form">
+        <div class="review-item">
+            <label> Twoja ocena: {{ $ctrl.newOpinion.rate }} /5</label>
+            <input title="Rate" type="range" min="0" max="5" data-ng-model="$ctrl.newOpinion.rate"/>
+            <textarea class="form-control" type="text" data-ng-model="$ctrl.newOpinion.comment" placeholder="Twój komentarz..."><</textarea>
+        </div>
 
-<form>
-    <div>
-        <input title="Rate" type="range" min="0" max="5" data-ng-model="$ctrl.newOpinion.rate"/>
-        <input type="text" data-ng-model="$ctrl.newOpinion.comment" placeholder="Write comment here..."/>
+        <button type="submit" class="btn btn-success review-item" data-ng-click="$ctrl.addOpinion()">Dodaj opinię</button>
+    </form>
+
+
+    <div class="review-tile" data-ng-repeat="review in $ctrl.reviews" >
+        <div class="row review-data">
+            <div class="col-sm-3 col-md-2 rate">{{review.rate}} / 5 </div>
+            <div class="col-sm-4 col-md-10 comment"> {{review.comment}}</div>
+        </div>
     </div>
-
-    <button type="submit" data-ng-click="$ctrl.addOpinion()">Dodaj opinię</button>
-
-</form>
-
-
-<div data-ng-repeat="review in $ctrl.reviews" style="border:3px black solid">
-    <span>{{review.rate}}</span>
-    <span>{{review.comment}}</span>
 </div>
