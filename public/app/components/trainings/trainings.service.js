@@ -16,6 +16,8 @@
 
         this.reviews = [];
 
+        // this.choosenReviews = [];
+
         this.trainingHeaders = [];
 
         this.getInitTrainings = () => {
@@ -93,22 +95,22 @@
         };
 
         this.getTraining = (trainingID) => {
-            let index = self.checkArray(self.trainings, '_id', trainingID);
+            // let index = self.checkArray(self.trainings, '_id', trainingID);
+            //
+            // if (index > -1) {
+            //     self.chosenTraining = self.trainings[index];
+            //     return self.chosenTraining;
+            // } else {
+            $http.get('/trainings', {
+                params: {training_id: trainingID}
+            }).then((response) => {
+                self.chosenTraining = response.data;
+                self.trainings.push(self.chosenTraining);
 
-            if (index > -1) {
-                self.chosenTraining = self.trainings[index];
+                self.pullReviews();
                 return self.chosenTraining;
-            } else {
-                $http.get('/trainings', {
-                    params: {training_id: trainingID}
-                }).then((response) => {
-                    self.chosenTraining = response.data;
-                    self.trainings.push(self.chosenTraining);
-
-                    self.pullReviews();
-                    return self.chosenTraining;
-                });
-            }
+            });
+            // }
         };
 
 

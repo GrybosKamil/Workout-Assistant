@@ -20,6 +20,10 @@
                 };
 
                 this.addOpinion = () => {
+
+                    console.log("TUTUT");
+                    console.log(self.training);
+                    console.log(self.reviews);
                     $http.post('/reviews',
                         {
                             training: self.training._id,
@@ -42,20 +46,20 @@
                 };
 
 
-                this.pullReviews = () => {
-                    Trainings.pullReviews();
-                    // $http.get('/reviews',
-                    //     {
-                    //         params: {
-                    //             training_id: self.training._id
-                    //         }
-                    //     }
-                    // ).then((response) => {
-                    //         console.log(response);
-                    //         self.reviews = response.data;
-                    //     }
-                    // )
-                }
+                // this.pullReviews = () => {
+                //     Trainings.pullReviews();
+                // $http.get('/reviews',
+                //     {
+                //         params: {
+                //             training_id: self.training._id
+                //         }
+                //     }
+                // ).then((response) => {
+                //         console.log(response);
+                //         self.reviews = response.data;
+                //     }
+                // )
+                // }
 
             }
 
