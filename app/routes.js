@@ -46,6 +46,9 @@
         router.route('/trainings')
             .post((req, res) => {
                 let training = new Training(req.body);
+                training.updated = Date.now();
+
+                console.log(training);
 
                 let promise = training.save();
 
@@ -75,27 +78,51 @@
 
         router.route('/continuous_scroll_trainings')
             .get((req, res) => {
-                let last = req.query.training_id;
+                if (!req.query.newest) {
+                    let oldest = req.query.oldest;
 
-                let promise = Training.find({}, "_id author")
-                    .sort({_id: 1});
+                    let promise = Training.find({}, "_id author name updated")
+                        .sort({updated: -1});
 
-                if (last) {
-                    promise = promise.where({_id: {"$gt": last}})
+                    if (oldest) {
+                        promise = promise.where({updated: {"$lt": oldest}})
+                    }
+
+                    promise = promise.limit(6)
+                    // .populate('exercises.exercise')
+                    // .lean()
+                        .exec();
+
+                    promise
+                        .catch((error) => {
+                            res.send(error);
+                        })
+                        .then((response) => {
+                            res.json(response);
+                        });
+                } else {
+                    let newest = req.query.newest;
+
+                    let promise = Training.find({}, "_id author name updated")
+                        .sort({updated: 1});
+
+                    if (newest) {
+                        promise = promise.where({updated: {"$gt": newest}})
+                    }
+
+                    promise = promise.limit(6)
+                    // .populate('exercises.exercise')
+                    // .lean()
+                        .exec();
+
+                    promise
+                        .catch((error) => {
+                            res.send(error);
+                        })
+                        .then((response) => {
+                            res.json(response);
+                        });
                 }
-
-                promise = promise.limit(6)
-                // .populate('exercises.exercise')
-                // .lean()
-                    .exec();
-
-                promise
-                    .catch((error) => {
-                        res.send(error);
-                    })
-                    .then((response) => {
-                        res.json(response);
-                    });
             });
 
         router.get('/', (req, res) => {

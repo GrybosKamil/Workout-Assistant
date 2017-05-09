@@ -6,6 +6,8 @@
         .component('about', {
             templateUrl: 'app/components/about/about.template.html',
             controller: function About() {
+                let self = this;
+
                 this.message = "Frequent Answers and Questions";
 
                 this.faq = [
@@ -24,14 +26,25 @@
                 ];
 
                 (function () {
-                    $("#accordion").accordion({
-                        animate: 200,
+                    let accordion = $("#accordion");
+
+                    self.faq.forEach((elem) => {
+                        accordion.append(`<div class="header" data-link="` + elem.link + `">` + elem.title + `</div>`);
+                        accordion.append(`<div class="content">` + `</div>`);
+                    });
+
+                    accordion.accordion({
+                        animate: 300,
                         collapsible: true,
-                        activate: function (event, ui) {
-                            console.log(event);
+                        active: false,
+                        header: '.header',
+                        content: '.content',
+                        heightStyle: 'content',
+                        beforeActivate: (event, ui) => {
                             console.log(ui);
                         }
                     });
+
                 })(jQuery);
 
             }

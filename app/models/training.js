@@ -6,6 +6,8 @@
 
     const Training = new Schema({
             author: String,
+            name: String,
+            updated: {type: Date, default: Date.now()},
             exercises: [{
                 exercise: {
                     type: ObjectId,

@@ -33,7 +33,11 @@
                     $('#trainings-panel')
                         .bind('scroll', function () {
                             if ($(this).scrollTop() + $(this).innerHeight() >= 0.9 * $(this)[0].scrollHeight) {
-                                self.trainings = Trainings.getTrainings();
+                                self.trainings = Trainings.getOldestTrainings();
+                            }
+
+                            if ($(this).scrollTop() === 0) {
+                                self.trainings = Trainings.getNewestTrainings();
                             }
                         });
 
