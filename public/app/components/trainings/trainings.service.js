@@ -13,14 +13,16 @@
         this.oldest = undefined;
 
         this.trainings = [];
-        this.currentTraining = undefined;
+        this.chosenTraining = undefined;
+
+        this.trainingHeaders = [];
 
         this.getInitTrainings = () => {
             if (!this.initiated) {
                 this.initiated = true;
                 return this.getOldestTrainings();
             }
-            return this.trainings;
+            return this.trainingHeaders;
         };
 
         this.getOldestTrainings = function () {
@@ -38,7 +40,7 @@
                                 self.oldest = newOldest;
 
                                 response.data.forEach((training) => {
-                                    self.trainings.push(training);
+                                    self.trainingHeaders.push(training);
                                 });
                             }
                         }
@@ -46,13 +48,13 @@
                     }
                 );
             }
-            return this.trainings;
+            return this.trainingHeaders;
         };
 
         this.getNewestTrainings = function () {
             if (!this.busy) {
                 this.busy = true;
-                this.newest = this.trainings[0].updated;
+                this.newest = this.trainingHeaders[0].updated;
                 console.log("getNewestTrainings");
 
                 $http.get('/continuous_scroll_trainings', {
@@ -65,7 +67,7 @@
                                 self.newest = newNewest;
 
                                 response.data.forEach((training) => {
-                                    self.trainings.unshift(training);
+                                    self.trainingHeaders.unshift(training);
                                 });
                             }
                         }
@@ -73,14 +75,34 @@
                     }
                 );
             }
-            return this.trainings;
+            return this.trainingHeaders;
         };
 
+        this.checkArray = (array, attr, value) => {
+            for (let i = 0; i < array.length; i += 1) {
+                if (array[i][attr] === value) {
+                    return i;
+                }
+            }
+            return -1;
+        };
 
         this.getTraining = (trainingID) => {
-            return $http.get('/trainings', {
-                params: {training_id: trainingID}
-            });
+            let index = self.checkArray(self.trainings, '_id', trainingID);
+            if (index > -1) {
+                self.chosenTraining = self.trainings[index];
+                return self.chosenTraining;
+            } else {
+                $http.get('/trainings', {
+                    params: {training_id: trainingID}
+                }).then((response) => {
+                    self.chosenTraining = response.data;
+                    return self.chosenTraining;
+                });
+            }
+
+
+            // return self.chosenTraining;
 
         };
     }]);

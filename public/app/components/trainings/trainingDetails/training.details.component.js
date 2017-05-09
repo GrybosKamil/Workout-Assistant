@@ -4,11 +4,12 @@
 
     angular.module('trainings')
         .component('trainingDetails', {
-            binding: {
+            bindings: {
                 training: '<'
             },
             templateUrl: 'app/components/trainings/trainingDetails/training.details.template.html',
-            controller: function TrainingDetails() {
+            controller: function TrainingDetails($scope, Trainings) {
+                let self = this;
 
             }
 

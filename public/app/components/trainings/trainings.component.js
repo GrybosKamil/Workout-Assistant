@@ -8,42 +8,45 @@
             controller: function Trainings($scope, $interval, Trainings) {
                 let self = this;
 
-                this.trainings = Trainings.getInitTrainings();
+                this.trainingHeaders = Trainings.getInitTrainings();
 
-                this.chosenTraining = undefined;
 
-                this.isTrainingChosen = function () {
-                    return this.chosenTraining != undefined;
+                // this.isTrainingChosen = function () {
+                //     return this.chosenTraining != undefined;
+                // };
+
+                // this.chosenTraining = {siema: "siema"};
+
+                this.chosenTraining = () => {
+                    return Trainings.chosenTraining;
                 };
 
-                $scope.isTrainingChosen = function () {
-                    // console.log(this.chosenTraining);
-                    return self.chosenTraining != undefined;
+                this.isTrainingChosen = function () {
+                    return Trainings.chosenTraining != undefined;
                 };
 
                 this.showTraining = (training) => {
                     console.log(training);
-                    // this.chosenTrainingId = training._id;
 
-                    let newTraining = Trainings.getTraining(training._id);
+                    // let newTraining = Trainings.getTraining(training._id);
+                    Trainings.getTraining(training._id);
 
-                    newTraining.then((response) => {
-                        this.chosenTraining = response.data;
-                        // Trainings.currentTraining = this.chosenTraining;
-                        $scope.training = this.chosenTraining;
-                    });
+                    // newTraining.then((response) => {
+                    //     Trainings.chosenTraining = response.data;
+                    //     $scope.training = this.chosenTraining;
+                    // });
                 };
 
                 (function () {
 
-                    $('#trainings-panel')
+                    $('#trainingHeaders-panel')
                         .bind('scroll', function () {
                             if ($(this).scrollTop() + $(this).innerHeight() >= 0.9 * $(this)[0].scrollHeight) {
-                                self.trainings = Trainings.getOldestTrainings();
+                                self.trainingHeaders = Trainings.getOldestTrainings();
                             }
 
                             if ($(this).scrollTop() === 0) {
-                                self.trainings = Trainings.getNewestTrainings();
+                                self.trainingHeaders = Trainings.getNewestTrainings();
                             }
                         });
 
