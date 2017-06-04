@@ -11,9 +11,6 @@
     // const Review = require('./models/review');
     // const Workout = require('./models/workout');
 
-
-    const users = require('./routes/users/users');
-    const exercises = require('./routes/exercises');
     // const trainings = require('./models/training');
     // const reviews = require('./routes/reviews');
 
@@ -24,8 +21,10 @@
         next();
     });
 
+    const users = require('./routes/users/users');
     routerApi.use('/users', users);
 
+    const exercises = require('./routes/exericses/exercises');
     routerApi.use('/exercises', exercises);
 
     // // router.route('/exercises')

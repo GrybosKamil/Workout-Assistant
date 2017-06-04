@@ -107,7 +107,6 @@
                         ctrlResponse.sendJSON(res, 401, {});
                         return;
                     }
-
                     method(req, res, user);
                 }
             )
