@@ -8,8 +8,6 @@
     const ctrlResponse = require('../../../controllers/response');
 
     const User = require('../../../models/user');
-    // const mongoose = require('mongoose');
-    // const User = mongoose.model('User');
 
     router.route('/:userId')
         .get((req, res, next) => {
@@ -40,12 +38,47 @@
         });
 
 
-    router.route('/:userId/password')
+    router.route('/:userId/password/change')
         .put(auth, (req, res, next) => {
             ctrlAuth.verifyUser(req, res, changePassword);
         });
 
+    router.route('/password/reset')
+        .post((req, res, next) => {
+            let username = req.body.username;
+            let email = req.body.email;
+
+            User.findOne({username: username, email: email})
+                .then((user) => {
+                    ctrlResponse.sendJSON(res, 200, {
+                        username: username,
+                        email: email,
+                        message: "Found out!"
+                    });
+                })
+                .catch((error) => {
+                    ctrlResponse.sendJSON(res, 400, {});
+                });
+        });
+
     module.exports = router;
+
+    const deleteUser = function (req, res, user) {
+        let userId = req.params.userId;
+
+        User.remove({_id: userId})
+            .then((user) => {
+                if (!user) {
+                    ctrlResponse.sendJSON(res, 404, user)
+                } else {
+                    // console.log(user);
+                    ctrlResponse.sendJSON(res, 200, user);
+                }
+            })
+            .catch((error) => {
+                ctrlResponse.sendJSON(res, 400, {})
+            });
+    };
 
     const changePassword = function (req, res, user) {
         if (req.body.password.length < 2) {
@@ -70,23 +103,6 @@
             .catch((err) => {
                 console.log(err);
                 ctrlResponse.sendJSON(res, 400, {});
-            });
-    };
-
-    const deleteUser = function (req, res, user) {
-        let userId = req.params.userId;
-
-        User.remove({_id: userId})
-            .then((user) => {
-                if (!user) {
-                    ctrlResponse.sendJSON(res, 404, user)
-                } else {
-                    // console.log(user);
-                    ctrlResponse.sendJSON(res, 200, user);
-                }
-            })
-            .catch((error) => {
-                ctrlResponse.sendJSON(res, 400, {})
             });
     };
 
