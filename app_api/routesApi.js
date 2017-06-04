@@ -4,7 +4,7 @@
 
     const passport = require('passport');
 
-    const User = require('./models/user');
+    // const User = require('./models/user');
     // const Exercise = require('./models/exercise');
     // const Training = require('./models/training');
     // const Opinion = require('./models/opinion');

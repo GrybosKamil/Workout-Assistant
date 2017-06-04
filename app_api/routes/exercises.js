@@ -26,10 +26,10 @@
 
                         exercise.save()
                             .then((message) => {
-                                sendJSONresponse(res, 200, message);
+                                ctrlResponse.sendJSON(res, 200, message);
                             })
                             .catch((error) => {
-                                sendJSONresponse(res, 400, error);
+                                ctrlResponse.sendJSON(res, 400, error);
                             });
                     }
                 )
@@ -42,10 +42,10 @@
             Exercise.find()
                 .sort({name: 1, description: 1}).exec()
                 .then((exercises) => {
-                    sendJSONresponse(res, 200, exercises);
+                    ctrlResponse.sendJSON(res, 200, exercises);
                 })
                 .catch((error) => {
-                    sendJSONresponse(res, 400, {});
+                    ctrlResponse.sendJSON(res, 400, {});
                 });
         });
 
@@ -56,13 +56,13 @@
             Exercise.findOne({_id: exerciseId}).exec()
                 .then((exercise) => {
                     if (!exercise) {
-                        sendJSONresponse(res, 404, exercise);
+                        ctrlResponse.sendJSON(res, 404, exercise);
                     } else {
-                        sendJSONresponse(res, 200, exercise);
+                        ctrlResponse.sendJSON(res, 200, exercise);
                     }
                 })
                 .catch((error) => {
-                    sendJSONresponse(res, 400, {});
+                    ctrlResponse.sendJSON(res, 400, {});
                 });
         })
         .put(auth, (req, res, next) => {
@@ -92,10 +92,10 @@
                                 }
                             })
                             .then((message) => {
-                                sendJSONresponse(res, 200, message);
+                                ctrlResponse.sendJSON(res, 200, message);
                             })
                             .catch((error) => {
-                                sendJSONresponse(res, 400, error);
+                                ctrlResponse.sendJSON(res, 400, error);
                             });
                     }
                 )
@@ -123,10 +123,10 @@
 
                         Exercise.remove({_id: exerciseId})
                             .then((message) => {
-                                sendJSONresponse(res, 200, message);
+                                ctrlResponse.sendJSON(res, 200, message);
                             })
                             .catch((error) => {
-                                sendJSONresponse(res, 400, error);
+                                ctrlResponse.sendJSON(res, 400, error);
                             });
                     }
                 )
@@ -139,10 +139,4 @@
     module.exports = router;
 
 
-    const sendJSONresponse = function (res, status, content) {
-        res.status(status)
-            .json(content);
-    };
-
-})
-();
+})();

@@ -1,7 +1,6 @@
 (function () {
 
     const express = require('express');
-    // const session = require('express-session');
 
     const path = require('path');
     const favicon = require('serve-favicon');
@@ -12,9 +11,14 @@
 
     const passport = require('passport');
 
+    const routesApi = require('./app_api/routesApi');
+
+    const passportLocalStrategy = require('./app_api/config/passport/local.strategy.js');
+
     const app = express();
     const port = process.env.PORT || 8080;
 
+    passport.use(passportLocalStrategy);
 
     app.use(logger('dev'));
     app.use(bodyParser.json());
@@ -32,7 +36,6 @@
     // app.use(passport.initialize());
     // app.use(passport.session());
 
-    const routesApi = require('./app_api/routesApi');
 
     app.use('/api', routesApi);
 

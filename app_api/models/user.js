@@ -8,23 +8,25 @@
     const JWT_USER_SECRET = require('../config/environment').JWT_USER_SECRET;
 
     const User = new Schema({
-        username: {
-            type: String,
-            unique: true,
-            required: true
-        },
-        email: {
-            type: String,
-            required: true
-        },
-        privileges: {
-            type: String,
-            enum: ['NONE', 'MODERATOR', 'ADMINISTRATOR'],
-            default: 'NONE'
-        },
-        hash: String,
-        salt: String
-    });
+            username: {
+                type: String,
+                unique: true,
+                required: true
+            },
+            email: {
+                type: String,
+                required: true
+            },
+            privileges: {
+                type: String,
+                enum: ['NONE', 'MODERATOR', 'ADMINISTRATOR'],
+                // default: 'NONE',
+                required: true
+            },
+            hash: String,
+            salt: String
+        })
+        ;
 
     User.methods.hasNone = function () {
         return this.privileges === 'NONE';
