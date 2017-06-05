@@ -30,11 +30,7 @@
     app.use(methodOverride('X-HTTP-Method-Override'));
     app.use(cookieParser());
 
-    // app.use(express.static(path.join(__dirname, 'public')));
     app.use(express.static(path.join(__dirname, 'app_client')));
-
-    // app.use(auth.authenticate(), express.static(path.join(__dirname, 'app_client', 'app', 'components', 'login')));
-    // app.use(auth.authenticate(), express.static(path.join(__dirname, 'app_client/app')));
 
 
     // app.use(passport.initialize());
@@ -67,13 +63,6 @@
         });
 
     app.use('/', router);
-
-
-    // app.use('*', function (req, res) {
-    //     console.log("SIEMA");
-    //     // res.sendFile(path.join(__dirname, 'app_client', 'index.html'));
-    //     res.json({message: "tfu!"});
-    // });
 
     app.listen(port, function () {
         console.log('Server is running on port :' + port);

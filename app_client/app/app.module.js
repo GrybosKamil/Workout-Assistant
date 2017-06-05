@@ -4,14 +4,14 @@
 
     angular.module('workoutAssistantApp', [
         'ngRoute',
+        'notReady',
         'menu',
         'login',
         'register',
-        // 'main',
-        // 'about',
+        'main',
+        'about',
         // 'exercises',
         // 'trainings',
-        // 'notReady',
         'authorizationService'
     ]);
 

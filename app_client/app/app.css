@@ -1,6 +1,6 @@
 @import "general_styles.css";
 @import "components/menu/menu.css";
-/*@import "components/main/main.css";*/
+@import "components/main/main.css";
 /*@import "components/about/about.css";*/
 /*@import "components/exercises/exercises.css";*/
 /*@import "components/trainings/trainings.css";*/

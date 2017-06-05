@@ -20,7 +20,6 @@
             $window.localStorage.removeItem('token');
         };
 
-
         const isLoggedIn = function () {
             const token = getToken();
             let payload;
@@ -48,12 +47,33 @@
                 let payload = token.split('.')[1];
                 payload = $window.atob(payload);
                 payload = JSON.parse(payload);
+
                 return {
                     username: payload.username,
                     email: payload.email,
                     privileges: payload.privileges,
                 };
             }
+        };
+
+        const hasAdministrator = function () {
+            let user = currentUser();
+
+            if (!user) {
+                return false;
+            }
+
+            return user.privileges === 'ADMINISTRATOR';
+        };
+
+        const hasModerator = function () {
+            let user = currentUser();
+
+            if (!user) {
+                return false;
+            }
+
+            return user.privileges === 'MODERATOR';
         };
 
         const register = function (user) {
@@ -82,7 +102,9 @@
             isLoggedIn: isLoggedIn,
             register: register,
             login: login,
-            logout: logout
+            logout: logout,
+            hasModerator: hasModerator,
+            hasAdministrator: hasAdministrator,
         };
 
     }

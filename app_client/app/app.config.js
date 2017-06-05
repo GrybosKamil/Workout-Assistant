@@ -9,8 +9,7 @@
 
                 $routeProvider
                     .when('/', {
-                        //template: '<main></main>'
-                        template: 'INDEX'
+                        template: '<main></main>'
                     })
                     .when('/register', {
                         template: '<register></register>'
@@ -21,9 +20,9 @@
                     .when('/about', {
                         template: '<about></about>'
                     })
-                    // .when('/contact', {
-                    //     template: '<not-ready></not-ready>'
-                    // })
+                    .when('/contact', {
+                        template: '<not-ready></not-ready>'
+                    })
                     // .when('/exercises', {
                     //     template: '<exercises></exercises>'
                     // })
