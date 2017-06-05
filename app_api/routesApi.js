@@ -27,6 +27,10 @@
     const exercises = require('./routes/exericses/exercises');
     routerApi.use('/exercises', exercises);
 
+    const trainings = require('./routes/trainings/trainings');
+    routerApi.use('/trainings', trainings);
+
+
     // // router.route('/exercises')
     // //     .post((req, res) => {
     // //         let exercise = new Exercise(req.body);

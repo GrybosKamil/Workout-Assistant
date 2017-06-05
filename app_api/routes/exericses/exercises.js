@@ -9,49 +9,19 @@
 
     const Exercise = require('../../models/exercise');
 
-
     router.route('/')
         .get((req, res, next) => {
-            Exercise.find()
-                .sort({name: 1})
-                .select({
-                    name: 1,
-                    // description: 0,
-                    place: 1,
-                    muscles: 1,
-                    requirements: 1
-                })
-                .then((exercises) => {
-                    ctrlResponse.sendJSON(res, 200, exercises);
-                })
-                .catch((error) => {
-                    console.log(error);
-                    ctrlResponse.sendJSON(res, 400, {});
-                });
+            getExercises(req, res);
         });
-
 
     router.route('/new')
         .post(auth, (req, res, next) => {
             ctrlAuth.verifyModerator(req, res, createNewExercise);
         });
 
-
     router.route('/:exerciseId')
         .get((req, res, next) => {
-            let exerciseId = req.params.exerciseId;
-
-            Exercise.findOne({_id: exerciseId})
-                .then((exercise) => {
-                    if (!exercise) {
-                        ctrlResponse.sendJSON(res, 404, exercise);
-                    } else {
-                        ctrlResponse.sendJSON(res, 200, exercise);
-                    }
-                })
-                .catch((error) => {
-                    ctrlResponse.sendJSON(res, 400, {});
-                });
+            getExercise(req, res);
         })
         .put(auth, (req, res, next) => {
             ctrlAuth.verifyModerator(req, res, updateExercise)
@@ -76,10 +46,8 @@
             });
     };
 
-
     const updateExercise = function (req, res) {
         let exerciseId = req.params.exerciseId;
-        console.log(exerciseId);
 
         Exercise.update({_id: exerciseId},
             {
@@ -101,7 +69,6 @@
 
     const deleteExercise = function (req, res) {
         let exerciseId = req.params.exerciseId;
-        console.log(exerciseId);
 
         Exercise.remove({_id: exerciseId})
             .then((message) => {
@@ -112,5 +79,38 @@
             });
     };
 
-})
-();
+    const getExercise = function (req, res) {
+        let exerciseId = req.params.exerciseId;
+
+        Exercise.findOne({_id: exerciseId})
+            .then((exercise) => {
+                if (!exercise) {
+                    ctrlResponse.sendJSON(res, 404, {});
+                } else {
+                    ctrlResponse.sendJSON(res, 200, exercise);
+                }
+            })
+            .catch((error) => {
+                ctrlResponse.sendJSON(res, 400, {});
+            });
+    };
+
+    const getExercises = function (req, res) {
+        Exercise.find()
+            .sort({name: 1})
+            .select({
+                name: 1,
+                // description: 0,
+                place: 1,
+                muscles: 1,
+                requirements: 1
+            })
+            .then((exercises) => {
+                ctrlResponse.sendJSON(res, 200, exercises);
+            })
+            .catch((error) => {
+                ctrlResponse.sendJSON(res, 400, {});
+            });
+    };
+
+})();

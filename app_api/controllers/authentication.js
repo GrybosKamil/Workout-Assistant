@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
 
     const passport = require('passport');
@@ -159,13 +161,54 @@
             });
     };
 
+    const verifyUserOrModerator = function (req, res, method) {
+        if (!req.payload._id) {
+            ctrlResponse.sendJSON(res, 401, {});
+            return;
+        }
+
+        User.findById(req.payload._id)
+            .then((user) => {
+                    let userId = req.params.userId;
+
+                    if (user._id != userId && !user.hasModerator()) {
+                        ctrlResponse.sendJSON(res, 401, {});
+                        return;
+                    }
+
+                    method(req, res, user);
+                }
+            )
+            .catch((error) => {
+                ctrlResponse.sendJSON(res, 400, {});
+            });
+    };
+
+    const identifyUser = function (req, res, method) {
+        if (!req.payload._id) {
+            ctrlResponse.sendJSON(res, 401, {});
+            return;
+        }
+
+        User.findById(req.payload._id)
+            .then((user) => {
+                    method(req, res, user);
+                }
+            )
+            .catch((error) => {
+                ctrlResponse.sendJSON(res, 400, {});
+            });
+    };
+
     module.exports = {
         register: register,
         login: login,
         verifyUser: verifyUser,
         verifyModerator: verifyModerator,
         verifyAdministrator: verifyAdministrator,
-        verifyUserOrAdmin: verifyUserOrAdmin
+        verifyUserOrAdmin: verifyUserOrAdmin,
+        verifyUserOrModerator: verifyUserOrModerator,
+        identifyUser: identifyUser
     }
 
 })();
