@@ -13,12 +13,16 @@
 
     const routesApi = require('./app_api/routesApi');
 
-    const passportLocalStrategy = require('./app_api/config/passport/local.strategy.js');
+    // const passportLocalStrategy = require('./app_api/config/passport/local.strategy.js');
 
     const app = express();
     const port = process.env.PORT || 8080;
 
-    passport.use(passportLocalStrategy);
+    const auth = require("./app_api/config/auth")();
+
+    app.use(auth.initialize());
+
+    // passport.use(passportLocalStrategy);
 
     app.use(logger('dev'));
     app.use(bodyParser.json());
@@ -30,7 +34,8 @@
     app.use(express.static(path.join(__dirname, 'app_client')));
 
 
-    app.use(passport.initialize());
+    // app.use(passport.initialize());
+
     // app.use(express.session({secret: 'anything'}));
     // app.use(session({secret: 'anything'}));
     // app.use(passport.initialize());

@@ -61,6 +61,7 @@
             _id: this._id,
             username: this.username,
             email: this.email,
+            privileges: this.privileges,
             exp: parseInt(expiry.getTime() / 1000),
         }, JWT_USER_SECRET);
     };

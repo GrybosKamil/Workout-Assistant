@@ -3,7 +3,7 @@
 (function () {
 
     const router = require('express').Router();
-    const auth = require('../../config/environment').auth;
+    const auth = require('../../config/auth')();
     const ctrlResponse = require('../../controllers/response');
     const ctrlAuth = require('../../controllers/authentication');
 
@@ -15,7 +15,7 @@
         });
 
     router.route('/new')
-        .post(auth, (req, res, next) => {
+        .post(auth.authenticate(), (req, res, next) => {
             ctrlAuth.verifyModerator(req, res, createNewExercise);
         });
 
@@ -23,11 +23,13 @@
         .get((req, res, next) => {
             getExercise(req, res);
         })
-        .put(auth, (req, res, next) => {
+        .put(auth.authenticate(), (req, res, next) => {
+            console.log("SIEMA");
+            console.log(req.user);
             ctrlAuth.verifyModerator(req, res, updateExercise)
 
         })
-        .delete(auth, (req, res, next) => {
+        .delete(auth.authenticate(), (req, res, next) => {
             ctrlAuth.verifyModerator(req, res, deleteExercise);
         });
 

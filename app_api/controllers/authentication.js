@@ -51,153 +51,182 @@
         //   return;
         // }
 
-        passport.authenticate('local', function (err, user, info) {
-            let token;
+        User.findOne({username: req.body.username})
+            .then((user) => {
+                if (!user) {
+                    ctrlResponse.sendJSON(res, 404, {})
+                }
+                if (!user.validPassword(req.body.password)) {
+                    ctrlResponse.sendJSON(res, 401, {})
+                }
 
-            if (err) {
-                ctrlResponse.sendJSON(res, 404,
-                    err);
-                return;
-            }
-
-            if (user) {
-                token = user.generateJwt();
                 ctrlResponse.sendJSON(res, 200, {
-                    token: token
+                    token: user.generateJwt()
                 });
-            } else {
-                ctrlResponse.sendJSON(res, 401,
-                    info
-                );
-            }
-        })(req, res);
+            })
+            .catch((error) => {
+                ctrlResponse.sendJSON(res, 400, {});
+            });
+
+        // passport.authenticate('local', function (err, user, info) {
+        //     let token;
+        //
+        //     if (err) {
+        //         ctrlResponse.sendJSON(res, 404,
+        //             err);
+        //         return;
+        //     }
+        //
+        //     if (user) {
+        //         token = user.generateJwt();
+        //         ctrlResponse.sendJSON(res, 200, {
+        //             token: token
+        //         });
+        //     } else {
+        //         ctrlResponse.sendJSON(res, 401,
+        //             info
+        //         );
+        //     }
+        // })(req, res);
 
     };
 
     const verifyUser = function (req, res, method) {
-        if (!req.payload._id) {
+        // if (!req.payload._id) {
+        //     ctrlResponse.sendJSON(res, 401, {});
+        //     return;
+        // }
+
+        let user = req.user;
+
+        // User.findById(req.payload._id)
+        //     .then((user) => {
+        //             let userId = req.params.userId;
+
+        if (user._id != userId) {
             ctrlResponse.sendJSON(res, 401, {});
             return;
         }
 
-        User.findById(req.payload._id)
-            .then((user) => {
-                    let userId = req.params.userId;
-
-                    if (user._id != userId) {
-                        ctrlResponse.sendJSON(res, 401, {});
-                        return;
-                    }
-
-                    method(req, res, user);
-                }
-            )
-            .catch((error) => {
-                ctrlResponse.sendJSON(res, 400, {});
-            });
+        method(req, res, user);
+        //     }
+        // )
+        // .catch((error) => {
+        //     ctrlResponse.sendJSON(res, 400, {});
+        // });
     };
 
     const verifyModerator = function (req, res, method) {
-        if (!req.payload._id) {
+        // console.log(req.user);
+        // if (!req.payload._id) {
+        //     ctrlResponse.sendJSON(res, 401, {});
+        //     return;
+        // }
+
+        let user = req.user;
+
+
+        // User.findById(req.payload._id)
+        //     .then((user) => {
+        if (!user.hasModerator()) {
             ctrlResponse.sendJSON(res, 401, {});
             return;
         }
-
-        User.findById(req.payload._id)
-            .then((user) => {
-                    if (!user.hasModerator()) {
-                        ctrlResponse.sendJSON(res, 401, {});
-                        return;
-                    }
-                    method(req, res, user);
-                }
-            )
-            .catch((error) => {
-                ctrlResponse.sendJSON(res, 400, {});
-            });
+        method(req, res, user);
+        //     }
+        // )
+        // .catch((error) => {
+        //     ctrlResponse.sendJSON(res, 400, {});
+        // });
     };
 
     const verifyAdministrator = function (req, res, method) {
-        if (!req.payload._id) {
+        // if (!req.payload._id) {
+        //     ctrlResponse.sendJSON(res, 401, {});
+        //     return;
+        // }
+
+        let user = req.user;
+
+        // User.findById(req.payload._id)
+        //     .then((user) => {
+        if (!user.hasAdministrator()) {
             ctrlResponse.sendJSON(res, 401, {});
             return;
         }
 
-        User.findById(req.payload._id)
-            .then((user) => {
-                    if (!user.hasAdministrator()) {
-                        ctrlResponse.sendJSON(res, 401, {});
-                        return;
-                    }
-
-                    method(req, res, user);
-                }
-            )
-            .catch((error) => {
-                ctrlResponse.sendJSON(res, 400, {});
-            });
+        method(req, res, user);
+        //     }
+        // )
+        // .catch((error) => {
+        //     ctrlResponse.sendJSON(res, 400, {});
+        // });
     };
 
     const verifyUserOrAdmin = function (req, res, method) {
-        if (!req.payload._id) {
+        // if (!req.payload._id) {
+        //     ctrlResponse.sendJSON(res, 401, {});
+        //     return;
+        // }
+
+        let user = req.user;
+
+        // User.findById(req.payload._id)
+        //     .then((user) => {
+        let userId = req.params.userId;
+
+        if (user._id != userId && !user.hasAdministrator()) {
             ctrlResponse.sendJSON(res, 401, {});
             return;
         }
 
-        User.findById(req.payload._id)
-            .then((user) => {
-                    let userId = req.params.userId;
-
-                    if (user._id != userId && !user.hasAdministrator()) {
-                        ctrlResponse.sendJSON(res, 401, {});
-                        return;
-                    }
-
-                    method(req, res, user);
-                }
-            )
-            .catch((error) => {
-                ctrlResponse.sendJSON(res, 400, {});
-            });
+        method(req, res, user);
+        // }
+        // )
+        // .catch((error) => {
+        //     ctrlResponse.sendJSON(res, 400, {});
+        // });
     };
 
     const verifyUserOrModerator = function (req, res, method) {
-        if (!req.payload._id) {
+        // if (!req.payload._id) {
+        //     ctrlResponse.sendJSON(res, 401, {});
+        //     return;
+        // }
+
+        let user = req.user;
+
+        // User.findById(req.payload._id)
+        //     .then((user) => {
+        let userId = req.params.userId;
+
+        if (user._id != userId && !user.hasModerator()) {
             ctrlResponse.sendJSON(res, 401, {});
             return;
         }
 
-        User.findById(req.payload._id)
-            .then((user) => {
-                    let userId = req.params.userId;
-
-                    if (user._id != userId && !user.hasModerator()) {
-                        ctrlResponse.sendJSON(res, 401, {});
-                        return;
-                    }
-
-                    method(req, res, user);
-                }
-            )
-            .catch((error) => {
-                ctrlResponse.sendJSON(res, 400, {});
-            });
+        method(req, res, user);
+        // }
+        // )
+        // .catch((error) => {
+        //     ctrlResponse.sendJSON(res, 400, {});
+        // });
     };
 
     const identifyUser = function (req, res, method) {
-        if (!req.payload._id) {
-            ctrlResponse.sendJSON(res, 401, {});
-            return;
-        }
+        // if (!req.payload._id) {
+        //     ctrlResponse.sendJSON(res, 401, {});
+        //     return;
+        // }
 
-        User.findById(req.payload._id)
-            .then((user) => {
-                    method(req, res, user);
-                }
-            )
-            .catch((error) => {
-                ctrlResponse.sendJSON(res, 400, {});
-            });
+        // User.findById(req.payload._id)
+        //     .then((user) => {
+        method(req, res, user);
+        // }
+        // )
+        // .catch((error) => {
+        //     ctrlResponse.sendJSON(res, 400, {});
+        // });
     };
 
     module.exports = {

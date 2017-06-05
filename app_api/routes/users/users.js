@@ -5,8 +5,10 @@
     const router = require('express').Router();
     const User = require('../../models/user');
 
+
     const ctrlAuth = require('../../controllers/authentication');
-    const auth = require('../../config/environment').auth;
+    // const auth = require('../../config/environment').auth;
+    const auth = require("./../../../app_api/config/auth")();
     const ctrlResponse = require('../../controllers/response');
 
     router.route('/')
@@ -26,12 +28,12 @@
         });
 
     router.route('/new/moderator')
-        .post(auth, (req, res) => {
+        .post(auth.authenticate(), (req, res) => {
             ctrlAuth.verifyAdministrator(req, res, createModerator)
         });
 
     router.route('/new/administrator')
-        .post(auth, (req, res) => {
+        .post(auth.authenticate(), (req, res) => {
             ctrlAuth.verifyAdministrator(req, res, createAdministrator);
         });
 
@@ -39,12 +41,12 @@
         .get((req, res, next) => {
             getUser(req, res);
         })
-        .delete(auth, (req, res, next) => {
+        .delete(auth.authenticate(), (req, res, next) => {
             ctrlAuth.verifyUserOrAdmin(req, res, deleteUser);
         });
 
     router.route('/:userId/password/change')
-        .put(auth, (req, res, next) => {
+        .put(auth.authenticate(), (req, res, next) => {
             ctrlAuth.verifyUser(req, res, changePassword);
         });
 
@@ -53,8 +55,27 @@
             resetPassword(req, res);
         });
 
+    router.route('/register')
+        .post((req, res) => {
+            // register(req, res);
+            createNewUser(req, res, "NONE");
+        });
+
+    router.route('/login')
+        .post((req, res) => {
+            login(req, res);
+        });
+
 
     module.exports = router;
+
+    const login = function (req, res) {
+        ctrlAuth.login(req, res);
+    };
+
+    const register = function (req, res) {
+        ctrlAuth.register(req, res);
+    };
 
     const createUser = function (req, res) {
         createNewUser(req, res, "NONE");

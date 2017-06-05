@@ -3,7 +3,7 @@
 (function () {
 
     const router = require('express').Router();
-    const auth = require('../../config/environment').auth;
+    const auth = require('../../config/auth')();
     const ctrlResponse = require('../../controllers/response');
     const ctrlAuth = require('../../controllers/authentication');
 
@@ -15,7 +15,7 @@
         });
 
     router.route('/new')
-        .post(auth, (req, res, next) => {
+        .post(auth.authenticate(), (req, res, next) => {
             ctrlAuth.identifyUser(req, res, createNewTraining);
         });
 
@@ -23,11 +23,11 @@
         .get((req, res, next) => {
             getTraining(req, res);
         })
-        .put(auth, (req, res, next) => {
+        .put(auth.authenticate(), (req, res, next) => {
             ctrlAuth.verifyUser(req, res, updateTraining)
 
         })
-        .delete(auth, (req, res, next) => {
+        .delete(auth.authenticate(), (req, res, next) => {
             ctrlAuth.verifyUserOrAdmin(req, res, deleteTraining);
         });
 
