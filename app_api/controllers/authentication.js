@@ -37,6 +37,7 @@
                 });
             })
             .catch((error) => {
+                console.log(error);
                 ctrlResponse.sendJSON(res, 400, {});
             });
 

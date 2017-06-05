@@ -30,8 +30,11 @@
     app.use(methodOverride('X-HTTP-Method-Override'));
     app.use(cookieParser());
 
-    app.use(express.static(path.join(__dirname, 'public')));
+    // app.use(express.static(path.join(__dirname, 'public')));
     app.use(express.static(path.join(__dirname, 'app_client')));
+
+    // app.use(auth.authenticate(), express.static(path.join(__dirname, 'app_client', 'app', 'components', 'login')));
+    // app.use(auth.authenticate(), express.static(path.join(__dirname, 'app_client/app')));
 
 
     // app.use(passport.initialize());
@@ -42,11 +45,35 @@
     // app.use(passport.session());
 
 
+    const router = require('express').Router();
+
+
     app.use('/api', routesApi);
 
-    app.use(function (req, res) {
-        res.sendFile(path.join(__dirname, 'app_client', 'index.html'));
+    router.use((req, res, next) => {
+        console.log("Something is happening.");
+        next();
     });
+
+    router.route('/')
+        .get((req, res, next) => {
+            res.sendFile(path.join(__dirname, 'app_client', 'index.html'));
+        });
+
+
+    router.route('*')
+        .get((req, res, next) => {
+            res.redirect('/');
+        });
+
+    app.use('/', router);
+
+
+    // app.use('*', function (req, res) {
+    //     console.log("SIEMA");
+    //     // res.sendFile(path.join(__dirname, 'app_client', 'index.html'));
+    //     res.json({message: "tfu!"});
+    // });
 
     app.listen(port, function () {
         console.log('Server is running on port :' + port);

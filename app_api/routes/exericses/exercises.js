@@ -24,8 +24,6 @@
             getExercise(req, res);
         })
         .put(auth.authenticate(), (req, res, next) => {
-            console.log("SIEMA");
-            console.log(req.user);
             ctrlAuth.verifyModerator(req, res, updateExercise)
 
         })
