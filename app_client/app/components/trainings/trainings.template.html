@@ -1,0 +1,31 @@
+<div class="trainings">
+
+    <div class="row">
+
+        <div class="col-xs-11 col-sm-6 col-md-4" id="trainings-panel" class="trenings-side-panel">
+            <div class="training"
+                 data-ng-repeat="training in $ctrl.trainingHeaders"
+                 data-ng-click="$ctrl.showTraining(training)"
+                 data-ng-class="{chosen: $ctrl.isChosen(training)}">
+
+                <h3>{{training.name}}</h3>
+                <h5>{{training.author}}</h5>
+                <p>{{training.updated | date:'dd-MM-yyyy hh:mm'}}</p>
+
+            </div>
+        </div>
+        <div class="col-xs-11 col-sm-6 col-md-8 training-details">
+
+            <training-details training=$ctrl.training()
+                              reviews=$ctrl.reviews()
+                              data-ng-show="$ctrl.isTrainingChosen()">
+            </training-details>
+
+            <div data-ng-show="!$ctrl.isTrainingChosen()">
+                Wybierz coś!
+            </div>
+
+        </div>
+
+    </div>
+</div>

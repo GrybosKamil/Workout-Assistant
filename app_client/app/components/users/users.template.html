@@ -1,0 +1,32 @@
+<div class="users">
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+        <tr>
+            <td>
+                Nazwa użytkownika
+            </td>
+            <td data-ng-show="$ctrl.hasAdministrator">
+                Stopień uprawnień
+            </td>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr data-ng-repeat="user in $ctrl.getUsers()">
+            <td>
+                <a data-ng-href="/#!/users/{{user._id}}">
+                    {{ user.username }}
+                </a>
+            </td>
+            <td data-ng-show="$ctrl.hasAdministrator">
+                {{ user.privileges }}
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+

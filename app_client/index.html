@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="workoutAssistantApp">
+<head>
+    <title>Workout Assistant</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.ico"/>
+
+    <!-- Stylesheets-->
+    <!-- jQuery-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"/>
+    <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>-->
+
+    <!--Bootstrap-->
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css"/>
+    <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>-->
+
+    <link rel="stylesheet" href="app/app.css"/>
+
+    <!--Scripts-->
+    <!--jQuery-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
+
+    <!--Bootstrap-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+    <!--Angular-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>-->
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-resource.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-resource.min.js"></script>-->
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js"></script>-->
+
+    <!--Parallax-->
+    <script src="libs/parallax.js-1.4.2/parallax.js"></script>
+
+</head>
+<body>
+
+<menu></menu>
+
+<div class="background">
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8-offset-2 col-lg-8 col-lg-offset-2">
+            <div class="view-container">
+                <div data-ng-view class="view-frame">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--Scripts-->
+<!--App-->
+<script src="app/app.module.js"></script>
+<script src="app/app.config.js"></script>
+
+<!--Services-->
+<!--Authorization-->
+<script src="app/services/authorization.service.js"></script>
+
+<!--Users-->
+<script src="app/services/users.service.js"></script>
+
+<!--Exercises-->
+<script src="app/services/exercises.service.js"></script>
+
+
+<!--Trainings-->
+<script src="app/services/trainings.service.js"></script>
+
+
+<!--Components-->
+<!-- Not-Ready-->
+<script src="app/components/not-ready/not-ready.module.js"></script>
+<script src="app/components/not-ready/not-ready.component.js"></script>
+
+<!--About-->
+<script src="app/components/about/about.module.js"></script>
+<script src="app/components/about/about.component.js"></script>
+
+<!--Main-->
+<script src="app/components/main/main.module.js"></script>
+<script src="app/components/main/main.component.js"></script>
+
+<!--Menu-->
+<script src="app/components/menu/menu.module.js"></script>
+<script src="app/components/menu/menu.component.js"></script>
+
+<!--Login-->
+<script src="app/components/login/login.module.js"></script>
+<script src="app/components/login/login.component.js"></script>
+
+<!--Register-->
+<script src="app/components/register/register.module.js"></script>
+<script src="app/components/register/register.component.js"></script>
+
+<!--Profile-->
+<script src="app/components/profile/profile.module.js"></script>
+<script src="app/components/profile/profile.component.js"></script>
+
+<!--Users-->
+<script src="app/components/users/users.module.js"></script>
+<script src="app/components/users/users.component.js"></script>
+
+<!--User-->
+<script src="app/components/users/user/user.module.js"></script>
+<script src="app/components/users/user/user.component.js"></script>
+
+<!--Exercises-->
+<script src="app/components/exercises/exercises.module.js"></script>
+<script src="app/components/exercises/exercises.component.js"></script>
+<script src="app/components/exercises/exercises.filter.js"></script>
+
+<!--Exercise-->
+<script src="app/components/exercises/exercise/exercise.module.js"></script>
+<script src="app/components/exercises/exercise/exercise.component.js"></script>
+
+<!--NewExercise-->
+<script src="app/components/exercises/new-exercise/new-exercise.module.js"></script>
+<script src="app/components/exercises/new-exercise/new-exercise.component.js"></script>
+
+<!--Trainings-->
+<script src="app/components/trainings/trainings.module.js"></script>
+<script src="app/components/trainings/trainings.component.js"></script>
+
+<!--Training-Details-->
+<script src="app/components/trainings/training-details/training-details.module.js"></script>
+<script src="app/components/trainings/training-details/training-details.component.js"></script>
+
+<!--Training-Reviews-->
+<script src="app/components/trainings/training-details/training-reviews/training-reviews.module.js"></script>
+<script src="app/components/trainings/training-details/training-reviews/training-reviews.component.js"></script>
+
+</body>
+</html>

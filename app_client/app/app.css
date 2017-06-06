@@ -1,0 +1,13 @@
+@import "general_styles.css";
+@import "components/menu/menu.css";
+@import "components/main/main.css";
+@import "components/about/about.css";
+@import "components/profile/profile.css";
+@import "components/register/register.css";
+@import "components/login/login.css";
+@import "components/exercises/exercises.css";
+@import "components/exercises/exercise/exercise.css";
+@import "components/exercises/new-exercise/new-exercise.css";
+@import "components/trainings/trainings.css";
+@import "components/trainings/training-details/training-details.css";
+@import "components/trainings/training-details/training-reviews/training-reviews.css";
