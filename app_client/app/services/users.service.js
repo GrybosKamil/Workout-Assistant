@@ -45,12 +45,10 @@
             // });
 
             return $http.put('api/users/' + userId, {
-                privileges: privileges
-            }, {
-                headers: {
-                    Authorization: 'JWT ' + Authorization.getToken(),
+                    privileges: privileges
                 },
-            });
+                Authorization.authorizationHeader()
+            );
 
         };
 

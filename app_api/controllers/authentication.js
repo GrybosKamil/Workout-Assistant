@@ -216,6 +216,8 @@
         //     return;
         // }
 
+        let user = req.user;
+
         // User.findById(req.payload._id)
         //     .then((user) => {
         method(req, res, user);

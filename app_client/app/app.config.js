@@ -41,9 +41,9 @@
                     .when('/exercises/:exerciseId', {
                         template: '<exercise></exercise>'
                     })
-                    // .when('/trainings', {
-                    //     template: '<trainings><trainings/>'
-                    // })
+                    .when('/trainings', {
+                        template: '<trainings><trainings/>'
+                    })
                     .when('/404', {
                         template: '<div class="info"> Looks like you got lost. <a href="/">Back to home.</a> </div>'
                     })

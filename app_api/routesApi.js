@@ -30,6 +30,8 @@
     const trainings = require('./routes/trainings/trainings');
     routerApi.use('/trainings', trainings);
 
+    const reviews = require('./routes/reviews/reviews');
+    routerApi.use('/reviews', reviews);
 
     // // router.route('/exercises')
     // //     .post((req, res) => {
@@ -238,10 +240,10 @@
     module.exports = routerApi;
 
 
-    function isLoggedIn(req, res, next) {
-        if (req.isAuthenticated())
-            return next();
-        res.redirect('/');
-    }
+    // function isLoggedIn(req, res, next) {
+    //     if (req.isAuthenticated())
+    //         return next();
+    //     res.redirect('/');
+    // }
 
 })();

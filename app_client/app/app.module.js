@@ -13,10 +13,11 @@
         'about',
         'users',
         'exercises',
-        // 'trainings',
+        'trainings',
         'authorizationService',
         'usersService',
-        'exercisesService'
+        'exercisesService',
+        'trainingsService'
     ]);
 
 })();

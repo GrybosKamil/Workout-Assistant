@@ -20,14 +20,12 @@
             createUser(req, res);
         });
 
-
     router.route('/:userId')
         .get((req, res, next) => {
             getUser(req, res);
         })
         .put(auth.authenticate(), (req, res, next) => {
             ctrlAuth.verifyAdministrator(req, res, changePrivileges);
-            // changePrivileges(req, res, {});
         })
         .delete(auth.authenticate(), (req, res, next) => {
             ctrlAuth.verifyUserOrAdmin(req, res, deleteUser);
@@ -45,7 +43,6 @@
 
     router.route('/register')
         .post((req, res) => {
-            // register(req, res);
             createUser(req, res, "NONE");
         });
 

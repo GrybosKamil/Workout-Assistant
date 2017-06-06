@@ -11,13 +11,71 @@
 
     router.route('/')
         .get((req, res, next) => {
+            console.log("SIEMKA");
+
             getTrainings(req, res);
+        });
+
+
+    router.route('/continuous_scroll_trainings')
+        .get((req, res, next) => {
+            if (!req.query.newest) {
+                let oldest = req.query.oldest;
+
+                let promise = Training.find({}, "_id author name updated")
+                    .sort({updated: -1});
+
+                if (oldest) {
+                    promise = promise.where({updated: {"$lt": oldest}})
+                }
+
+                promise = promise.limit(6)
+                // .populate('exercises.exercise')
+                // .lean()
+                    .exec();
+
+                promise
+                    .catch((error) => {
+                        res.send(error);
+                    })
+                    .then((response) => {
+                        res.json(response);
+                    });
+            } else {
+                let newest = req.query.newest;
+
+                let promise = Training.find({}, "_id author name updated")
+                    .sort({updated: 1});
+
+                if (newest) {
+                    promise = promise.where({updated: {"$gt": newest}})
+                }
+
+                promise = promise.limit(6)
+                // .populate('exercises.exercise')
+                // .lean()
+                    .exec();
+
+                promise
+                    .catch((error) => {
+                        res.send(error);
+                    })
+                    .then((response) => {
+                        res.json(response);
+                    });
+            }
         });
 
     router.route('/new')
         .post(auth.authenticate(), (req, res, next) => {
             ctrlAuth.identifyUser(req, res, createNewTraining);
         });
+
+    router.route('/user/:userId')
+        .get((req, res) => {
+            getUserTrainings(req, res);
+        });
+
 
     router.route('/:trainingId')
         .get((req, res, next) => {
@@ -31,13 +89,10 @@
             ctrlAuth.verifyUserOrAdmin(req, res, deleteTraining);
         });
 
+
     module.exports = router;
 
     const createNewTraining = function (req, res, user) {
-        // let training = new Training(req.body);
-
-        console.log(req.body);
-
         let request = {
             author: user,
             name: req.body.name,
@@ -49,7 +104,7 @@
 
         training.save()
             .then((message) => {
-                ctrlResponse.sendJSON(res, 200, message);
+                ctrlResponse.sendJSON(res, 200, {});
             })
             .catch((error) => {
                 ctrlResponse.sendJSON(res, 400, {});
@@ -60,8 +115,8 @@
         let trainingId = req.params.trainingId;
 
         Training.findOne({_id: trainingId})
-            .populate("author", "username email")
-            .populate("exercises.exercise")
+            .populate("author", "username")
+            .populate("exercises.exercise", "-description")
             .then((training) => {
                 if (!training) {
                     ctrlResponse.sendJSON(res, 404, {});
@@ -128,4 +183,17 @@
             });
     };
 
+    const getUserTrainings = function (req, res) {
+        let userId = req.params.userId;
+
+        Training.find({author: userId})
+            .sort({updated: -1, name: 1})
+            .populate("author", "username")
+            .then((message) => {
+                ctrlResponse.sendJSON(res, 200, message);
+            })
+            .catch((error) => {
+                ctrlResponse.sendJSON(res, 400, {});
+            });
+    };
 })();

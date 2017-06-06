@@ -23,7 +23,6 @@
                 Users.getUser(userId)
                     .then((user) => {
                         self.user = user;
-                        console.log(self.user);
                     })
                     .catch((error) => {
 

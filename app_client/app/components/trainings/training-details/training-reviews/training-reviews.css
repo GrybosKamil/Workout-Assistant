@@ -1,0 +1,31 @@
+.review {
+    position: relative;
+    vertical-align: middle;
+}
+
+.review-form {
+
+}
+
+.review-tile {
+    text-align: left;
+}
+
+.review-item {
+    margin: 5px;
+}
+
+.date {
+    font-style: italic;;
+}
+
+.rate {
+    font-size: larger;
+}
+
+.review-data {
+    margin: 5px;
+    background: rgba(60, 118, 61, 0.15);
+    border-radius: 5px;
+    padding: 10px;
+}

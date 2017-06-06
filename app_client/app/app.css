@@ -8,6 +8,6 @@
 @import "components/exercises/exercises.css";
 @import "components/exercises/exercise/exercise.css";
 @import "components/exercises/new-exercise/new-exercise.css";
-/*@import "components/trainings/trainings.css";*/
-/*@import "components/trainings/training-details/training-details.css";*/
-/*@import "components/trainings/training-details/training-reviews/training-review.css";*/
+@import "components/trainings/trainings.css";
+@import "components/trainings/training-details/training-details.css";
+@import "components/trainings/training-details/training-reviews/training-reviews.css";
