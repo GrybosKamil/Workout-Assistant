@@ -5,41 +5,28 @@
     const router = require('express').Router();
     const User = require('../../models/user');
 
-
     const ctrlAuth = require('../../controllers/authentication');
-    // const auth = require('../../config/environment').auth;
     const auth = require("./../../../app_api/config/auth")();
     const ctrlResponse = require('../../controllers/response');
 
     router.route('/')
         .get((req, res, next) => {
-            getUsers(req, res);
+            getUsers(req, res,);
         });
 
-    // const userId = require('./user/user');
-    // router.use('/', userId);
-
-    // const newUser = require('./new/new');
-    // router.use('/new', newUser);
 
     router.route('/new/user')
         .post((req, res) => {
             createUser(req, res);
         });
 
-    router.route('/new/moderator')
-        .post(auth.authenticate(), (req, res) => {
-            ctrlAuth.verifyAdministrator(req, res, createModerator)
-        });
-
-    router.route('/new/administrator')
-        .post(auth.authenticate(), (req, res) => {
-            ctrlAuth.verifyAdministrator(req, res, createAdministrator);
-        });
 
     router.route('/:userId')
         .get((req, res, next) => {
             getUser(req, res);
+        })
+        .put(auth.authenticate(), (req, res, next) => {
+            ctrlAuth.verifyAdministrator(req, res, changePrivileges)
         })
         .delete(auth.authenticate(), (req, res, next) => {
             ctrlAuth.verifyUserOrAdmin(req, res, deleteUser);
@@ -78,23 +65,11 @@
     };
 
     const createUser = function (req, res) {
-        createNewUser(req, res, "NONE");
-    };
-
-    const createModerator = function (req, res) {
-        createNewUser(req, res, "MODERATOR");
-    };
-
-    const createAdministrator = function (req, res) {
-        createNewUser(req, res, "ADMINISTRATOR");
-    };
-
-    const createNewUser = function (req, res, privileges) {
         let request = {
             username: req.body.username,
             email: req.body.email,
             password: req.body.password,
-            privileges: privileges
+            privileges: "NONE"
         };
 
         ctrlAuth.register(request, res);
@@ -143,7 +118,6 @@
     };
 
     const deleteUser = function (req, res, user) {
-
         let userId = req.params.userId;
         User.remove({_id: userId})
             .then((user) => {
@@ -158,14 +132,37 @@
             });
     };
 
+    const changePrivileges = function (req, res, user) {
+        let userId = req.params.userId;
+
+        User.update({_id: userId},
+            {
+                $set: {
+                    privileges: req.body.privileges
+                }
+            })
+            .then((message) => {
+                let token = user.generateJwt();
+                ctrlResponse.sendJSON(res, 200, {
+                    token: token
+                });
+            })
+            .catch((err) => {
+                ctrlResponse.sendJSON(res, 400, {});
+            });
+    };
+
     const changePassword = function (req, res, user) {
         if (req.body.password.length < 2) {
             ctrlResponse.sendJSON(res, 400, {});
             return;
         }
+
+        let userId = req.params.userId;
+
         user.setPassword(req.body.password);
 
-        user.update(
+        User.update({_id: userId},
             {
                 $set: {
                     salt: user.salt,

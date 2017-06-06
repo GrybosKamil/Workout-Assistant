@@ -40,6 +40,14 @@
 
                         <li>
                             <a class="navbar-brand"
+                               data-ng-class="{ active: isActive('/users') }"
+                               data-ng-href="/#!/users">
+                                Użytkownicy
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="navbar-brand"
                                data-ng-class="{ active: isActive('/exercises') }"
                                data-ng-href="/#!/exercises">
                                 Ćwiczenia

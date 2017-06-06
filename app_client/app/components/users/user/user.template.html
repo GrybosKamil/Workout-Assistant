@@ -1,0 +1,35 @@
+<div>
+
+    <a data-ng-href="/#!/users">
+        <button class="btn btn-default">
+            < Powrót
+        </button>
+    </a>
+
+    <div data-ng-show="$ctrl.hasAdministrator">
+        <h3>{{$ctrl.user._id}}</h3>
+        <label>ID użytkownika</label>
+    </div>
+
+    <h3>{{$ctrl.user.username}}</h3>
+    <label>Nazwa użytkownika</label>
+
+    <div data-ng-show="$ctrl.currentUser">
+        <h3>{{$ctrl.user.email}}</h3>
+        <label>Adress email</label>
+    </div>
+
+
+    <h3>{{$ctrl.user.privileges}}</h3>
+    <label>Stopień uprawnień</label>
+
+    <div data-ng-show="$ctrl.hasAdministrator">
+
+        <button class="btn btn-danger"
+                data-ng-click="$ctrl.deleteUser()">
+            Usun użytkownika
+        </button>
+
+    </div>
+
+</div>

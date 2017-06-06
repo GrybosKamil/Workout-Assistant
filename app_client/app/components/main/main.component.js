@@ -26,8 +26,6 @@
                 };
 
                 this.initParallax = function () {
-                    console.log("InitParalax");
-
                     self.parallaxBackgrounds
                         .forEach(self.addParallaxBackground);
                 };

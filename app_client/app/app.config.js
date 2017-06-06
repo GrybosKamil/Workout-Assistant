@@ -17,15 +17,30 @@
                     .when('/login', {
                         template: '<login></login>'
                     })
+                    .when('/profile', {
+                        template: '<profile></profile>'
+                    })
                     .when('/about', {
                         template: '<about></about>'
                     })
                     .when('/contact', {
                         template: '<not-ready></not-ready>'
                     })
-                    // .when('/exercises', {
-                    //     template: '<exercises></exercises>'
-                    // })
+                    .when('/users', {
+                        template: '<users></users>'
+                    })
+                    .when('/users/:userId', {
+                        template: '<user></user>'
+                    })
+                    .when('/exercises', {
+                        template: '<exercises></exercises>'
+                    })
+                    .when('/exercises/new', {
+                        template: '<new-exercise></new-exercise>'
+                    })
+                    .when('/exercises/:exerciseId', {
+                        template: '<exercise></exercise>'
+                    })
                     // .when('/trainings', {
                     //     template: '<trainings><trainings/>'
                     // })

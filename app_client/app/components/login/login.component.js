@@ -28,7 +28,7 @@
                         .login(self.newUser)
                         .then(function (data) {
 
-                            $window.location.href = '#!/';
+                            $window.location.href = '#!/profile';
 
                             self.wrongCredentials = false;
                         })

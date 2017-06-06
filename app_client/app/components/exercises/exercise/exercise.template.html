@@ -1,0 +1,49 @@
+<div>
+
+    <a data-ng-href="/#!/exercises">
+        <button class="btn btn-default">
+            < Powrót
+        </button>
+    </a>
+
+    <div>
+
+        <h3>{{$ctrl.exercise.name}}</h3>
+        <label>Nazwa ćwiczenia</label>
+
+        <h3>{{$ctrl.exercise.description}}</h3>
+        <label>Opis</label>
+
+        <h3>{{$ctrl.exercise.place}}</h3>
+        <label>Miejsce</label>
+
+        <ul>
+            <li data-ng-repeat="requirement in $ctrl.exercise.requirements">
+                <h4>{{requirement}}</h4>
+            </li>
+        </ul>
+        <label>Wymagania</label>
+
+        <ul>
+            <li data-ng-repeat="muscle in $ctrl.exercise.muscles">
+                <h4>{{muscle}}</h4>
+            </li>
+        </ul>
+        <label>Mieśnie</label>
+
+        <div data-ng-show="$ctrl.hasModerator">
+
+            <button class="btn btn-danger"
+                    data-ng-click="$ctrl.deleteExercise()">
+                Usun ćwiczenie
+            </button>
+
+            <div>
+                Tutaj jest panel aktualizowania ćwiczenia
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

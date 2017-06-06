@@ -1,0 +1,28 @@
+.exercises {
+    padding: 20px;
+}
+
+.exercises-sorting:hover {
+    cursor: pointer;
+}
+
+.jumbotron {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(60, 118, 61, 0.7);
+}
+
+.search-query {
+    margin: 10px 0 10px 0;
+}
+
+table {
+    background-color: rgba(60, 118, 61, 0.3);
+    border-radius: 10px 10px 10px 10px;
+
+}
+
+#new-channel-anchor {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

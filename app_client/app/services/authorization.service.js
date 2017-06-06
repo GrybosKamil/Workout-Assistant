@@ -22,12 +22,9 @@
 
         const isLoggedIn = function () {
             const token = getToken();
-            let payload;
 
             if (token) {
-                payload = token.split('.')[1];
-                payload = $window.atob(payload);
-                payload = JSON.parse(payload);
+                let payload = getPayload(token);
 
                 if (payload.exp <= Date.now() / 1000) {
                     logout();
@@ -41,14 +38,21 @@
             }
         };
 
+        const authorizationHeader = function () {
+            return {
+                headers: {
+                    Authorization: 'JWT ' + getToken()
+                }
+            }
+        };
+
         const currentUser = function () {
             if (isLoggedIn()) {
                 const token = getToken();
-                let payload = token.split('.')[1];
-                payload = $window.atob(payload);
-                payload = JSON.parse(payload);
+                let payload = getPayload(token);
 
                 return {
+                    _id: payload._id,
                     username: payload.username,
                     email: payload.email,
                     privileges: payload.privileges,
@@ -95,6 +99,13 @@
             removeToken();
         };
 
+
+        const getPayload = function (token) {
+            let payload = token.split('.')[1];
+            payload = $window.atob(payload);
+            return JSON.parse(payload);
+        };
+
         return {
             currentUser: currentUser,
             saveToken: saveToken,
@@ -103,10 +114,10 @@
             register: register,
             login: login,
             logout: logout,
+            authorizationHeader: authorizationHeader,
             hasModerator: hasModerator,
             hasAdministrator: hasAdministrator,
         };
-
     }
 
 })();

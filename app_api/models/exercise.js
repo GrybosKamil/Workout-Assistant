@@ -4,9 +4,17 @@
     const Schema = mongoose.Schema;
 
     const Exercise = new Schema({
-            name: String,
+            name: {
+                type: String,
+                unique: true,
+                required: true
+            },
             description: String,
-            place: String,
+            place: {
+                type: String,
+                enum: ['indoor', 'outdoor'],
+                required: true
+            },
             muscles: [String],
             requirements: [String]
         }

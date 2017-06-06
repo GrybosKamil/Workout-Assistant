@@ -8,11 +8,15 @@
         'menu',
         'login',
         'register',
+        'profile',
         'main',
         'about',
-        // 'exercises',
+        'users',
+        'exercises',
         // 'trainings',
-        'authorizationService'
+        'authorizationService',
+        'usersService',
+        'exercisesService'
     ]);
 
 })();

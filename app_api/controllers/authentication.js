@@ -104,7 +104,7 @@
         //     .then((user) => {
         //             let userId = req.params.userId;
 
-        if (user._id != userId) {
+        if (!user || user._id != userId) {
             ctrlResponse.sendJSON(res, 401, {});
             return;
         }
@@ -125,11 +125,12 @@
         // }
 
         let user = req.user;
+        console.log(user);
 
 
         // User.findById(req.payload._id)
         //     .then((user) => {
-        if (!user.hasModerator()) {
+        if (!user || !user.hasModerator()) {
             ctrlResponse.sendJSON(res, 401, {});
             return;
         }
@@ -149,9 +150,7 @@
 
         let user = req.user;
 
-        // User.findById(req.payload._id)
-        //     .then((user) => {
-        if (!user.hasAdministrator()) {
+        if (!user || !user.hasAdministrator()) {
             ctrlResponse.sendJSON(res, 401, {});
             return;
         }
@@ -176,7 +175,7 @@
         //     .then((user) => {
         let userId = req.params.userId;
 
-        if (user._id != userId && !user.hasAdministrator()) {
+        if (!user || user._id != userId && !user.hasAdministrator()) {
             ctrlResponse.sendJSON(res, 401, {});
             return;
         }
@@ -201,7 +200,7 @@
         //     .then((user) => {
         let userId = req.params.userId;
 
-        if (user._id != userId && !user.hasModerator()) {
+        if (!user || user._id != userId && !user.hasModerator()) {
             ctrlResponse.sendJSON(res, 401, {});
             return;
         }
