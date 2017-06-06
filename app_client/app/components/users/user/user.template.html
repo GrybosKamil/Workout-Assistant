@@ -19,9 +19,22 @@
         <label>Adress email</label>
     </div>
 
-
     <h3>{{$ctrl.user.privileges}}</h3>
     <label>Stopień uprawnień</label>
+
+    <div class="btn-group" data-toggle="buttons">
+        <button class="btn btn-default" data-ng-class="{active: $ctrl.user.privileges==='NONE'}"
+                data-ng-click="$ctrl.changePrivileges('NONE')">NONE
+        </button>
+        <button class="btn btn-default" data-ng-class="{active: $ctrl.user.privileges==='MODERATOR'}"
+                data-ng-click="$ctrl.changePrivileges('MODERATOR')">MODERATOR
+        </button>
+        <button class="btn btn-default" data-ng-class="{active: $ctrl.user.privileges==='ADMINISTRATOR'}"
+                data-ng-click="$ctrl.changePrivileges('ADMINISTRATOR')">ADMINISTRATOR
+        </button>
+    </div>
+    <label>Zmień uprawnienia</label>
+
 
     <div data-ng-show="$ctrl.hasAdministrator">
 

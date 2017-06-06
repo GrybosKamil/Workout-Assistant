@@ -37,7 +37,6 @@
                 });
             })
             .catch((error) => {
-                console.log(error);
                 ctrlResponse.sendJSON(res, 400, {});
             });
 
@@ -118,14 +117,12 @@
     };
 
     const verifyModerator = function (req, res, method) {
-        // console.log(req.user);
         // if (!req.payload._id) {
         //     ctrlResponse.sendJSON(res, 401, {});
         //     return;
         // }
 
         let user = req.user;
-        console.log(user);
 
 
         // User.findById(req.payload._id)

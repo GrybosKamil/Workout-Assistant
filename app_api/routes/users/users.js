@@ -11,7 +11,7 @@
 
     router.route('/')
         .get((req, res, next) => {
-            getUsers(req, res,);
+            getUsers(req, res);
         });
 
 
@@ -26,7 +26,8 @@
             getUser(req, res);
         })
         .put(auth.authenticate(), (req, res, next) => {
-            ctrlAuth.verifyAdministrator(req, res, changePrivileges)
+            ctrlAuth.verifyAdministrator(req, res, changePrivileges);
+            // changePrivileges(req, res, {});
         })
         .delete(auth.authenticate(), (req, res, next) => {
             ctrlAuth.verifyUserOrAdmin(req, res, deleteUser);
@@ -45,7 +46,7 @@
     router.route('/register')
         .post((req, res) => {
             // register(req, res);
-            createNewUser(req, res, "NONE");
+            createUser(req, res, "NONE");
         });
 
     router.route('/login')
@@ -119,6 +120,7 @@
 
     const deleteUser = function (req, res, user) {
         let userId = req.params.userId;
+
         User.remove({_id: userId})
             .then((user) => {
                 if (!user) {
@@ -134,6 +136,7 @@
 
     const changePrivileges = function (req, res, user) {
         let userId = req.params.userId;
+
 
         User.update({_id: userId},
             {

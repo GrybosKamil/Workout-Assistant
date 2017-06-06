@@ -12,7 +12,6 @@
 
                 this.currentUser = Authorization.currentUser();
 
-
                 if (this.currentUser && this.currentUser._id == userId) {
                     $window.location.href = '/#!/profile';
                 }
@@ -24,10 +23,25 @@
                 Users.getUser(userId)
                     .then((user) => {
                         self.user = user;
+                        console.log(self.user);
                     })
                     .catch((error) => {
 
                     });
+
+                this.changePrivileges = function (privileges) {
+                    if (privileges == self.user.privileges) {
+                        return;
+                    }
+
+                    Users.changePrivileges(userId, privileges)
+                        .then((response) => {
+                            self.user.privileges = privileges;
+                        })
+                        .catch((error) => {
+
+                        });
+                };
 
                 this.deleteUser = function () {
                     Users.deleteUser(userId)

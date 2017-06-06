@@ -32,6 +32,30 @@
             return $http.get('/api/users/' + userId);
         };
 
+        const changePrivileges = function (userId, privileges) {
+            // return $http({
+            //     method: 'PUT',
+            //     url: '/api/users/' + userId,
+            //     headers: {
+            //         Authorization: 'JWT ' + Authorization.getToken()
+            //     },
+            //     data: {
+            //         privileges: privileges
+            //     }
+            // });
+
+            return $http.put('api/users/' + userId, {
+                data: {
+                    privileges: privileges
+                }
+            }, {
+                headers: {
+                    Authorization: 'JWT ' + Authorization.getToken(),
+                },
+            });
+
+        };
+
         const deleteUser = function (userId) {
             return $http.delete('/api/users/' + userId,
                 Authorization.authorizationHeader()
@@ -43,6 +67,7 @@
             pullUsers: pullUsers,
             getUser: getUser,
             pullUser: pullUser,
+            changePrivileges: changePrivileges,
             deleteUser: deleteUser
         };
     }
