@@ -45,9 +45,7 @@
             // });
 
             return $http.put('api/users/' + userId, {
-                data: {
-                    privileges: privileges
-                }
+                privileges: privileges
             }, {
                 headers: {
                     Authorization: 'JWT ' + Authorization.getToken(),
