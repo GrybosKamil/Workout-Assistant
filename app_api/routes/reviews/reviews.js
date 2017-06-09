@@ -23,10 +23,6 @@
         .post(auth.authenticate(), (req, res, next) => {
             ctrlAuth.identifyUser(req, res, createNewReview);
         });
-    // .post((req, res, next) => {
-    //     createNewReview(req, res, {});
-    // });
-
     router.route('/:reviewId')
     // .get((req, res, next) => {
     //     getExercise(req, res);
@@ -61,27 +57,6 @@
             });
     };
 
-    // const updateExercise = function (req, res) {
-    //     let exerciseId = req.params.exerciseId;
-    //
-    //     Exercise.update({_id: exerciseId},
-    //         {
-    //             $set: {
-    //                 name: req.body.name,
-    //                 description: req.body.description,
-    //                 place: req.body.place,
-    //                 muscles: req.body.muscles,
-    //                 requirements: req.body.requirements
-    //             }
-    //         })
-    //         .then((message) => {
-    //             ctrlResponse.sendJSON(res, 200, message);
-    //         })
-    //         .catch((error) => {
-    //             ctrlResponse.sendJSON(res, 400, {});
-    //         });
-    // };
-
     const deleteReview = function (req, res) {
         let reviewId = req.params.reviewId;
 
@@ -94,22 +69,6 @@
             });
     };
 
-    // const getExercise = function (req, res) {
-    //     let exerciseId = req.params.exerciseId;
-    //
-    //     Exercise.findOne({_id: exerciseId})
-    //         .then((exercise) => {
-    //             if (!exercise) {
-    //                 ctrlResponse.sendJSON(res, 404, {});
-    //             } else {
-    //                 ctrlResponse.sendJSON(res, 200, exercise);
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             ctrlResponse.sendJSON(res, 400, {});
-    //         });
-    // };
-    //
     const getReviews = function (req, res) {
         Review.find()
             .sort({name: 1})

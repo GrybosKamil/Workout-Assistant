@@ -68,26 +68,6 @@
                 ctrlResponse.sendJSON(res, 400, {});
             });
 
-        // passport.authenticate('local', function (err, user, info) {
-        //     let token;
-        //
-        //     if (err) {
-        //         ctrlResponse.sendJSON(res, 404,
-        //             err);
-        //         return;
-        //     }
-        //
-        //     if (user) {
-        //         token = user.generateJwt();
-        //         ctrlResponse.sendJSON(res, 200, {
-        //             token: token
-        //         });
-        //     } else {
-        //         ctrlResponse.sendJSON(res, 401,
-        //             info
-        //         );
-        //     }
-        // })(req, res);
 
     };
 
@@ -99,21 +79,12 @@
 
         let user = req.user;
 
-        // User.findById(req.payload._id)
-        //     .then((user) => {
-        //             let userId = req.params.userId;
-
         if (!user || user._id != userId) {
             ctrlResponse.sendJSON(res, 401, {});
             return;
         }
 
         method(req, res, user);
-        //     }
-        // )
-        // .catch((error) => {
-        //     ctrlResponse.sendJSON(res, 400, {});
-        // });
     };
 
     const verifyModerator = function (req, res, method) {
@@ -124,19 +95,11 @@
 
         let user = req.user;
 
-
-        // User.findById(req.payload._id)
-        //     .then((user) => {
         if (!user || !user.hasModerator()) {
             ctrlResponse.sendJSON(res, 401, {});
             return;
         }
         method(req, res, user);
-        //     }
-        // )
-        // .catch((error) => {
-        //     ctrlResponse.sendJSON(res, 400, {});
-        // });
     };
 
     const verifyAdministrator = function (req, res, method) {
@@ -153,11 +116,6 @@
         }
 
         method(req, res, user);
-        //     }
-        // )
-        // .catch((error) => {
-        //     ctrlResponse.sendJSON(res, 400, {});
-        // });
     };
 
     const verifyUserOrAdmin = function (req, res, method) {
@@ -168,8 +126,6 @@
 
         let user = req.user;
 
-        // User.findById(req.payload._id)
-        //     .then((user) => {
         let userId = req.params.userId;
 
         if (!user || user._id != userId && !user.hasAdministrator()) {
@@ -178,11 +134,6 @@
         }
 
         method(req, res, user);
-        // }
-        // )
-        // .catch((error) => {
-        //     ctrlResponse.sendJSON(res, 400, {});
-        // });
     };
 
     const verifyUserOrModerator = function (req, res, method) {
@@ -193,8 +144,6 @@
 
         let user = req.user;
 
-        // User.findById(req.payload._id)
-        //     .then((user) => {
         let userId = req.params.userId;
 
         if (!user || user._id != userId && !user.hasModerator()) {
@@ -203,11 +152,6 @@
         }
 
         method(req, res, user);
-        // }
-        // )
-        // .catch((error) => {
-        //     ctrlResponse.sendJSON(res, 400, {});
-        // });
     };
 
     const identifyUser = function (req, res, method) {
@@ -218,14 +162,7 @@
 
         let user = req.user;
 
-        // User.findById(req.payload._id)
-        //     .then((user) => {
         method(req, res, user);
-        // }
-        // )
-        // .catch((error) => {
-        //     ctrlResponse.sendJSON(res, 400, {});
-        // });
     };
 
     module.exports = {

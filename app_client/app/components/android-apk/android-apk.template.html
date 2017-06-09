@@ -1,0 +1,31 @@
+<div class="col-sm-8 col-sm-offset-2 col-md-8 col-sd-offset-2"
+     data-ng-show="$ctrl.hasAdministrator">
+
+    <h1>Workout Assistant</h1>
+    <h2>Android Application</h2>
+
+    <form name="upload_form">
+        <input
+                id="input-file"
+                type="file"
+                data-ngf-select
+                data-ng-model="$ctrl.file"
+                name="file"
+                data-ngf-pattern="'.apk'"
+                accept="./apk"
+                data-ngf-max-size="20MB"/>
+
+        <!--Image thumbnail:-->
+        <!--<img style="width:100px;" data-ngf-thumbnail="$ctrl.file || '/thumb.jpg'"/>-->
+        <i data-ng-show="$ctrl.upload_form.file.$error.required">*required</i><br>
+
+        <i data-ng-show="$ctrl.upload_form.file.$error.maxSize">File too large
+            {{$ctrl.file.size / 1000000|number:1}}MB: max 20M</i>
+
+        <button type="submit" data-ng-click="$ctrl.submit()"
+                data-ng-hide="upload_form.$invalid || !$ctrl.file"
+                data-ng-disabled="upload_form.$invalid || !$ctrl.file">submit
+        </button>
+    </form>
+
+</div>

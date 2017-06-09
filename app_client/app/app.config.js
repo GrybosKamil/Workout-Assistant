@@ -42,7 +42,10 @@
                         template: '<exercise></exercise>'
                     })
                     .when('/trainings', {
-                        template: '<trainings><trainings/>'
+                        template: '<trainings></trainings>'
+                    })
+                    .when('/android-apk', {
+                        template: '<android-apk></android-apk>'
                     })
                     .when('/404', {
                         template: '<div class="info"> Looks like you got lost. <a href="/">Back to home.</a> </div>'
