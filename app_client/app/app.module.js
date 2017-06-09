@@ -14,6 +14,7 @@
         'users',
         'exercises',
         'trainings',
+        'androidApk',
         'authorizationService',
         'usersService',
         'exercisesService',
