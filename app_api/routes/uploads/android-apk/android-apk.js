@@ -10,7 +10,16 @@
     const ctrlResponse = require('../../../controllers/response');
     const ctrlAuth = require('../../../controllers/authentication');
 
-    const storageAndroidAPK = path.join(__dirname, "..", "..", "..", "..", "uploads", "android-apk");
+    const mainCatalog = path.join(__dirname, "..", "..", "..", "..");
+
+    if (!fileSystem.existsSync(path.join(mainCatalog, "uploads"))) {
+        fileSystem.mkdirSync(path.join(mainCatalog, "uploads"));
+    }
+    if (!fileSystem.existsSync(path.join(mainCatalog, "uploads", "android-apk"))) {
+        fileSystem.mkdirSync(path.join(mainCatalog, "uploads", "android-apk"));
+    }
+
+    const storageAndroidAPK = path.join(mainCatalog, "uploads", "android-apk");
 
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
