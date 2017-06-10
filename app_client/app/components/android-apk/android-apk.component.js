@@ -69,6 +69,11 @@
                     if (message.data.isNew == 1) {
                         self.newVersion = true;
                     }
+
+                    if (self.androidApkList == undefined || self.androidApkList.length == 0) {
+                        self.newVersion = false;
+                    }
+
                     self.getAndroidApkList();
                 });
 
