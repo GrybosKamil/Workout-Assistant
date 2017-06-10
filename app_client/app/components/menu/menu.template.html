@@ -9,7 +9,7 @@
                      src="../../../assets/images/menu_logo.png">
             </a>
 
-            <button type="button" class="navbar-toggle"
+            <button type="button" class="navbar-toggle navHeaderCollapse"
                     data-toggle="collapse"
                     data-target="#myNavbar">
                 <span class="icon-bar"></span>
@@ -28,6 +28,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
 
+                <!--<ul class="nav navbar-nav">-->
                 <li class="dropdown">
 
                     <a class="navbar-brand"
@@ -43,6 +44,14 @@
                                data-ng-class="{ active: isActive('/users') }"
                                data-ng-href="/#!/users">
                                 Użytkownicy
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="navbar-brand"
+                               data-ng-class="{ active: isActive('/android-apk') }"
+                               data-ng-href="/#!/android-apk">
+                                Aplikacja Android
                             </a>
                         </li>
 
@@ -73,31 +82,33 @@
                     </ul>
 
                 </li>
-                <!--<li>-->
-                <!--<a class="navbar-brand"-->
-                <!--data-ng-class="{ active: isActive('/about') }"-->
-                <!--data-ng-href="/#!/about">-->
-                <!--O nas-->
-                <!--</a>-->
-                <!--</li>-->
+            </ul>
+            <!--<li>-->
+            <!--<a class="navbar-brand"-->
+            <!--data-ng-class="{ active: isActive('/about') }"-->
+            <!--data-ng-href="/#!/about">-->
+            <!--O nas-->
+            <!--</a>-->
+            <!--</li>-->
 
-                <!--<li>-->
-                <!--<a class="navbar-brand"-->
-                <!--data-ng-class="{ active: isActive('/contact') }"-->
-                <!--data-ng-href="/#!/contact">-->
-                <!--Kontakt-->
-                <!--</a>-->
-                <!--</li>-->
+            <!--<li>-->
+            <!--<a class="navbar-brand"-->
+            <!--data-ng-class="{ active: isActive('/contact') }"-->
+            <!--data-ng-href="/#!/contact">-->
+            <!--Kontakt-->
+            <!--</a>-->
+            <!--</li>-->
 
-                <!--<li>-->
-                <!--<a class="navbar-brand"-->
-                <!--data-ng-show="$ctrl.isLoggedIn()"-->
-                <!--data-ng-class="{ active: isActive('/contact') }"-->
-                <!--data-ng-href="/#!/contact">-->
-                <!--Kontakt-->
-                <!--</a>-->
-                <!--</li>-->
+            <!--<li>-->
+            <!--<a class="navbar-brand"-->
+            <!--data-ng-show="$ctrl.isLoggedIn()"-->
+            <!--data-ng-class="{ active: isActive('/contact') }"-->
+            <!--data-ng-href="/#!/contact">-->
+            <!--Kontakt-->
+            <!--</a>-->
+            <!--</li>-->
 
+            <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a class="navbar-brand"
                        data-ng-show="!$ctrl.isLoggedIn()"

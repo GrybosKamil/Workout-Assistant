@@ -64,9 +64,10 @@
                 } else {
 
                     let socketio = req.app.get('socketio');
+                    console.log('siema');
                     socketio.sockets.emit('android-apk', {
                         data: {
-                            new: 0,
+                            isNew: 0,
                             message: "Usunięte"
                         }
                     });
@@ -101,8 +102,10 @@
 
             let socketio = req.app.get('socketio');
             socketio.sockets.emit('android-apk', {
-                new: 1,
-                message: "Dodane"
+                data: {
+                    isNew: 1,
+                    message: "Dodane"
+                }
             });
 
             res.json({error_code: 0, err_desc: null});

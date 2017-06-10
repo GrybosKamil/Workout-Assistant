@@ -63,8 +63,10 @@
                     self.file = undefined;
                 };
 
-                $scope.$on('socket:android-apk', function (ev, data) {
-                    if (data.new == 1) {
+                const socket = Socket;
+
+                socket.on('android-apk', function (message) {
+                    if (message.data.isNew == 1) {
                         self.newVersion = true;
                     }
                     self.getAndroidApkList();

@@ -8,7 +8,7 @@
     socket.$inject = ['socketFactory'];
     function socket(socketFactory) {
         let socket = socketFactory();
-        socket.forward('android-apk');
+        // socket.forward('android-apk');
         return socket;
         // return socketFactory({
         //     prefix: '',
