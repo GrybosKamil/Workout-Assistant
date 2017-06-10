@@ -5,7 +5,9 @@
     const router = require('express').Router();
     const multer = require('multer');
     const auth = require('../../../config/auth')();
+    const ctrlResponse = require('../../../controllers/response');
     const ctrlAuth = require('../../../controllers/authentication');
+
 
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
@@ -29,6 +31,13 @@
             }
         );
 
+
+    router.route('/:apkId')
+        .get(auth.authenticate(), (req, res, next) => {
+            ctrlAuth.identifyUser(req, res, downloadAndroidAPK);
+
+        });
+
     module.exports = router;
 
 
@@ -37,11 +46,27 @@
             if (err) {
                 console.log(err);
 
-                res.json({error_code: 1, err_desc: err});
+                res.json({
+                    error_code: 1,
+                    err_desc: err
+                });
                 return;
             }
+
+
+            let socketio = req.app.get('socketio');
+            socketio.sockets.emit('android-apk', {
+                data: "Nowa wersja!"
+            });
+
             res.json({error_code: 0, err_desc: null});
         });
     };
+
+    const downloadAndroidAPK = function (req, res) {
+        let apkId = req.params.apkId;
+        console.log(apkId);
+        ctrlResponse.sendJSON(res, 200, {});
+    }
 
 })();

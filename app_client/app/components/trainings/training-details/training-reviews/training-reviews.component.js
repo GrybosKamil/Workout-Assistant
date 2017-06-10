@@ -58,7 +58,9 @@
                             comment: self.newOpinion.comment,
                             updated: self.newOpinion.updated
                         },
-                        Authorization.authorizationHeader()
+                        {
+                            headers: Authorization.authorizationHeader()
+                        }
                     )
                         .then((response) => {
                             self.training.reviews.unshift(response.data);

@@ -38,11 +38,17 @@
             }
         };
 
-        const authorizationHeader = function () {
+        // const authorizationHeader = function () {
+        //     return {
+        //         headers: {
+        //             Authorization: 'JWT ' + getToken()
+        //         }
+        //     }
+        // };
+
+        const authorizationHeader = () => {
             return {
-                headers: {
-                    Authorization: 'JWT ' + getToken()
-                }
+                Authorization: 'JWT ' + getToken()
             }
         };
 

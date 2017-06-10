@@ -4,17 +4,28 @@
 
     const path = require('path');
     const favicon = require('serve-favicon');
-    const multer = require('multer')
+    const multer = require('multer');
     const logger = require('morgan');
     const bodyParser = require('body-parser');
     const methodOverride = require('method-override');
     const cookieParser = require('cookie-parser');
 
-    const port = process.env.PORT || 8080;
-    const app = express();
+    const http = require('http');
+    const socketio = require('socket.io');
+
 
     const passport = require('passport');
     const auth = require("./app_api/config/auth")();
+
+    const port = process.env.PORT || 8080;
+    const app = express();
+    const server = http.createServer(app);
+    const io = socketio.listen(server);
+
+
+    app.set('socketio', io);
+    app.set('server', server);
+
 
     app.use(auth.initialize());
 
@@ -56,9 +67,14 @@
 
     app.use('/', router);
 
-    app.listen(port, function () {
-        console.log('Server is running on port :' + port);
-    });
+    app.get('server').listen(port);
+    // app.get('server').listen(port, function () {
+    //     console.log('Server is running on port :' + port);
+    // });
+
+    // app.listen(port, function () {
+    //     console.log('Server is running on port :' + port);
+    // });
 
     // exports =
     module.exports = app;

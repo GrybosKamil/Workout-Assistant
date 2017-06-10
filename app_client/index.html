@@ -45,8 +45,15 @@
     <script type="text/javascript" src="../node_modules/ng-file-upload/dist/ng-file-upload-shim.js"></script>
     <!--<script type="text/javascript" src="../node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>-->
 
+    <!--SocketIO-->
+    <!--<script type="text/javascript" src="../node_modules/socket.io-client/dist/socket.io.js"></script>-->
+    <!--<script type="text/javascript" src="../node_modules/socket.io-client/dist/socket.io.slim.js"></script>-->
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../node_modules/angular-socket-io/socket.js"></script>
+
     <!--Parallax-->
-    <script src="libs/parallax.js-1.4.2/parallax.js"></script>
+    <script type="text/javascript" src="libs/parallax.js-1.4.2/parallax.js"></script>
 
 </head>
 <body>
@@ -84,6 +91,10 @@
 <!--Trainings-->
 <script src="app/services/trainings.service.js"></script>
 
+
+<!--Factories-->
+<!--Socket-->
+<script src="app/factories/socket.factory.js"></script>
 
 <!--Components-->
 <!-- Not-Ready-->
