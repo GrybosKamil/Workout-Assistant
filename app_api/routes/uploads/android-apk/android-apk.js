@@ -81,10 +81,18 @@
 
     const getApplicationsAPK = function (req, res) {
         fileSystem.readdir(storageAndroidAPK, (err, files) => {
-            let fileList = files.map((file) => {
-                return file.substring(0, file.length - 4);
-            });
-            ctrlResponse.sendJSON(res, 200, fileList);
+            if (err) {
+                ctrlResponse.sendJSON(res, 400, []);
+                return;
+            }
+            if (files) {
+                let fileList = files.map((file) => {
+                    return file.substring(0, file.length - 4);
+                });
+                ctrlResponse.sendJSON(res, 200, fileList);
+            } else {
+                ctrlResponse.sendJSON(res, 200, []);
+            }
         });
     };
 
