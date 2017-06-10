@@ -11,3 +11,6 @@
 @import "components/trainings/trainings.css";
 @import "components/trainings/training-details/training-details.css";
 @import "components/trainings/training-details/training-reviews/training-reviews.css";
+
+
+@import "components/android-apk/android-apk.css";

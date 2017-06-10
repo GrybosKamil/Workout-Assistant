@@ -47,14 +47,18 @@
             return $http.put('api/users/' + userId, {
                     privileges: privileges
                 },
-                Authorization.authorizationHeader()
+                {
+                    headers: Authorization.authorizationHeader()
+                }
             );
 
         };
 
         const deleteUser = function (userId) {
             return $http.delete('/api/users/' + userId,
-                Authorization.authorizationHeader()
+                {
+                    headers: Authorization.authorizationHeader()
+                }
             )
         };
 

@@ -15,3 +15,6 @@ bower_components/
 
 # IntelliJ
 */out/
+
+# Upload files
+uploads/android-apk/

@@ -34,7 +34,9 @@
 
         const deleteExercise = function (exerciseId) {
             return $http.delete('/api/exercises/' + exerciseId,
-                Authorization.authorizationHeader()
+                {
+                    headers: Authorization.authorizationHeader()
+                }
             )
         };
 

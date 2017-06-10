@@ -18,7 +18,8 @@
         'authorizationService',
         'usersService',
         'exercisesService',
-        'trainingsService'
+        'trainingsService',
+        'socketFactory'
     ]);
 
 })();

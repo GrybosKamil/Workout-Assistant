@@ -11,8 +11,6 @@
 
     router.route('/')
         .get((req, res, next) => {
-            console.log("SIEMKA");
-
             getTrainings(req, res);
         });
 
