@@ -10,6 +10,8 @@
 
                 self.hasAdministrator = Authorization.hasAdministrator();
 
+                self.newVersion = false;
+
                 self.submit = function () {
                     if ($scope.upload_form.file.$valid && self.file) {
                         self.upload(self.file);
@@ -44,7 +46,9 @@
                 };
 
                 $scope.$on('socket:android-apk', function (ev, data) {
+                    self.newVersion = true;
                     console.log(data);
+                    console.log("Pobieram wszystkie znowu");
                 });
 
             }

@@ -13,7 +13,6 @@
     const http = require('http');
     const socketio = require('socket.io');
 
-
     const passport = require('passport');
     const auth = require("./app_api/config/auth")();
 
@@ -22,13 +21,10 @@
     const server = http.createServer(app);
     const io = socketio.listen(server);
 
-
     app.set('socketio', io);
     app.set('server', server);
 
-
     app.use(auth.initialize());
-
     app.use(logger('dev'));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: false}));

@@ -1,8 +1,10 @@
-<div class="col-sm-8 col-sm-offset-2 col-md-8 col-sd-offset-2"
+<h1>Workout Assistant</h1>
+<h2>Android Application</h2>
+
+<div id="upload-android-apk-form" class="col-sm-8 col-sm-offset-2 col-md-8 col-sd-offset-2"
      data-ng-show="$ctrl.hasAdministrator">
 
-    <h1>Workout Assistant</h1>
-    <h2>Android Application</h2>
+    <h4>Dodaj nową wersję aplikacji</h4>
 
     <form name="upload_form">
         <input
@@ -28,4 +30,15 @@
         </button>
     </form>
 
+</div>
+
+
+<div id="new-version-available" class="col-sm-8 col-sm-offset-2 col-md-8 col-sd-offset-2"
+     data-ng-show="$ctrl.newVersion">
+    Nowa wersja dostępna!
+</div>
+
+
+<div class="col-sm-8 col-sm-offset-2 col-md-8 col-sd-offset-2">
+    Tutaj lista aplikacji
 </div>

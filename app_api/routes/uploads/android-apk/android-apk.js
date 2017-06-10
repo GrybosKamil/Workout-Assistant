@@ -4,6 +4,8 @@
 
     const router = require('express').Router();
     const multer = require('multer');
+    const path = require('path');
+    const fileSystem = require('fs');
     const auth = require('../../../config/auth')();
     const ctrlResponse = require('../../../controllers/response');
     const ctrlAuth = require('../../../controllers/authentication');
@@ -32,11 +34,17 @@
         );
 
 
-    router.route('/:apkId')
-        .get(auth.authenticate(), (req, res, next) => {
-            ctrlAuth.identifyUser(req, res, downloadAndroidAPK);
+    // router.route('/:apkId')
+    //     .get(auth.authenticate(), (req, res, next) => {
+    //         ctrlAuth.identifyUser(req, res, downloadAndroidAPK);
+    //     });
 
+
+    router.route('/:apkId')
+        .get((req, res, next) => {
+            downloadAndroidAPK(req, res);
         });
+
 
     module.exports = router;
 
@@ -63,10 +71,31 @@
         });
     };
 
-    const downloadAndroidAPK = function (req, res) {
+    const downloadAndroidAPK = (req, res) => {
         let apkId = req.params.apkId;
-        console.log(apkId);
-        ctrlResponse.sendJSON(res, 200, {});
+
+        let filename = apkId + '.apk';
+
+        let storagePath = path.join(__dirname, "..", "..", "..", "..", "uploads", "android-apk", filename);
+
+        console.log(storagePath);
+
+
+        if (fileSystem.existsSync(storagePath)) {
+            let stat = fileSystem.statSync(storagePath);
+
+            res.writeHead(200, {
+                'Content-Type': 'application/vnd.android.package-archive',
+                'Content-Disposition': 'attachment;filename=' + filename,
+                'Content-Length': stat.size
+            });
+
+            let readStream = fileSystem.createReadStream(storagePath);
+            // We replaced all the event handlers with a simple call to readStream.pipe()
+            readStream.pipe(res);
+        } else {
+            ctrlResponse.sendJSON(res, 404, undefined);
+        }
     }
 
 })();
