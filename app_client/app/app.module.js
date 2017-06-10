@@ -19,6 +19,7 @@
         'usersService',
         'exercisesService',
         'trainingsService',
+        'uploadsService',
         'socketFactory'
     ]);
 

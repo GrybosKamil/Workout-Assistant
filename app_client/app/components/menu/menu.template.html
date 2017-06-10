@@ -1,5 +1,6 @@
 <nav class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container-fluid">
+
         <div class="navbar-header">
 
             <a class="navbar-brand"
@@ -9,7 +10,7 @@
                      src="../../../assets/images/menu_logo.png">
             </a>
 
-            <button type="button" class="navbar-toggle"
+            <button type="button" class="navbar-toggle navHeaderCollapse"
                     data-toggle="collapse"
                     data-target="#myNavbar">
                 <span class="icon-bar"></span>
@@ -26,78 +27,8 @@
         </div>
 
         <div class="collapse navbar-collapse" id="myNavbar">
+
             <ul class="nav navbar-nav navbar-right">
-
-                <li class="dropdown">
-
-                    <a class="navbar-brand"
-                       data-toggle="dropdown">
-                        Katalog
-                        <span class="caret"></span>
-                    </a>
-
-                    <ul class="dropdown-menu">
-
-                        <li>
-                            <a class="navbar-brand"
-                               data-ng-class="{ active: isActive('/users') }"
-                               data-ng-href="/#!/users">
-                                Użytkownicy
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="navbar-brand"
-                               data-ng-class="{ active: isActive('/exercises') }"
-                               data-ng-href="/#!/exercises">
-                                Ćwiczenia
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="navbar-brand"
-                               data-ng-class="{ active: isActive('/trainings') }"
-                               data-ng-href="/#!/trainings">
-                                Treningi
-                            </a>
-                        </li>
-
-                        <!--<li>-->
-                        <!--<a class="navbar-brand"-->
-                        <!--data-ng-class="{ active: isActive('/workouts') }"-->
-                        <!--data-ng-href="/#!/workouts">-->
-                        <!--Workouts-->
-                        <!--</a>-->
-                        <!--</li>-->
-
-                    </ul>
-
-                </li>
-                <!--<li>-->
-                <!--<a class="navbar-brand"-->
-                <!--data-ng-class="{ active: isActive('/about') }"-->
-                <!--data-ng-href="/#!/about">-->
-                <!--O nas-->
-                <!--</a>-->
-                <!--</li>-->
-
-                <!--<li>-->
-                <!--<a class="navbar-brand"-->
-                <!--data-ng-class="{ active: isActive('/contact') }"-->
-                <!--data-ng-href="/#!/contact">-->
-                <!--Kontakt-->
-                <!--</a>-->
-                <!--</li>-->
-
-                <!--<li>-->
-                <!--<a class="navbar-brand"-->
-                <!--data-ng-show="$ctrl.isLoggedIn()"-->
-                <!--data-ng-class="{ active: isActive('/contact') }"-->
-                <!--data-ng-href="/#!/contact">-->
-                <!--Kontakt-->
-                <!--</a>-->
-                <!--</li>-->
-
                 <li>
                     <a class="navbar-brand"
                        data-ng-show="!$ctrl.isLoggedIn()"
@@ -131,16 +62,68 @@
                        data-ng-click="$ctrl.logout()"
                        data-ng-show="$ctrl.isLoggedIn()"
                        data-ng-href="/">
-                        <!--data-ng-class="{ active: isActive('/contact') }"-->
                         Wyloguj
                     </a>
                 </li>
-
             </ul>
-            <!--<ul class="nav navbar-nav navbar-right">-->
-            <!--<li><a href="/#!/"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
-            <!--<li><a href="/#!/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
-            <!--</ul>-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+
+                    <a class="navbar-brand"
+                       data-toggle="dropdown">
+                        Katalog
+                        <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a class="navbar-brand"
+                               data-ng-class="{ active: isActive('/users') }"
+                               data-ng-href="/#!/users">
+                                Użytkownicy
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="navbar-brand"
+                               data-ng-class="{ active: isActive('/android-apk') }"
+                               data-ng-href="/#!/android-apk">
+                                Aplikacja Android
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="navbar-brand"
+                               data-ng-class="{ active: isActive('/exercises') }"
+                               data-ng-href="/#!/exercises">
+                                Ćwiczenia
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="navbar-brand"
+                               data-ng-class="{ active: isActive('/trainings') }"
+                               data-ng-href="/#!/trainings">
+                                Treningi
+                            </a>
+                        </li>
+
+                        <!--<li>-->
+                        <!--<a class="navbar-brand"-->
+                        <!--data-ng-class="{ active: isActive('/workouts') }"-->
+                        <!--data-ng-href="/#!/workouts">-->
+                        <!--Workouts-->
+                        <!--</a>-->
+                        <!--</li>-->
+
+                    </ul>
+
+                </li>
+            </ul>
+
         </div>
+
     </div>
 </nav>
