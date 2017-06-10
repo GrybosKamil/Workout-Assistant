@@ -17,6 +17,10 @@
                     return;
                 }
 
+                this.places = [ "indoor", "outdoor"];
+                this.chosenMuscles = [];
+                this.chosenRequirements = [];
+
                 this.exercise = undefined;
 
                 this.createNewExercise = function () {

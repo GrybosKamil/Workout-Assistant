@@ -6,10 +6,73 @@
         </button>
     </a>
 
-    <div>
+<div class="new-exercise-container">
 
-        tutaj jest tworzenie nowego ćwiczenia
+    <div class="jumbotron">
+        <h3>Dodaj nowe ćwiczenie</h3>
+
+        <div class="form-group row exercise-details-row">
+            <div class="col-md-3">
+                Nazwa:
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="ex_name">
+            </div>
+        </div>
+
+        <div class="form-group row exercise-details-row">
+            <div class="col-md-3">
+                Opis:
+            </div>
+            <div class="col-md-9">
+                <textarea type="text" class="form-control" id="ex_description"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group row exercise-details-row">
+            <div class="col-md-3">
+                Miejsce:
+            </div>
+            <div class="col-md-9">
+                <select type="text" class="form-control" id="ex_place">
+                    <option data-ng-repeat="place in $ctrl.places">{{place}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row exercise-details-row">
+            <div class="col-md-3">
+                Wymagania:
+            </div>
+            <div class="col-md-7">
+                <input type="text" class="form-control" id="ex_reqs">
+
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-default">Dodaj</button>
+
+            </div>
+        </div>
+
+        <div class="form-group row exercise-details-row">
+            <div class="col-md-3">
+                Mięśnie:
+            </div>
+            <div class="col-md-7">
+                <input type="text" class="form-control" id="ex_muscles">
+
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-default">Dodaj</button>
+
+            </div>
+        </div>
+
+        <div class="row exercise-details-row">
+            <button class="btn btn-default pull-right">Zapisz ćwiczenie</button>
+        </div>
 
     </div>
+</div>
 
 </div>
