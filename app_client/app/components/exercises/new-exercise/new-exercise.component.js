@@ -17,9 +17,19 @@
                     return;
                 }
 
+
                 this.places = [ "indoor", "outdoor"];
+
+                this.name = "";
+                this.description="";
+                this.place = "";
                 this.chosenMuscles = [];
                 this.chosenRequirements = [];
+
+                this.newReq = "";
+                this.newMuscle = "";
+
+
 
                 this.exercise = undefined;
 
@@ -32,6 +42,41 @@
 
                         });
                 };
+
+                this.shouldShowAddedList = function (list) {
+                    return list.length > 0;
+                };
+
+                this.addItemToList = function (list, item) {
+
+                    if(item === "") return;
+
+                    list.push(item);
+
+                    this.newReq = "";
+                };
+
+                this.addReqToRequirementsList = function () {
+
+                    if(this.newReq === "") return;
+
+                    this.chosenRequirements.push(this.newReq);
+
+                    this.newReq = "";
+                };
+
+                this.addMuscleToMusclesList = function () {
+
+                    if(this.newMuscle === "") return;
+
+                    this.chosenMuscles.push(this.newMuscle);
+
+                    this.newMuscle = "";
+                }
+
+                this.deleteFromList = function (list, idx) {
+                    list.splice(idx, 1);
+                }
 
             }
         });

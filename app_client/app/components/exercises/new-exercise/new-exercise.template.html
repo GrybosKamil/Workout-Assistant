@@ -16,7 +16,7 @@
                 Nazwa:
             </div>
             <div class="col-md-9">
-                <input type="text" class="form-control" id="ex_name">
+                <input type="text" class="form-control" data-ng-model="$ctrl.name" id="ex_name">
             </div>
         </div>
 
@@ -25,7 +25,7 @@
                 Opis:
             </div>
             <div class="col-md-9">
-                <textarea type="text" class="form-control" id="ex_description"></textarea>
+                <textarea type="text" class="form-control" data-ng-model="$ctrl.description" id="ex_description"></textarea>
             </div>
         </div>
 
@@ -34,36 +34,58 @@
                 Miejsce:
             </div>
             <div class="col-md-9">
-                <select type="text" class="form-control" id="ex_place">
+                <select type="text" class="form-control" data-ng-model="$ctrl.place" id="ex_place">
                     <option data-ng-repeat="place in $ctrl.places">{{place}}</option>
                 </select>
             </div>
         </div>
 
         <div class="form-group row exercise-details-row">
-            <div class="col-md-3">
+            <div class="row" data-ng-show="$ctrl.shouldShowAddedList($ctrl.chosenRequirements)">
+                <div class="col-md-7 col-md-offset-3 ">
+                    <ul class="exercise-form-list">
+                        <div class="chosen-item" data-ng-repeat="requirement in $ctrl.chosenRequirements">
+                            {{requirement}}
+                            <span class="glyphicon glyphicon-remove" data-ng-click="$ctrl.deleteFromList($ctrl.chosenRequirements, $index)"></span>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 row-item">
                 Wymagania:
             </div>
             <div class="col-md-7">
-                <input type="text" class="form-control" id="ex_reqs">
+                <input type="text" class="form-control" id="ex_reqs" data-ng-model="$ctrl.newReq">
 
             </div>
             <div class="col-md-2">
-                <button class="btn btn-default">Dodaj</button>
+                <button class="btn btn-default" data-ng-click="$ctrl.addReqToRequirementsList()">Dodaj</button>
 
             </div>
         </div>
 
         <div class="form-group row exercise-details-row">
+
+            <div class="row" data-ng-show="$ctrl.shouldShowAddedList($ctrl.chosenMuscles)">
+                <div class="col-md-7 col-md-offset-3 ">
+                    <ul class="exercise-form-list">
+                        <div class="chosen-item" data-ng-repeat="muscle in $ctrl.chosenMuscles">
+                            {{muscle}}
+                            <span class="glyphicon glyphicon-remove" data-ng-click="$ctrl.deleteFromList($ctrl.chosenMuscles, $index)"></span>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
             <div class="col-md-3">
                 Mięśnie:
             </div>
             <div class="col-md-7">
-                <input type="text" class="form-control" id="ex_muscles">
+                <input type="text" class="form-control" id="ex_muscles" data-ng-model="$ctrl.newMuscle">
 
             </div>
             <div class="col-md-2">
-                <button class="btn btn-default">Dodaj</button>
+                <button class="btn btn-default" data-ng-click="$ctrl.addMuscleToMusclesList()">Dodaj</button>
 
             </div>
         </div>

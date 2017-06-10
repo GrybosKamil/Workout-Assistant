@@ -9,3 +9,14 @@
 .exercise-details-row{
     margin: 20px 10px 20px 10px;
 }
+
+.exercise-form-list{
+    list-style-type: none;
+
+}
+
+.chosen-item{
+    border: 1px solid black;
+    display: inline;
+    padding: 5px 5px 5px 5px;
+}
