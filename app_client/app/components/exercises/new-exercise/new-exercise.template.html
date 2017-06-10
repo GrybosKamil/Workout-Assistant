@@ -16,7 +16,7 @@
                 Nazwa:
             </div>
             <div class="col-md-9">
-                <input type="text" class="form-control" data-ng-model="$ctrl.name" id="ex_name">
+                <input type="text" class="form-control" data-ng-model="$ctrl.nameData" id="ex_name">
             </div>
         </div>
 
@@ -25,7 +25,7 @@
                 Opis:
             </div>
             <div class="col-md-9">
-                <textarea type="text" class="form-control" data-ng-model="$ctrl.description" id="ex_description"></textarea>
+                <textarea type="text" class="form-control" data-ng-model="$ctrl.descriptionData" id="ex_description"></textarea>
             </div>
         </div>
 
@@ -34,7 +34,7 @@
                 Miejsce:
             </div>
             <div class="col-md-9">
-                <select type="text" class="form-control" data-ng-model="$ctrl.place" id="ex_place">
+                <select type="text" class="form-control" data-ng-model="$ctrl.placeData" id="ex_place">
                     <option data-ng-repeat="place in $ctrl.places">{{place}}</option>
                 </select>
             </div>
@@ -91,7 +91,7 @@
         </div>
 
         <div class="row exercise-details-row">
-            <button class="btn btn-default pull-right">Zapisz ćwiczenie</button>
+            <button class="btn btn-default pull-right" data-ng-click="$ctrl.createNewExercise()">Zapisz ćwiczenie</button>
         </div>
 
     </div>

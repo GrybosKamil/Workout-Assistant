@@ -20,27 +20,44 @@
 
                 this.places = [ "indoor", "outdoor"];
 
-                this.name = "";
-                this.description="";
-                this.place = "";
+                this.nameData = "";
+                this.descriptionData="";
+                this.placeData = "";
                 this.chosenMuscles = [];
                 this.chosenRequirements = [];
 
                 this.newReq = "";
                 this.newMuscle = "";
 
-
-
-                this.exercise = undefined;
-
                 this.createNewExercise = function () {
-                    Exercises.cr
-                        .then((response) => {
 
+                    if(this.nameData === "" || this.descriptionData==="" || this.placeData==="") return;
+
+                    var exercise = {
+                        name: this.nameData,
+                        description: this.descriptionData,
+                        place: this.placeData,
+                        muscles: this.chosenMuscles,
+                        requirements: this.chosenRequirements
+                    };
+
+                    console.log(exercise);
+
+                    Exercises.pushExercise(exercise)
+                        .then((response) => {
+                            console.log(response.data);
+                            alert("Dodano ćwiczenie");
                         })
                         .catch((error) => {
-
+                            alert("Błąd podczas dodawania ćwiczenia");
                         });
+
+                    this.nameData = "";
+                    this.descriptionData="";
+                    this.placeData="";
+                    this.chosenMuscles = [];
+                    this.chosenRequirements = [];
+
                 };
 
                 this.shouldShowAddedList = function (list) {

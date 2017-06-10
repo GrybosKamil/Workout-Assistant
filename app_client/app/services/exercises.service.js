@@ -40,12 +40,27 @@
             )
         };
 
+        const pushExercise = function (data) {
+            return $http.post('/api/exercises/new',
+                {
+                    name: data.name,
+                    description: data.description,
+                    place: data.place,
+                    muscles: data.muscles,
+                    requirements: data.requirements
+                },
+                {
+                    headers: Authorization.authorizationHeader()
+                })
+        };
+
         return {
             getExercises: getExercises,
             pullExercises: pullExercises,
             getExercise: getExercise,
             pullExercise: pullExercise,
-            deleteExercise: deleteExercise
+            deleteExercise: deleteExercise,
+            pushExercise: pushExercise
         };
     }
 
